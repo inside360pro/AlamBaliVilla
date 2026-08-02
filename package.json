@@ -1,0 +1,13 @@
+{
+"name": "alam-bali-villa-website",
+"version": "1.0.0",
+"description": "Alam Bali Villa Direct Booking & Google Calendar Sync Pipeline",
+"main": "index.html",
+"scripts": {
+"build": "echo 'No build step required for static assets'"
+},
+"dependencies": {
+"googleapis": "^140.0.0",
+"resend": "^3.2.0"
+}
+}
