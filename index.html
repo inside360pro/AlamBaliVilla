@@ -914,35 +914,26 @@
         </div>
     </div>
 
-    <!-- Success Toast Notification -->
-    <div id="success-toast" class="fixed bottom-6 right-6 z-50 max-w-lg bg-luxuryGrey-light border border-luxuryGold/40 p-5 rounded-lg shadow-2xl hidden transform translate-y-4 transition-transform duration-300 gold-glow">
-        <div class="flex items-start space-x-3 relative">
-            <span class="text-luxuryGold text-lg mt-0.5"><i class="fas fa-circle-check"></i></span>
-            <div class="w-full pr-6">
-                <h5 class="font-serif font-bold text-white text-sm">Sanctuary Request Transmitted!</h5>
-                <p class="text-xs text-gray-300 mt-1 leading-relaxed">Your reservation hold has been logged in Google Calendar. Select a dispatch channel below to launch your email receipt:</p>
-                <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-semibold uppercase tracking-wider">
-                    <button type="button" id="toast-mailto-btn" class="px-2.5 py-1.5 rounded bg-luxuryGold text-luxuryGrey-dark hover:bg-luxuryGold-dark transition-all flex items-center gap-1 font-bold">
-                        <i class="fas fa-envelope"></i> Default Mail App
-                    </button>
-                    <button type="button" id="toast-gmail-btn" class="px-2.5 py-1.5 rounded border border-luxuryGold/40 text-luxuryGold hover:bg-luxuryGold/20 transition-all flex items-center gap-1 font-bold">
-                        <i class="fab fa-google"></i> Gmail Web
-                    </button>
-                    <button type="button" id="toast-outlook-btn" class="px-2.5 py-1.5 rounded border border-blue-400/40 text-blue-400 hover:bg-blue-400/20 transition-all flex items-center gap-1 font-bold">
     <!-- Success Toast Notification Modal -->
     <div id="success-toast" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
-        <div class="bg-luxuryGrey-light w-full max-w-md rounded-lg border border-luxuryGold/40 p-6 shadow-2xl gold-glow text-center relative animate-fade-in">
+        <div class="bg-luxuryGrey-light w-full max-w-md rounded-lg border border-luxuryGold/40 p-6 shadow-2xl gold-glow text-center relative">
             <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="absolute right-4 top-4 text-gray-400 hover:text-white transition-colors" aria-label="Close Toast">
                 <i class="fas fa-times text-sm"></i>
             </button>
             <div class="w-12 h-12 rounded-full bg-luxuryGold/10 border border-luxuryGold/40 flex items-center justify-center mx-auto mb-4 text-luxuryGold text-2xl">
-                <i class="fas fa-clock-rotate-left"></i>
+                <i class="fas fa-circle-check"></i>
             </div>
-            <h5 class="font-serif font-bold text-white text-lg mb-2">Booking Request Pending</h5>
-            <p class="text-xs text-gray-300 leading-relaxed mb-6">
-                Your booking is Pending & we will confirm in 24 hours. You should have received an email with the booking information.
+            <h5 class="font-serif font-bold text-white text-lg mb-2">Sanctuary Request Updated!</h5>
+            <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                Your reservation hold has been logged into our Calendar system. Also, the booking information has been sent to your email.
             </p>
-            <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-semibold text-xs tracking-[0.15em] uppercase py-3 rounded transition-all duration-300 gold-glow">
+            <div class="border-t border-luxuryGold/20 pt-4 mt-2">
+                <h6 class="font-serif font-bold text-luxuryGold text-sm uppercase tracking-wider mb-1">Booking Request Pending</h6>
+                <p class="text-xs text-gray-300 leading-relaxed mb-6">
+                    Your booking is Pending & we will confirm in 24 hours.
+                </p>
+            </div>
+            <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-semibold text-xs tracking-[0.15em] uppercase py-3.5 rounded transition-all duration-300 gold-glow">
                 Close Window
             </button>
         </div>
@@ -1820,4 +1811,3 @@
     </script>
 </body>
 </html>
-                        
