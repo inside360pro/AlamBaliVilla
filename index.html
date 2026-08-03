@@ -929,21 +929,21 @@
                         <i class="fab fa-google"></i> Gmail Web
                     </button>
                     <button type="button" id="toast-outlook-btn" class="px-2.5 py-1.5 rounded border border-blue-400/40 text-blue-400 hover:bg-blue-400/20 transition-all flex items-center gap-1 font-bold">
-                        <i class="fas fa-envelope-open-text"></i> Outlook Web
-                    </button>
-                    <button type="button" id="toast-yahoo-btn" class="px-2.5 py-1.5 rounded border border-purple-400/40 text-purple-400 hover:bg-purple-400/20 transition-all flex items-center gap-1 font-bold">
-                        <i class="fab fa-yahoo"></i> Yahoo Web
-                    </button>
-                    <button type="button" id="toast-wa-btn" class="px-2.5 py-1.5 rounded border border-green-500/40 text-green-400 hover:bg-green-500/20 transition-all flex items-center gap-1 font-bold">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </button>
-                    <button type="button" id="toast-copy-btn" class="px-2.5 py-1.5 rounded border border-gray-500/40 text-gray-300 hover:bg-white/10 transition-all flex items-center gap-1 font-bold">
-                        <i class="fas fa-copy"></i> Copy Details
-                    </button>
-                </div>
+    <!-- Success Toast Notification Modal -->
+    <div id="success-toast" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-luxuryGrey-light w-full max-w-md rounded-lg border border-luxuryGold/40 p-6 shadow-2xl gold-glow text-center relative animate-fade-in">
+            <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="absolute right-4 top-4 text-gray-400 hover:text-white transition-colors" aria-label="Close Toast">
+                <i class="fas fa-times text-sm"></i>
+            </button>
+            <div class="w-12 h-12 rounded-full bg-luxuryGold/10 border border-luxuryGold/40 flex items-center justify-center mx-auto mb-4 text-luxuryGold text-2xl">
+                <i class="fas fa-clock-rotate-left"></i>
             </div>
-            <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="absolute right-0 top-0 text-gray-400 hover:text-white transition-colors" aria-label="Close Toast">
-                <i class="fas fa-times text-xs"></i>
+            <h5 class="font-serif font-bold text-white text-lg mb-2">Booking Request Pending</h5>
+            <p class="text-xs text-gray-300 leading-relaxed mb-6">
+                Your booking is Pending & we will confirm in 24 hours. You should have received an email with the booking information.
+            </p>
+            <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-semibold text-xs tracking-[0.15em] uppercase py-3 rounded transition-all duration-300 gold-glow">
+                Close Window
             </button>
         </div>
     </div>
@@ -1785,34 +1785,7 @@
         function showSuccessToast(firstName, emailVal, waVal, payload) {
             const toast = document.getElementById('success-toast');
             if (!toast) return;
-
-            const toEmail = "AlamBaliVilla.Indo@gmail.com";
-            const subject = `Booking Request - Deluxe Suite ${selectedRoom}`;
-            const messageBody = `Alam Bali Villa Booking Request:\nGuest: ${firstName}\nSuite: Deluxe Suite ${selectedRoom}\nDates: ${payload.checkIn} to ${payload.checkOut}\nParty: ${guests.adults} Adults, ${guests.children} Children, ${guests.pets} Pets\nEmail: ${emailVal || 'None'}\nWhatsApp: ${waVal || 'None'}`;
-
-            const formattedBody = messageBody.replace(/\r?\n/g, '\r\n');
-            const encodedSubject = encodeURIComponent(subject);
-            const encodedBody = encodeURIComponent(formattedBody);
-
-            const mailtoUrl = `mailto:${toEmail}?subject=${encodedSubject}&body=${encodedBody}`;
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${toEmail}&su=${encodedSubject}&body=${encodedBody}`;
-            const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${toEmail}&subject=${encodedSubject}&body=${encodedBody}`;
-            const yahooUrl = `https://compose.mail.yahoo.com/?to=${toEmail}&subject=${encodedSubject}&body=${encodedBody}`;
-            const whatsappUrl = `https://wa.me/66611125311?text=${encodeURIComponent(messageBody)}`;
-
-            document.getElementById('toast-mailto-btn').onclick = () => window.location.href = mailtoUrl;
-            document.getElementById('toast-gmail-btn').onclick = () => window.open(gmailUrl, '_blank');
-            document.getElementById('toast-outlook-btn').onclick = () => window.open(outlookUrl, '_blank');
-            document.getElementById('toast-yahoo-btn').onclick = () => window.open(yahooUrl, '_blank');
-            document.getElementById('toast-wa-btn').onclick = () => window.open(whatsappUrl, '_blank');
-            document.getElementById('toast-copy-btn').onclick = () => {
-                copyTextToClipboard(messageBody);
-                document.getElementById('toast-copy-btn').innerHTML = '<i class="fas fa-check text-green-400"></i> Copied!';
-                setTimeout(() => document.getElementById('toast-copy-btn').innerHTML = '<i class="fas fa-copy"></i> Copy Details', 2500);
-            };
-
             toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.replace('translate-y-4', 'translate-y-0'), 50);
         }
 
         function copyTextToClipboard(text) {
@@ -1847,3 +1820,4 @@
     </script>
 </body>
 </html>
+                        
