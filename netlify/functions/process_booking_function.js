@@ -1,4 +1,5 @@
 const { google } = require('googleapis');
+const nodemailer = require('nodemailer');
 const { Resend } = require('resend');
 
 function getPrivateKey() {
@@ -106,58 +107,95 @@ exports.handler = async (event) => {
       }
     });
 
-    const resendKey = process.env.RESEND_API_KEY;
-    if (resendKey) {
-      const resend = new Resend(resendKey);
-      const villaHostEmail = 'alambalivilla.indo@gmail.com';
+    // --------------------------------------------------------------------------
+    // AUTOMATED EMAIL DISPATCH VIA GMAIL (NODEMAILER) OR RESEND API
+    // --------------------------------------------------------------------------
+    const gmailUser = process.env.GMAIL_USER || 'AlamBaliVilla.Indo@gmail.com';
+    const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
 
+    const hostEmailHtml = `
+      <div style="font-family: Arial, sans-serif; padding: 24px; color: #1f1f1f; background-color: #f9f9f9;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 24px; border-radius: 8px; border: 1px solid #e0e0e0;">
+          <h2 style="color: #D4AF37; margin-top: 0;">New Reservation Request</h2>
+          <p><strong>Guest Name:</strong> ${guestFullName}</p>
+          <p><strong>Suite:</strong> Deluxe Suite ${roomNumber}</p>
+          <p><strong>Dates:</strong> ${checkIn} to ${checkOut} (${nights || ''})</p>
+          <p><strong>Contact:</strong> ${email || 'No email'} | ${whatsapp || 'No WhatsApp'}</p>
+          <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 20px 0;" />
+          <p style="white-space: pre-line; color: #444444; font-size: 13px;">${description}</p>
+          <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 20px 0;" />
+          <p><a href="${calendarEvent.data.htmlLink}" style="display: inline-block; background-color: #D4AF37; color: #141414; font-weight: bold; padding: 10px 18px; text-decoration: none; border-radius: 4px;">View Event in Google Calendar</a></p>
+        </div>
+      </div>
+    `;
+
+    const guestEmailHtml = `
+      <div style="font-family: 'Times New Roman', serif; padding: 32px; background-color: #141414; color: #ffffff; line-height: 1.6;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h1 style="color: #D4AF37; letter-spacing: 3px; text-transform: uppercase; margin: 0;">Alam Bali Villa</h1>
+          <p style="color: #aaaaaa; font-size: 11px; letter-spacing: 2px; margin-top: 4px;">ULTRA-LUXURY PRIVATE SANCTUARY</p>
+        </div>
+        <p>Dear ${firstName || 'Guest'},</p>
+        <p>Thank you for placing a reservation request for <strong>Deluxe Suite ${roomNumber}</strong> from <strong>${checkIn}</strong> to <strong>${checkOut}</strong>.</p>
+        <p><strong>Your booking is Pending & we will confirm in 24 hours.</strong></p>
+        <div style="border: 1px solid #D4AF37; padding: 20px; margin: 24px 0; background-color: #1f1f1f; border-radius: 6px;">
+          <h3 style="color: #D4AF37; margin-top: 0; font-size: 16px;">Reservation Summary</h3>
+          <p style="margin: 6px 0; font-size: 13px;"><strong>Suite Quarter:</strong> Deluxe Suite ${roomNumber}</p>
+          <p style="margin: 6px 0; font-size: 13px;"><strong>Check-in:</strong> ${checkIn} (after 2:00 PM)</p>
+          <p style="margin: 6px 0; font-size: 13px;"><strong>Check-out:</strong> ${checkOut} (before 12:00 PM)</p>
+          <p style="margin: 6px 0; font-size: 13px;"><strong>Duration:</strong> ${nights || ''}</p>
+          <p style="margin: 6px 0; font-size: 13px;"><strong>Party:</strong> ${guests?.adults || 1} Adults, ${guests?.children || 0} Children, ${guests?.pets || 0} Pets</p>
+        </div>
+        <p>Your request has been logged with our estate management team. We will contact you shortly to confirm your reservation.</p>
+        <p style="margin-top: 32px; color: #D4AF37;">Warmest Regards,<br/><strong>Estate Management Team</strong><br/>Alam Bali Villa<br/><a href="mailto:AlamBaliVilla.Indo@gmail.com" style="color: #D4AF37; text-decoration: underline;">AlamBaliVilla.Indo@gmail.com</a></p>
+      </div>
+    `;
+
+    if (gmailAppPassword) {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: gmailUser,
+          pass: gmailAppPassword
+        }
+      });
+
+      // Send alert to Host
+      await transporter.sendMail({
+        from: `"Alam Bali Villa Reservation System" <${gmailUser}>`,
+        to: gmailUser,
+        replyTo: email || gmailUser,
+        subject: `[Pending Request] ${guestFullName} - Deluxe Suite ${roomNumber}`,
+        html: hostEmailHtml
+      }).catch(err => console.error('Nodemailer Host Email Error:', err));
+
+      // Send confirmation receipt to Guest
+      if (email) {
+        await transporter.sendMail({
+          from: `"Alam Bali Villa" <${gmailUser}>`,
+          to: email,
+          replyTo: gmailUser,
+          subject: `Your Booking Request Details - Alam Bali Villa`,
+          html: guestEmailHtml
+        }).catch(err => console.error('Nodemailer Guest Email Error:', err));
+      }
+    } else if (process.env.RESEND_API_KEY) {
+      const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
         from: 'Alam Bali Villa <bookings@alambalivilla.app>',
-        to: [villaHostEmail],
-        reply_to: email || villaHostEmail,
+        to: [gmailUser],
+        reply_to: email || gmailUser,
         subject: `New Request: ${guestFullName} (Deluxe Suite ${roomNumber})`,
-        html: `
-          <div style="font-family: Arial, sans-serif; padding: 24px; color: #1f1f1f; background-color: #f9f9f9;">
-            <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 24px; border-radius: 8px; border: 1px solid #e0e0e0;">
-              <h2 style="color: #D4AF37; margin-top: 0;">New Reservation Request</h2>
-              <p><strong>Guest Name:</strong> ${guestFullName}</p>
-              <p><strong>Suite:</strong> Deluxe Suite ${roomNumber}</p>
-              <p><strong>Dates:</strong> ${checkIn} to ${checkOut} (${nights || ''})</p>
-              <p><strong>Contact:</strong> ${email || 'No email'} | ${whatsapp || 'No WhatsApp'}</p>
-              <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 20px 0;" />
-              <p style="white-space: pre-line; color: #444444; font-size: 13px;">${description}</p>
-              <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 20px 0;" />
-              <p><a href="${calendarEvent.data.htmlLink}" style="display: inline-block; background-color: #D4AF37; color: #141414; font-weight: bold; padding: 10px 18px; text-decoration: none; border-radius: 4px;">View Event in Google Calendar</a></p>
-            </div>
-          </div>
-        `
-      }).catch(err => console.error('Host Notification Email Error:', err));
+        html: hostEmailHtml
+      }).catch(err => console.error('Resend Host Email Error:', err));
 
       if (email) {
         await resend.emails.send({
           from: 'Alam Bali Villa <reservations@alambalivilla.app>',
           to: [email],
-          subject: 'Your Sanctuary Booking Request - Alam Bali Villa',
-          html: `
-            <div style="font-family: 'Times New Roman', serif; padding: 32px; background-color: #141414; color: #ffffff; line-height: 1.6;">
-              <div style="text-align: center; margin-bottom: 24px;">
-                <h1 style="color: #D4AF37; letter-spacing: 3px; text-transform: uppercase; margin: 0;">Alam Bali Villa</h1>
-                <p style="color: #aaaaaa; font-size: 11px; letter-spacing: 2px; margin-top: 4px;">ULTRA-LUXURY PRIVATE SANCTUARY</p>
-              </div>
-              <p>Dear ${firstName || 'Guest'},</p>
-              <p>Thank you for placing a reservation request for <strong>Deluxe Suite ${roomNumber}</strong> from <strong>${checkIn}</strong> to <strong>${checkOut}</strong>.</p>
-              <div style="border: 1px solid #D4AF37; padding: 20px; margin: 24px 0; background-color: #1f1f1f; border-radius: 6px;">
-                <h3 style="color: #D4AF37; margin-top: 0; font-size: 16px;">Reservation Details</h3>
-                <p style="margin: 6px 0; font-size: 13px;"><strong>Suite Quarter:</strong> Deluxe Suite ${roomNumber}</p>
-                <p style="margin: 6px 0; font-size: 13px;"><strong>Check-in:</strong> ${checkIn} (after 2:00 PM)</p>
-                <p style="margin: 6px 0; font-size: 13px;"><strong>Check-out:</strong> ${checkOut} (before 12:00 PM)</p>
-                <p style="margin: 6px 0; font-size: 13px;"><strong>Duration:</strong> ${nights || ''}</p>
-              </div>
-              <p>Your request has been logged as a tentative hold with our estate management team. We will contact you shortly to confirm your reservation.</p>
-              <p style="margin-top: 32px; color: #D4AF37;">Warmest Regards,<br/><strong>Estate Management Team</strong><br/>Alam Bali Villa</p>
-            </div>
-          `
-        }).catch(err => console.error('Guest Receipt Email Error:', err));
+          subject: 'Your Booking Request Details - Alam Bali Villa',
+          html: guestEmailHtml
+        }).catch(err => console.error('Resend Guest Email Error:', err));
       }
     }
 
@@ -168,7 +206,7 @@ exports.handler = async (event) => {
         success: true,
         eventId: calendarEvent.data.id,
         eventUrl: calendarEvent.data.htmlLink,
-        message: 'Booking request successfully recorded on Google Calendar.'
+        message: 'Booking request successfully recorded on Google Calendar and confirmation emails dispatched.'
       })
     };
 
