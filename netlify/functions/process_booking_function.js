@@ -1,16 +1,15 @@
 const { google } = require('googleapis');
 const { Resend } = require('resend');
 
-const resendKey = process.env.RESEND_API_KEY;
-const resend = resendKey ? new Resend(resendKey) : null;
-
-const auth = new google.auth.JWT({
-  email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  key: (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n'),
-  scopes: ['https://www.googleapis.com/auth/calendar']
-});
-
-const calendar = google.calendar({ version: 'v3', auth });
+function getPrivateKey() {
+  let key = process.env.GOOGLE_PRIVATE_KEY || '';
+  if (!key) return '';
+  key = key.trim();
+  if ((key.startsWith('"') && key.endsWith('"')) || (key.startsWith("'") && key.endsWith("'"))) {
+    key = key.slice(1, -1);
+  }
+  return key.replace(/\\n/g, '\n');
+}
 
 const CALENDAR_MAP = {
   1: process.env.CALENDAR_ID_VILLA1,
@@ -19,7 +18,6 @@ const CALENDAR_MAP = {
 };
 
 exports.handler = async (event) => {
-  // Standard CORS Headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
@@ -40,15 +38,30 @@ exports.handler = async (event) => {
   }
 
   try {
+    const formattedKey = getPrivateKey();
+    const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+
+    if (!serviceAccountEmail || !formattedKey) {
+      throw new Error('Missing Google Service Account environment variables.');
+    }
+
+    const auth = new google.auth.JWT({
+      email: serviceAccountEmail,
+      key: formattedKey,
+      scopes: ['https://www.googleapis.com/auth/calendar']
+    });
+
+    const calendar = google.calendar({ version: 'v3', auth });
+
     const data = JSON.parse(event.body || '{}');
     const {
       firstName,
       lastName,
       email,
       whatsapp,
-      roomNumber, // 1, 2, or 3
-      checkIn,    // YYYY-MM-DD
-      checkOut,   // YYYY-MM-DD
+      roomNumber,
+      checkIn,
+      checkOut,
       nights,
       guests,
       addOns = [],
@@ -89,14 +102,15 @@ exports.handler = async (event) => {
         description: description,
         start: { date: checkIn },
         end: { date: checkOut },
-        colorId: '5' // Yellow color badge in Google Calendar for "Tentative Hold"
+        colorId: '5'
       }
     });
 
-    if (resend) {
+    const resendKey = process.env.RESEND_API_KEY;
+    if (resendKey) {
+      const resend = new Resend(resendKey);
       const villaHostEmail = 'alambalivilla.indo@gmail.com';
-      
-      // Email to Villa Host
+
       await resend.emails.send({
         from: 'Alam Bali Villa <bookings@alambalivilla.app>',
         to: [villaHostEmail],
@@ -119,7 +133,6 @@ exports.handler = async (event) => {
         `
       }).catch(err => console.error('Host Notification Email Error:', err));
 
-      // Automated Receipt Email to Guest
       if (email) {
         await resend.emails.send({
           from: 'Alam Bali Villa <reservations@alambalivilla.app>',
