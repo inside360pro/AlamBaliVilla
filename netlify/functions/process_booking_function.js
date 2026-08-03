@@ -1,6 +1,5 @@
 const { google } = require('googleapis');
 const nodemailer = require('nodemailer');
-const { Resend } = require('resend');
 
 function getPrivateKey() {
   let key = process.env.GOOGLE_PRIVATE_KEY || '';
@@ -108,10 +107,11 @@ exports.handler = async (event) => {
     });
 
     // --------------------------------------------------------------------------
-    // AUTOMATED EMAIL DISPATCH VIA GMAIL (NODEMAILER) OR RESEND API
+    // AUTOMATED EMAIL DISPATCH VIA GMAIL (NODEMAILER)
     // --------------------------------------------------------------------------
     const gmailUser = process.env.GMAIL_USER || 'AlamBaliVilla.Indo@gmail.com';
-    const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+    const rawAppPassword = process.env.GMAIL_APP_PASSWORD || '';
+    const gmailAppPassword = rawAppPassword.replace(/\s+/g, '');
 
     const hostEmailHtml = `
       <div style="font-family: Arial, sans-serif; padding: 24px; color: #1f1f1f; background-color: #f9f9f9;">
@@ -178,24 +178,6 @@ exports.handler = async (event) => {
           subject: `Your Booking Request Details - Alam Bali Villa`,
           html: guestEmailHtml
         }).catch(err => console.error('Nodemailer Guest Email Error:', err));
-      }
-    } else if (process.env.RESEND_API_KEY) {
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: 'Alam Bali Villa <bookings@alambalivilla.app>',
-        to: [gmailUser],
-        reply_to: email || gmailUser,
-        subject: `New Request: ${guestFullName} (Deluxe Suite ${roomNumber})`,
-        html: hostEmailHtml
-      }).catch(err => console.error('Resend Host Email Error:', err));
-
-      if (email) {
-        await resend.emails.send({
-          from: 'Alam Bali Villa <reservations@alambalivilla.app>',
-          to: [email],
-          subject: 'Your Booking Request Details - Alam Bali Villa',
-          html: guestEmailHtml
-        }).catch(err => console.error('Resend Guest Email Error:', err));
       }
     }
 
