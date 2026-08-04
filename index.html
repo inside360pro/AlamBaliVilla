@@ -827,28 +827,29 @@
                     </div>
                     
                     <form id="booking-form" onsubmit="handleFormSubmission(event)" class="space-y-6">
-                        <div class="grid grid-cols-2 gap-4">
+                        <!-- Uniform 3-Column First Row: Room Selected, Check-In, Check-Out -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label for="form-room-select" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Room Selected <span class="text-red-400 font-bold">*</span></label>
+                                <select id="form-room-select" onchange="selectRoom(parseInt(this.value))" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-luxuryGold font-bold uppercase tracking-wider cursor-pointer h-[38px]">
+                                    <option value="1">Deluxe 1</option>
+                                    <option value="2">Deluxe 2</option>
+                                    <option value="3">Deluxe 3</option>
+                                </select>
+                            </div>
                             <div>
                                 <label for="form-check-in" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Check-In <span class="text-red-400 font-bold">*</span></label>
-                                <input type="date" id="form-check-in" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer">
+                                <input type="date" id="form-check-in" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer h-[38px]">
                             </div>
                             <div>
                                 <label for="form-check-out" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Check-Out <span class="text-red-400 font-bold">*</span></label>
-                                <input type="date" id="form-check-out" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer">
+                                <input type="date" id="form-check-out" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer h-[38px]">
                             </div>
                         </div>
-                        
-                        <div class="bg-luxuryGrey-dark/40 px-3 py-2 rounded border border-luxuryGold/30 flex justify-between items-center text-xs">
-                            <label for="form-room-select" class="text-gray-400 cursor-pointer">Room Selected <span class="text-red-400 font-bold">*</span>:</label>
-                            <select id="form-room-select" onchange="selectRoom(parseInt(this.value))" class="bg-luxuryGrey-dark text-luxuryGold font-bold tracking-wider uppercase text-xs border border-luxuryGold/30 rounded px-2 py-1 focus:outline-none focus:border-luxuryGold cursor-pointer">
-                                <option value="1">Deluxe 1</option>
-                                <option value="2">Deluxe 2</option>
-                                <option value="3">Deluxe 3</option>
-                            </select>
-                        </div>
 
-                        <div class="px-1 py-1 flex justify-between items-center text-xs">
-                            <span class="text-gray-400">Total Night Count:</span>
+                        <!-- Right-Aligned Total Night Count -->
+                        <div class="text-right text-xs px-1">
+                            <span class="text-gray-400">Total Night Count: </span>
                             <span id="form-nights-display" class="font-bold text-white">0 Nights</span>
                         </div>
 
@@ -992,7 +993,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_222000</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_223000</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
