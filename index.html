@@ -956,6 +956,55 @@
                                 <input type="checkbox" id="req-babycot" class="mt-0.5 accent-luxuryGold rounded">
                                 <span>Private Premium Baby Cot</span>
                             </label>
+
+                            <div class="space-y-1">
+                                <label class="text-[9px] uppercase tracking-widest text-gray-400 font-semibold block">Dietary Requirements</label>
+                                <textarea id="req-dietary" rows="2" placeholder="Describe any gourmet dietary preferences..." class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Fine Wines & Champagne -->
+                        <div class="border-t border-luxuryGold/20 pt-4 space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block">Fine Wines & Champagne</span>
+                                <span class="text-[9px] text-gray-400 italic">Min. 1-week advanced reservation</span>
+                            </div>
+                            
+                            <div id="wine-rows-container" class="space-y-2">
+                                <div class="wine-row flex items-center space-x-2">
+                                    <select onchange="handleWineSelectChange(this)" class="wine-select flex-grow min-w-0 w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold">
+                                        <option value="">-- Choose Premium Vintage --</option>
+                                        <option value="Dom Pérignon Brut">Dom Pérignon Brut Champagne</option>
+                                        <option value="Louis Roederer Cristal">Louis Roederer Cristal Brut</option>
+                                        <option value="Krug Clos d'Ambonnay">Krug Clos d'Ambonnay Champagne</option>
+                                        <option value="Château Margaux Bordeaux">Château Margaux Bordeaux</option>
+                                        <option value="Penfolds Grange Shiraz">Penfolds Grange Shiraz</option>
+                                        <option value="Opus One Cabernet">Opus One Cabernet Sauvignon</option>
+                                        <option value="Screaming Eagle Cabernet">Screaming Eagle Cabernet Sauvignon</option>
+                                        <option value="Domaine de la Romanée-Conti">Domaine de la Romanée-Conti</option>
+                                        <option value="Gaja Barbaresco">Gaja Barbaresco</option>
+                                        <option value="Sassicaia Bolgheri">Sassicaia Bolgheri</option>
+                                        <option value="Cloudy Bay Sauvignon Blanc">Cloudy Bay Sauvignon Blanc</option>
+                                        <option value="Puligny-Montrachet Grand Cru">Puligny-Montrachet Grand Cru</option>
+                                    </select>
+                                    
+                                    <div class="flex items-center flex-shrink-0 bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-1 py-1">
+                                        <button type="button" onclick="adjustWineQty(this, -1)" class="w-6 h-6 rounded-full hover:bg-white/5 flex items-center justify-center text-xs text-luxuryGold focus:outline-none font-bold">-</button>
+                                        <input type="text" inputmode="numeric" pattern="[0-9]*" readonly onfocus="handleWineQtyFocus(this)" onblur="handleWineQtyBlur(this)" oninput="handleWineQtyInput(this)" class="wine-qty-val text-xs font-bold w-8 text-center bg-transparent text-luxuryGold focus:outline-none focus:ring-1 focus:ring-luxuryGold/40 rounded" value="🥂" aria-label="Bottle Quantity">
+                                        <button type="button" onclick="adjustWineQty(this, 1)" class="w-6 h-6 rounded-full hover:bg-white/5 flex items-center justify-center text-xs text-luxuryGold focus:outline-none font-bold">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" onclick="addWineRow()" class="text-[10px] uppercase tracking-widest text-luxuryGold hover:text-white flex items-center transition-colors font-semibold">
+                                <i class="fas fa-plus mr-1"></i> Add Wine/Champagne Option
+                            </button>
+                        </div>
+
+                        <!-- Additional Requirements -->
+                        <div class="border-t border-luxuryGold/20 pt-4 space-y-1">
+                            <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block">Additional Requirements</label>
+                            <textarea id="req-special" rows="3" placeholder="Please mention any other bespoke wishes..." class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold resize-none"></textarea>
                         </div>
 
                         <div class="space-y-3">
@@ -1005,6 +1054,34 @@
             </div>
         </div>
     </footer>
+
+    <!-- Wine Reset Confirmation Modal -->
+    <div id="confirm-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-luxuryGrey-light w-full max-w-md rounded-lg border border-luxuryGold/30 overflow-hidden shadow-2xl transition-all scale-95 duration-300" id="confirm-modal-box">
+            <div class="bg-luxuryGrey-dark p-5 border-b border-luxuryGold/20 flex items-center justify-center relative text-center">
+                <div class="flex items-center justify-center space-x-2 text-center">
+                    <i class="fas fa-wine-glass-empty text-luxuryGold text-lg"></i>
+                    <h4 id="confirm-modal-title" class="font-serif text-base font-bold tracking-wide text-white text-center">Reset Wine Selection</h4>
+                </div>
+                <button onclick="closeConfirmModal(false)" class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors" aria-label="Close Modal">
+                    <i class="fas fa-times text-base"></i>
+                </button>
+            </div>
+            <div class="p-6 text-center">
+                <p id="confirm-modal-body" class="text-xs text-gray-300 leading-relaxed text-center">
+                    Are you sure you want to remove this bottle selection? Or you can add any special requests below too.
+                </p>
+            </div>
+            <div class="bg-luxuryGrey-dark p-4 border-t border-luxuryGold/20 flex items-center justify-end space-x-3">
+                <button type="button" id="confirm-modal-cancel-btn" onclick="closeConfirmModal(false)" class="px-4 py-2 rounded border border-luxuryGold/30 text-xs font-semibold uppercase text-gray-400 hover:text-white hover:bg-white/5 transition-all tracking-wider">
+                    Cancel
+                </button>
+                <button type="button" id="confirm-modal-ok-btn" onclick="closeConfirmModal(true)" class="px-4 py-2 rounded bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark text-xs font-bold uppercase tracking-wider transition-all gold-glow">
+                    Confirm Change
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Verification Modal -->
     <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
@@ -1559,6 +1636,21 @@
             if (document.getElementById('req-doublebed').checked) addOns.push('Extra Luxury Double Bed');
             if (document.getElementById('req-babycot').checked) addOns.push('Private Premium Baby Cot');
 
+            const dietaryVal = document.getElementById('req-dietary') ? document.getElementById('req-dietary').value.trim() : '';
+            if (dietaryVal) addOns.push(`Dietary: ${dietaryVal}`);
+
+            const wineRows = document.querySelectorAll('.wine-row');
+            const wineSelections = [];
+            wineRows.forEach(row => {
+                const selectVal = row.querySelector('.wine-select') ? row.querySelector('.wine-select').value : '';
+                const qtyVal = row.querySelector('.wine-qty-val') ? row.querySelector('.wine-qty-val').value : '🥂';
+                if (selectVal && qtyVal !== '🥂' && parseInt(qtyVal, 10) > 0) {
+                    wineSelections.push(`${qtyVal}x ${selectVal}`);
+                }
+            });
+
+            const specialRequests = document.getElementById('req-special') ? document.getElementById('req-special').value.trim() : '';
+
             const payload = {
                 firstName,
                 lastName,
@@ -1569,7 +1661,9 @@
                 checkOut: checkout,
                 nights,
                 guests,
-                addOns
+                addOns,
+                wineSelection: wineSelections.join(', '),
+                specialRequests
             };
 
             const endpoints = [
@@ -1610,6 +1704,180 @@
             } else {
                 alert('Submission Error: ' + (errorMessage || 'Could not reach booking service. Please try again.'));
             }
+        }
+
+        /* --- Wine Selection Row Handlers --- */
+        function handleWineQtyFocus(inputEl) {
+            const row = inputEl.closest('.wine-row');
+            if (!row) return;
+            const selectEl = row.querySelector('.wine-select');
+            
+            if (!selectEl || selectEl.value === "") {
+                inputEl.blur();
+                if (selectEl) selectEl.focus();
+                return;
+            }
+
+            if (inputEl.value === '🥂') {
+                inputEl.value = '';
+            } else {
+                inputEl.select();
+            }
+        }
+
+        function handleWineQtyInput(inputEl) {
+            inputEl.value = inputEl.value.replace(/[^0-9]/g, '');
+        }
+
+        function handleWineQtyBlur(inputEl) {
+            const row = inputEl.closest('.wine-row');
+            if (!row) return;
+            const selectEl = row.querySelector('.wine-select');
+            
+            if (!selectEl || selectEl.value === "") {
+                inputEl.value = '🥂';
+                inputEl.readOnly = true;
+                return;
+            }
+
+            const val = parseInt(inputEl.value, 10);
+            if (isNaN(val) || val < 1) {
+                inputEl.value = '1';
+            } else {
+                inputEl.value = val.toString();
+            }
+        }
+
+        function handleWineSelectChange(selectEl) {
+            const row = selectEl.closest('.wine-row');
+            if (!row) return;
+            const qtyInput = row.querySelector('.wine-qty-val');
+            if (selectEl.value !== "") {
+                if (qtyInput.value === '🥂' || !qtyInput.value || parseInt(qtyInput.value, 10) < 1 || isNaN(parseInt(qtyInput.value, 10))) {
+                    qtyInput.value = '1';
+                }
+                qtyInput.readOnly = false;
+            } else {
+                const allRows = document.querySelectorAll('.wine-row');
+                if (allRows.length > 1) {
+                    row.remove();
+                } else {
+                    qtyInput.value = '🥂';
+                    qtyInput.readOnly = true;
+                }
+            }
+        }
+
+        function adjustWineQty(btn, change) {
+            const row = btn.closest('.wine-row');
+            if (!row) return;
+            const qtyInput = row.querySelector('.wine-qty-val');
+            const selectEl = row.querySelector('.wine-select');
+            
+            if (selectEl.value === "") {
+                if (change > 0) {
+                    alert('Please select a champagne or wine vintage first.');
+                }
+                return;
+            }
+
+            let currentVal = parseInt(qtyInput.value, 10);
+            if (isNaN(currentVal) || qtyInput.value === '🥂') {
+                currentVal = 0;
+            }
+
+            if (change > 0) {
+                qtyInput.value = (currentVal + 1).toString();
+            } else if (change < 0) {
+                if (currentVal <= 1) {
+                    openWineConfirmModal(row);
+                } else {
+                    qtyInput.value = (currentVal - 1).toString();
+                }
+            }
+        }
+
+        let pendingWineRowReset = null;
+
+        function openWineConfirmModal(row) {
+            pendingWineRowReset = row;
+            const modal = document.getElementById('confirm-modal');
+            const modalBox = document.getElementById('confirm-modal-box');
+            if (!modal || !modalBox) return;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeConfirmModal(confirmed) {
+            const modal = document.getElementById('confirm-modal');
+            const modalBox = document.getElementById('confirm-modal-box');
+            if (!modal || !modalBox) return;
+
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                if (confirmed && pendingWineRowReset) {
+                    const allRows = document.querySelectorAll('.wine-row');
+                    if (allRows.length > 1) {
+                        pendingWineRowReset.remove();
+                    } else {
+                        const selectEl = pendingWineRowReset.querySelector('.wine-select');
+                        const qtyInput = pendingWineRowReset.querySelector('.wine-qty-val');
+                        if (selectEl) selectEl.value = '';
+                        if (qtyInput) {
+                            qtyInput.value = '🥂';
+                            qtyInput.readOnly = true;
+                        }
+                    }
+                }
+                pendingWineRowReset = null;
+            }, 150);
+        }
+
+        function addWineRow() {
+            const container = document.getElementById('wine-rows-container');
+            const existingRows = container.querySelectorAll('.wine-row');
+            
+            for (let row of existingRows) {
+                const select = row.querySelector('.wine-select');
+                if (select && select.value === "") {
+                    alert('Please choose a wine/champagne selection for your open option first.');
+                    select.focus();
+                    return;
+                }
+            }
+
+            const newRow = document.createElement('div');
+            newRow.className = 'wine-row flex items-center space-x-2';
+            newRow.innerHTML = `
+                <select onchange="handleWineSelectChange(this)" class="wine-select flex-grow min-w-0 w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold">
+                    <option value="">-- Choose Premium Vintage --</option>
+                    <option value="Dom Pérignon Brut">Dom Pérignon Brut Champagne</option>
+                    <option value="Louis Roederer Cristal">Louis Roederer Cristal Brut</option>
+                    <option value="Krug Clos d'Ambonnay">Krug Clos d'Ambonnay Champagne</option>
+                    <option value="Château Margaux Bordeaux">Château Margaux Bordeaux</option>
+                    <option value="Penfolds Grange Shiraz">Penfolds Grange Shiraz</option>
+                    <option value="Opus One Cabernet">Opus One Cabernet Sauvignon</option>
+                    <option value="Screaming Eagle Cabernet">Screaming Eagle Cabernet Sauvignon</option>
+                    <option value="Domaine de la Romanée-Conti">Domaine de la Romanée-Conti</option>
+                    <option value="Gaja Barbaresco">Gaja Barbaresco</option>
+                    <option value="Sassicaia Bolgheri">Sassicaia Bolgheri</option>
+                    <option value="Cloudy Bay Sauvignon Blanc">Cloudy Bay Sauvignon Blanc</option>
+                    <option value="Puligny-Montrachet Grand Cru">Puligny-Montrachet Grand Cru</option>
+                </select>
+                
+                <div class="flex items-center flex-shrink-0 bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-1 py-1">
+                    <button type="button" onclick="adjustWineQty(this, -1)" class="w-6 h-6 rounded-full hover:bg-white/5 flex items-center justify-center text-xs text-luxuryGold focus:outline-none font-bold">-</button>
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" readonly onfocus="handleWineQtyFocus(this)" onblur="handleWineQtyBlur(this)" oninput="handleWineQtyInput(this)" class="wine-qty-val text-xs font-bold w-8 text-center bg-transparent text-luxuryGold focus:outline-none focus:ring-1 focus:ring-luxuryGold/40 rounded" value="🥂" aria-label="Bottle Quantity">
+                    <button type="button" onclick="adjustWineQty(this, 1)" class="w-6 h-6 rounded-full hover:bg-white/5 flex items-center justify-center text-xs text-luxuryGold focus:outline-none font-bold">+</button>
+                </div>
+            `;
+            container.appendChild(newRow);
         }
 
         function showSuccessToast() {
