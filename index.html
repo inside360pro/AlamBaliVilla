@@ -158,121 +158,111 @@
                 <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-4"></div>
             </div>
             
-            <div class="w-full max-w-4xl mx-auto select-none" id="carousel-container">
-                
-                <!-- Flex Container for Relative Alignment of Arrow Buttons + Card Viewport -->
-                <div class="flex items-center justify-center w-full gap-2 sm:gap-4 md:gap-5">
-                    
-                    <!-- Left Arrow Button -->
-                    <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
-                        <i class="fas fa-chevron-left text-luxuryGold"></i>
-                    </button>
+            <div class="relative max-w-4xl mx-auto select-none flex items-center justify-center gap-2 sm:gap-4 md:gap-5" id="carousel-container">
+                <!-- Left Arrow Button -->
+                <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
+                    <i class="fas fa-chevron-left text-luxuryGold"></i>
+                </button>
 
-                    <!-- Viewport Container -->
-                    <div class="overflow-hidden relative rounded-xl h-[400px] sm:h-[340px] md:h-[290px] cursor-grab active:cursor-grabbing flex-grow min-w-0" id="carousel-viewport">
-                        <div class="flex h-full" id="carousel-track">
-                            
-                            <!-- Review 1 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-0">
-                                <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-luxuryGold/30 gold-glow w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                    <div class="flex justify-center text-luxuryGold text-xs mb-2">
-                                        <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
-                                        "We found the 360 tour photos on Google Maps, contacted the owner directly & managed to get a discount directly from the Villa with a huge saving with our week-long stay. Seeing the exact layouts in 360 meant no surprises!"
-                                    </p>
-                                    <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=MB'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Marie Bouvier" draggable="false">
-                                        <h4 class="font-semibold text-xs sm:text-sm text-white">Marie Bouvier</h4>
-                                        <span class="text-[10px] sm:text-[11px] text-luxuryGold">Paris, France</span>
-                                    </div>
+                <!-- Viewport Container -->
+                <div class="overflow-hidden relative rounded-xl h-[400px] sm:h-[340px] md:h-[290px] cursor-grab active:cursor-grabbing flex-grow min-w-0" id="carousel-viewport">
+                    <div class="flex h-full" id="carousel-track">
+                        <!-- Review 1 -->
+                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-0">
+                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-luxuryGold/30 gold-glow w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                    "We found the 360 tour photos on Google Maps, contacted the owner directly & managed to get a discount directly from the Villa with a huge saving with our week-long stay. Seeing the exact layouts in 360 meant no surprises!"
+                                </p>
+                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=MB'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Marie Bouvier" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Marie Bouvier</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Paris, France</span>
                                 </div>
                             </div>
-
-                            <!-- Review 2 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-1">
-                                <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                    <div class="flex justify-center text-luxuryGold text-xs mb-2">
-                                        <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
-                                        "After seeing the 360 photos of the villa, we had no hesitations to book as all our questions were answered visually. Truly revolutionary booking experience. It looked precisely as captured."
-                                    </p>
-                                    <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=RH'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Richard Henderson" draggable="false">
-                                        <h4 class="font-semibold text-xs sm:text-sm text-white">Richard Henderson</h4>
-                                        <span class="text-[10px] sm:text-[11px] text-luxuryGold">Sydney, Australia</span>
-                                    </div>
+                        </div>
+                        <!-- Review 2 -->
+                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-1">
+                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                    "After seeing the 360 photos of the villa, we had no hesitations to book as all our questions were answered visually. Truly revolutionary booking experience. It looked precisely as captured."
+                                </p>
+                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=RH'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Richard Henderson" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Richard Henderson</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Sydney, Australia</span>
                                 </div>
                             </div>
-
-                            <!-- Review 3 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-2">
-                                <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                    <div class="flex justify-center text-luxuryGold text-xs mb-2">
-                                        <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
-                                        "Everything was perfect! We had a large family reunion. After we saw exactly the space from the 360 photos, we knew that the villa could accommodate us. Space-planning is so vital for large groups!"
-                                    </p>
-                                    <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=EL'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Eleanor Vance" draggable="false">
-                                        <h4 class="font-semibold text-xs sm:text-sm text-white">Eleanor Vance</h4>
-                                        <span class="text-[10px] sm:text-[11px] text-luxuryGold">London, United Kingdom</span>
-                                    </div>
+                        </div>
+                        <!-- Review 3 -->
+                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-2">
+                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                    "Everything was perfect! We had a large family reunion. After we saw exactly the space from the 360 photos, we knew that the villa could accommodate us. Space-planning is so vital for large groups!"
+                                </p>
+                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=EL'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Eleanor Vance" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Eleanor Vance</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">London, United Kingdom</span>
                                 </div>
                             </div>
-
-                            <!-- Review 4 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-3">
-                                <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                    <div class="flex justify-center text-luxuryGold text-xs mb-2">
-                                        <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
-                                        "We booked using Booking.com. It was so helpful that we could see the entire space in 360. The staff were so helpful & accommodating. Such a peaceful retreat. We'll for sure be back!"
-                                    </p>
-                                    <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                        <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=KT'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Kenji Takahashi" draggable="false">
-                                        <h4 class="font-semibold text-xs sm:text-sm text-white">Kenji Takahashi</h4>
-                                        <span class="text-[10px] sm:text-[11px] text-luxuryGold">Tokyo, Japan</span>
-                                    </div>
+                        </div>
+                        <!-- Review 4 -->
+                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-3">
+                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                    "We booked using Booking.com. It was so helpful that we could see the entire space in 360. The staff were so helpful & accommodating. Such a peaceful retreat. We'll for sure be back!"
+                                </p>
+                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
+                                    <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=KT'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Kenji Takahashi" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Kenji Takahashi</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Tokyo, Japan</span>
                                 </div>
                             </div>
-
-                            <!-- Review 5 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-4">
-                                <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                    <div class="flex justify-center text-luxuryGold text-xs mb-2">
-                                        <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
-                                        "A masterclass in genuine digital representation. The immaculate Balinese wood-carvings and layout feel like real art. Experiencing it beforehand via VR makes booking an effortless choice."
-                                    </p>
-                                    <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=AS'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Amara Sterling" draggable="false">
-                                        <h4 class="font-semibold text-xs sm:text-sm text-white">Amara Sterling</h4>
-                                        <span class="text-[10px] sm:text-[11px] text-luxuryGold">New York, USA</span>
-                                    </div>
+                        </div>
+                        <!-- Review 5 -->
+                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-4">
+                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                    "A masterclass in genuine digital representation. The immaculate Balinese wood-carvings and layout feel like real art. Experiencing it beforehand via VR makes booking an effortless choice."
+                                </p>
+                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=AS'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Amara Sterling" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Amara Sterling</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">New York, USA</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Right Arrow Button -->
-                    <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
-                        <i class="fas fa-chevron-right text-luxuryGold"></i>
-                    </button>
-                </div>
-                
-                <!-- Dynamic Dots -->
-                <div class="flex justify-center items-center space-x-2 mt-6" id="carousel-dots-container">
-                    <button onclick="goToSlide(0)" class="carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300" id="dot-0" aria-label="Slide 1"></button>
-                    <button onclick="goToSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-1" aria-label="Slide 2"></button>
-                    <button onclick="goToSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-2" aria-label="Slide 3"></button>
-                    <button onclick="goToSlide(3)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-3" aria-label="Slide 4"></button>
-                    <button onclick="goToSlide(4)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-4" aria-label="Slide 5"></button>
-                </div>
+                <!-- Right Arrow Button -->
+                <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
+                    <i class="fas fa-chevron-right text-luxuryGold"></i>
+                </button>
+            </div>
+            
+            <!-- Dynamic Dots -->
+            <div class="flex justify-center items-center space-x-2 mt-6" id="carousel-dots-container">
+                <button onclick="goToSlide(0)" class="carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300" id="dot-0" aria-label="Slide 1"></button>
+                <button onclick="goToSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-1" aria-label="Slide 2"></button>
+                <button onclick="goToSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-2" aria-label="Slide 3"></button>
+                <button onclick="goToSlide(3)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-3"></button>
+                <button onclick="goToSlide(4)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-4" aria-label="Slide 4"></button>
             </div>
         </div>
     </section>
@@ -289,7 +279,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
             <div class="flex flex-col bg-luxuryGrey-light rounded-lg border border-luxuryGold/30 gold-glow transition-all duration-300">
                 <div class="h-96 w-full relative rounded-t-lg overflow-hidden">
                     <iframe 
@@ -361,7 +350,6 @@
                     </a>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -397,8 +385,7 @@
             </div>
 
             <div class="space-y-6 px-2" id="faq-list-container">
-
-                <!-- FAQ 1 -->
+                <!-- FAQ Items -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -413,7 +400,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 2 -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 2)" id="faq-btn-2" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -428,7 +414,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 3 -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 3)" id="faq-btn-3" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -443,7 +428,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 4 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 4)" id="faq-btn-4" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -458,7 +442,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 5 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
                     <button type="button" onclick="toggleFaq(event, 5)" id="faq-btn-5" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -475,7 +458,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 6 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 6)" id="faq-btn-6" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -491,7 +473,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 7 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 7)" id="faq-btn-7" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -506,7 +487,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 8 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
                     <button type="button" onclick="toggleFaq(event, 8)" id="faq-btn-8" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -521,7 +501,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 9 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 9)" id="faq-btn-9" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -536,7 +515,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 10 -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 10)" id="faq-btn-10" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -551,7 +529,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 11 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 11)" id="faq-btn-11" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -566,7 +543,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 12 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 12)" id="faq-btn-12" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -581,7 +557,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 13 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 13)" id="faq-btn-13" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -596,7 +571,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 14 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 14)" id="faq-btn-14" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -612,7 +586,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 15 -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 15)" id="faq-btn-15" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -627,7 +600,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 16 -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 16)" id="faq-btn-16" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -642,7 +614,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 17 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 17)" id="faq-btn-17" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -657,7 +628,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 18 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 18)" id="faq-btn-18" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -672,7 +642,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 19 -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 19)" id="faq-btn-19" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -749,7 +718,6 @@
                 
                 <!-- Left Calendar View -->
                 <div class="lg:col-span-7 bg-luxuryGrey-dark p-6 rounded-lg border border-luxuryGold/30 gold-glow">
-                    <!-- Title before Suite Preference -->
                     <div class="border-b border-luxuryGold/20 pb-4 mb-6">
                         <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Calendar</h3>
                     </div>
@@ -764,9 +732,8 @@
                             </div>
                         </div>
                         
-                        <!-- Month Counter & Month Shift Controls Swapped (Counter on Left, Month on Right) -->
                         <div class="flex flex-wrap items-center justify-between sm:justify-end gap-3 w-full md:w-auto">
-                            <!-- More Months Counter Controls -->
+                            <!-- Counter -->
                             <div class="inline-flex items-center space-x-2">
                                 <button type="button" id="months-minus-btn" onclick="updateMonthsCount(-1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-gray-500 cursor-not-allowed transition-colors focus:outline-none font-extrabold text-sm" disabled aria-label="Decrease Months">
                                     <i class="fas fa-minus font-bold"></i>
@@ -777,7 +744,7 @@
                                 </button>
                             </div>
 
-                            <!-- Shift Month Controls (Last on the Right) -->
+                            <!-- Shift Month -->
                             <div class="inline-flex items-center space-x-2">
                                 <button type="button" id="prev-month-btn" onclick="navigateMonth(-1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-gray-500 cursor-not-allowed transition-colors focus:outline-none font-extrabold text-sm" disabled aria-label="Previous Month">
                                     <i class="fas fa-chevron-left font-bold"></i>
@@ -894,6 +861,19 @@
                         </div>
 
                         <div class="space-y-3 pt-2">
+                            <span class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block">Contact Detail <span class="text-red-400 font-bold">*</span></span>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="guest-firstname" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">First Name <span class="text-red-400 font-bold">*</span></label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"><i class="fas fa-user"></i></span>
+                                        <input type="text" id="guest-firstname" placeholder="First Name" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="guest-lastname" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Last Name <span class="text-red-400 font-bold">*</span></label>
+                                    <div class="relative">
                                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"><i class="fas fa-user"></i></span>
                                         <input type="text" id="guest-lastname" placeholder="Last Name" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
                                     </div>
@@ -1042,7 +1022,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_225000</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_230000</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1558,12 +1538,10 @@
             const display = document.getElementById(`count-${type}`);
             if (display) display.innerText = guests[type];
 
-            // Trigger Family Bed Cot Modal when Children counter increases
             if (type === 'children' && change > 0 && guests.children > previousChildren) {
                 openChildBedModal();
             }
 
-            // Dynamic Pet Type Input Field Toggle
             if (type === 'pets') {
                 const petContainer = document.getElementById('pet-type-container');
                 if (petContainer) {
@@ -1618,27 +1596,15 @@
 
         async function fetchLiveCalendarAvailability() {
             try {
-                const endpoints = [
-                    '/.netlify/functions/get_availability_function',
-                    '/.netlify/functions/get-availability'
-                ];
-                
-                for (const url of endpoints) {
-                    try {
-                        const response = await fetch(`${url}?t=${Date.now()}`);
-                        if (!response.ok) continue;
-                        const data = await response.json();
-                        if (data && data.success && data.bookedDates) {
-                            window.liveBookedDates = data.bookedDates;
-                            renderCalendar();
-                            return;
-                        }
-                    } catch (e) {
-                        console.warn('Single endpoint fetch error:', e);
-                    }
+                const response = await fetch('/.netlify/functions/get-availability');
+                if (!response.ok) throw new Error('Network error');
+                const data = await response.json();
+                if (data && data.success && data.bookedDates) {
+                    window.liveBookedDates = data.bookedDates;
+                    renderCalendar();
                 }
             } catch (err) {
-                console.warn('Live availability error:', err);
+                console.warn('Live calendar fetch warning:', err);
             }
         }
 
@@ -1692,11 +1658,6 @@
 
         async function confirmBooking() {
             closeModal();
-            const confirmBtn = document.getElementById('submit-btn');
-            if (confirmBtn) {
-                confirmBtn.disabled = true;
-                confirmBtn.innerText = 'PROCESSING...';
-            }
 
             const firstName = document.getElementById('guest-firstname').value.trim();
             const lastName = document.getElementById('guest-lastname').value.trim();
@@ -1706,29 +1667,6 @@
             const checkin = formatDateString(checkInDate);
             const checkout = formatDateString(checkOutDate);
             const diffDays = Math.ceil(Math.abs(checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
-            const nights = `${diffDays} Night${diffDays > 1 ? 's' : ''}`;
-
-            const addOns = [];
-            if (document.getElementById('req-butler').checked) addOns.push('In-Villa Butler Service');
-            if (document.getElementById('req-pickup').checked) addOns.push(`VIP Pickup: ${document.getElementById('pickup-location').value || 'DPS Airport'}`);
-            if (document.getElementById('req-dropoff').checked) addOns.push(`Departure Drop-off: ${document.getElementById('dropoff-location').value || 'Unspecified'}`);
-            if (document.getElementById('req-doublebed').checked) addOns.push('Extra Luxury Double Bed');
-            if (document.getElementById('req-babycot').checked) addOns.push('Private Premium Baby Cot');
-
-            const dietaryVal = document.getElementById('req-dietary') ? document.getElementById('req-dietary').value.trim() : '';
-            if (dietaryVal) addOns.push(`Dietary: ${dietaryVal}`);
-
-            const wineRows = document.querySelectorAll('.wine-row');
-            const wineSelections = [];
-            wineRows.forEach(row => {
-                const selectVal = row.querySelector('.wine-select') ? row.querySelector('.wine-select').value : '';
-                const qtyVal = row.querySelector('.wine-qty-val') ? row.querySelector('.wine-qty-val').value : '🥂';
-                if (selectVal && qtyVal !== '🥂' && parseInt(qtyVal, 10) > 0) {
-                    wineSelections.push(`${qtyVal}x ${selectVal}`);
-                }
-            });
-
-            const specialRequests = document.getElementById('req-special') ? document.getElementById('req-special').value.trim() : '';
 
             const payload = {
                 firstName,
@@ -1738,51 +1676,29 @@
                 roomNumber: selectedRoom,
                 checkIn: checkin,
                 checkOut: checkout,
-                nights,
-                guests,
-                addOns,
-                wineSelection: wineSelections.join(', '),
-                specialRequests
+                nights: `${diffDays} Night${diffDays > 1 ? 's' : ''}`,
+                guests
             };
 
-            const endpoints = [
-                '/.netlify/functions/process_booking_function',
-                '/.netlify/functions/process-booking'
-            ];
-
-            let submitted = false;
-            let errorMessage = '';
-
-            for (const url of endpoints) {
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    const result = await response.json();
-                    if (result && result.success) {
-                        submitted = true;
-                        break;
-                    } else if (result && result.error) {
-                        errorMessage = result.error;
-                    }
-                } catch (e) {
-                    console.warn('Booking endpoint attempt error:', e);
+            try {
+                const response = await fetch('/.netlify/functions/process-booking', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    showSuccessToast();
+                    fetchLiveCalendarAvailability();
                 }
+            } catch (err) {
+                console.error('Booking submission warning:', err);
             }
+        }
 
-            if (confirmBtn) {
-                confirmBtn.disabled = false;
-                confirmBtn.innerText = 'REQUEST SANCTUARY BOOKING';
-            }
-
-            if (submitted) {
-                showSuccessToast();
-                setTimeout(fetchLiveCalendarAvailability, 1500);
-            } else {
-                alert('Submission Error: ' + (errorMessage || 'Could not reach booking service. Please try again.'));
-            }
+        function showSuccessToast() {
+            const toast = document.getElementById('success-toast');
+            if (toast) toast.classList.remove('hidden');
         }
 
         /* --- Wine Selection Row Handlers --- */
@@ -1959,214 +1875,9 @@
             container.appendChild(newRow);
         }
 
-        function showSuccessToast() {
-            const toast = document.getElementById('success-toast');
-            if (toast) {
-                toast.classList.remove('hidden');
-            }
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu) menu.classList.toggle('hidden');
-        }
-
-        function closeMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu) menu.classList.add('hidden');
-        }
-
-        let faqClickTimer = null;
-        let lastClickedFaqIndex = null;
-
-        function setFaqState(index, open) {
-            const answer = document.getElementById(`faq-answer-${index}`);
-            const icon = document.getElementById(`faq-icon-${index}`);
-            const btn = document.getElementById(`faq-btn-${index}`);
-            if (!answer || !icon || !btn) return;
-
-            if (open) {
-                answer.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-                btn.classList.add('bg-white/5');
-            } else {
-                answer.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-                btn.classList.remove('bg-white/5');
-            }
-        }
-
-        function isFaqOpen(index) {
-            const answer = document.getElementById(`faq-answer-${index}`);
-            return answer && !answer.classList.contains('hidden');
-        }
-
-        function compactAllFaqs() {
-            const answers = document.querySelectorAll('[id^="faq-answer-"]');
-            const icons = document.querySelectorAll('[id^="faq-icon-"]');
-            const btns = document.querySelectorAll('[id^="faq-btn-"]');
-
-            answers.forEach(ans => ans.classList.add('hidden'));
-            icons.forEach(ic => ic.classList.remove('rotate-180'));
-            btns.forEach(b => b.classList.remove('bg-white/5'));
-            lastClickedFaqIndex = null;
-            updateToggleAllBtnState(false);
-        }
-
-        function checkAndSyncToggleAllState() {
-            const visibleFaqItems = Array.from(document.querySelectorAll('.faq-item:not(.hidden)'));
-            if (visibleFaqItems.length === 0) return;
-
-            const allExpanded = visibleFaqItems.every(item => {
-                const btn = item.querySelector('[id^="faq-btn-"]');
-                if (btn) {
-                    const index = btn.id.replace('faq-btn-', '');
-                    return isFaqOpen(index);
-                }
-                return false;
-            });
-
-            updateToggleAllBtnState(allExpanded);
-        }
-
-        function updateToggleAllBtnState(isExpanded) {
-            const btnText = document.getElementById('faq-toggle-all-text');
-            const btnIcon = document.getElementById('faq-toggle-all-icon');
-            if (btnText && btnIcon) {
-                if (isExpanded) {
-                    btnText.innerHTML = 'Collapse<span class="text-gray-400 font-normal">/Expand</span> ALL FAQs';
-                    btnIcon.className = "fas fa-angles-up mr-1";
-                } else {
-                    btnText.innerHTML = 'Expand<span class="text-gray-400 font-normal">/Collapse</span> ALL FAQs';
-                    btnIcon.className = "fas fa-angles-down mr-1";
-                }
-            }
-        }
-
-        function toggleAllFaqs() {
-            const visibleFaqItems = Array.from(document.querySelectorAll('.faq-item:not(.hidden)'));
-            if (visibleFaqItems.length === 0) return;
-
-            const allExpanded = visibleFaqItems.every(item => {
-                const btn = item.querySelector('[id^="faq-btn-"]');
-                if (btn) {
-                    const index = btn.id.replace('faq-btn-', '');
-                    return isFaqOpen(index);
-                }
-                return false;
-            });
-
-            const targetState = !allExpanded;
-            visibleFaqItems.forEach(item => {
-                const btn = item.querySelector('[id^="faq-btn-"]');
-                if (btn) {
-                    const index = btn.id.replace('faq-btn-', '');
-                    setFaqState(index, targetState);
-                }
-            });
-            updateToggleAllBtnState(targetState);
-        }
-
-        function toggleFaq(event, index) {
-            const isCtrl = event && (event.ctrlKey || event.metaKey);
-            const isShift = event && event.shiftKey;
-
-            if (isCtrl) {
-                if (faqClickTimer) clearTimeout(faqClickTimer);
-                const currentlyOpen = isFaqOpen(index);
-                setFaqState(index, !currentlyOpen);
-                lastClickedFaqIndex = index;
-                checkAndSyncToggleAllState();
-                return;
-            }
-
-            if (isShift && lastClickedFaqIndex !== null) {
-                if (faqClickTimer) clearTimeout(faqClickTimer);
-                const visibleFaqItems = Array.from(document.querySelectorAll('.faq-item:not(.hidden)'));
-                const clickedBtn = document.getElementById(`faq-btn-${index}`);
-                const clickedItem = clickedBtn ? clickedBtn.closest('.faq-item') : null;
-                const lastBtn = document.getElementById(`faq-btn-${lastClickedFaqIndex}`);
-                const lastItem = lastBtn ? lastBtn.closest('.faq-item') : null;
-
-                const clickedPos = visibleFaqItems.indexOf(clickedItem);
-                const lastPos = visibleFaqItems.indexOf(lastItem);
-
-                if (clickedPos !== -1 && lastPos !== -1) {
-                    const startPos = Math.min(lastPos, clickedPos);
-                    const endPos = Math.max(lastPos, clickedPos);
-                    for (let i = startPos; i <= endPos; i++) {
-                        const item = visibleFaqItems[i];
-                        const btn = item.querySelector('[id^="faq-btn-"]');
-                        if (btn) {
-                            const itemIdx = btn.id.replace('faq-btn-', '');
-                            setFaqState(itemIdx, true);
-                        }
-                    }
-                } else {
-                    compactAllFaqs();
-                    setFaqState(index, true);
-                }
-                lastClickedFaqIndex = index;
-                checkAndSyncToggleAllState();
-                return;
-            }
-
-            if (event && event.detail === 2) {
-                if (faqClickTimer) {
-                    clearTimeout(faqClickTimer);
-                    faqClickTimer = null;
-                }
-                const currentlyOpen = isFaqOpen(index);
-                setFaqState(index, !currentlyOpen);
-                lastClickedFaqIndex = index;
-                checkAndSyncToggleAllState();
-            } else {
-                if (faqClickTimer) clearTimeout(faqClickTimer);
-                faqClickTimer = setTimeout(() => {
-                    const currentlyOpen = isFaqOpen(index);
-                    compactAllFaqs();
-                    if (!currentlyOpen) {
-                        setFaqState(index, true);
-                    }
-                    lastClickedFaqIndex = index;
-                    checkAndSyncToggleAllState();
-                    faqClickTimer = null;
-                }, 220);
-            }
-        }
-
-        function filterFaqs(category) {
-            compactAllFaqs();
-
-            const tabs = document.querySelectorAll('.faq-tab-btn');
-            const items = document.querySelectorAll('.faq-item');
-
-            tabs.forEach(tab => {
-                if (tab.getAttribute('data-category') === category) {
-                    tab.classList.add('border-luxuryGold', 'bg-luxuryGold/10', 'text-luxuryGold');
-                    tab.classList.remove('border-luxuryGold/30', 'text-gray-400');
-                } else {
-                    tab.classList.remove('border-luxuryGold', 'bg-luxuryGold/10', 'text-luxuryGold');
-                    tab.classList.add('border-luxuryGold/30', 'text-gray-400');
-                }
-            });
-
-            items.forEach(item => {
-                if (category === 'all' || item.getAttribute('data-category') === category) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
-            track = document.getElementById('carousel-track');
-            updateMonthsCounterUI();
             renderCalendar();
             fetchLiveCalendarAvailability();
-            resetSlideTimer();
-            filterFaqs('stay');
         });
     </script>
 </body>
