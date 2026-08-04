@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alam Bali Villa | Ultra-Luxury Private Sanctuary</title>
     
-    <!-- Open Graph (OG) Meta Tags -->
+    <!-- Open Graph (OG) Meta Tags for Social Media & Chat Link Previews -->
     <meta property="og:title" content="Alam Bali Villa | Ultra-Luxury Private Sanctuary">
     <meta property="og:description" content="Immerse yourself in ultra-luxury. Explore our premier Balinese quarters, dining reflection pools, and wellness therapies with our interactive 360° VR Tour.">
     <meta property="og:url" content="https://alambalivilla.netlify.app">
@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Immerse yourself in ultra-luxury. Explore with our interactive 360° VR Tour.">
     <meta name="twitter:image" content="https://www.inside360.pro/360_VRtours/IND_AlamBaliVilla/images/og-preview.jpg">
 
-    <!-- Premium Fonts -->
+    <!-- Premium Fonts: Playfair Display for Serif Elegance, Inter for High-Legibility UI -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome for Premium Interface Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -101,7 +101,6 @@
 </head>
 <body class="bg-luxuryGrey text-white font-sans antialiased selection:bg-luxuryGold selection:text-luxuryGrey-dark">
 
-    <!-- Header & Navigation -->
     <header class="fixed top-0 left-0 w-full z-40 bg-luxuryGrey-dark/90 backdrop-blur-md border-b border-luxuryGold/10 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <a href="#hero" class="flex flex-col">
@@ -135,7 +134,6 @@
         </div>
     </header>
 
-    <!-- Hero 360 Tour Section -->
     <section id="hero" class="relative pt-20 h-[48vh] md:h-[80vh] w-full overflow-hidden flex flex-col justify-end bg-black">
         <div class="absolute inset-0 w-full h-full z-0">
             <iframe 
@@ -149,22 +147,19 @@
         </div>
     </section>
 
-    <!-- Guest Testimonials Section -->
-    <section id="reviews" class="py-20 md:py-24 bg-luxuryGrey-dark border-y border-luxuryGold/20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-10 md:mb-12">
+    <section id="reviews" class="py-24 bg-luxuryGrey-dark border-y border-luxuryGold/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
                 <span class="text-xs tracking-[0.3em] text-luxuryGold uppercase font-bold block mb-2">Verified Testimonials</span>
                 <h2 class="font-serif text-3xl md:text-4xl font-bold">Unveiling Guest Experiences</h2>
                 <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-4"></div>
             </div>
             
             <div class="relative max-w-4xl mx-auto select-none flex items-center justify-center gap-2 sm:gap-4 md:gap-5" id="carousel-container">
-                <!-- Left Arrow Button -->
-                <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
-                    <i class="fas fa-chevron-left text-luxuryGold"></i>
+                <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-2 text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
+                    <i class="fas fa-chevron-left"></i>
                 </button>
 
-                <!-- Viewport Container -->
                 <div class="overflow-hidden relative rounded-xl h-[400px] sm:h-[340px] md:h-[290px] cursor-grab active:cursor-grabbing flex-grow min-w-0" id="carousel-viewport">
                     <div class="flex h-full" id="carousel-track">
                         <!-- Review 1 -->
@@ -250,13 +245,11 @@
                     </div>
                 </div>
 
-                <!-- Right Arrow Button -->
-                <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
-                    <i class="fas fa-chevron-right text-luxuryGold"></i>
+                <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-2 text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
+                    <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
             
-            <!-- Dynamic Dots -->
             <div class="flex justify-center items-center space-x-2 mt-6" id="carousel-dots-container">
                 <button onclick="goToSlide(0)" class="carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300" id="dot-0" aria-label="Slide 1"></button>
                 <button onclick="goToSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-1" aria-label="Slide 2"></button>
@@ -267,7 +260,6 @@
         </div>
     </section>
 
-    <!-- Accommodations & VR Tours Section -->
     <section id="villas" class="py-24 max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
             <span class="text-xs tracking-[0.3em] text-luxuryGold uppercase font-bold block mb-2">The Estate Experience</span>
@@ -385,8 +377,8 @@
             </div>
 
             <div class="space-y-6 px-2" id="faq-list-container">
-                <!-- FAQ Items -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <!-- FAQ Items 1 to 19 -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-users-viewfinder text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -400,7 +392,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 2)" id="faq-btn-2" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-calendar-week text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -414,7 +406,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 3)" id="faq-btn-3" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-clock text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -428,7 +420,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 4)" id="faq-btn-4" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-vr-cardboard text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -442,7 +434,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="dining">
                     <button type="button" onclick="toggleFaq(event, 5)" id="faq-btn-5" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-utensils text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -453,12 +445,10 @@
                     <div id="faq-answer-5" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>The open-air dining pavilion serves a mix of Indonesian and Mediterranean dishes prepared with mostly locally sourced ingredients, open daily from 6:30 AM to 10:00 PM.</p>
                         <p>High chairs are available for small children, and in-room butler service is provided on request.</p>
-                        <p>The fully stocked bar serves premium liquor, Indonesian beers, and imported beers daily from 6:30 AM to 12:00 AM midnight.</p>
-                        <p>Guests are encouraged to pre-order top-end wines and champagnes during booking.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 6)" id="faq-btn-6" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-water-ladder text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -468,12 +458,10 @@
                     </button>
                     <div id="faq-answer-6" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>Alam Bali Villa features a central swimming pool alongside decorative koi reflection pools and stone pool areas.</p>
-                        <p>The main swimming pool ranges from a shallow depth of 80 cm to a deep end of 180 cm.</p>
-                        <p>Lifeguard staff are on duty daily from 8:00 AM until 7:00 PM for child safety.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 7)" id="faq-btn-7" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-bed text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -483,11 +471,10 @@
                     </button>
                     <div id="faq-answer-7" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>The Deluxe Room Suite features artisanal timber frame architecture and a royal canopy bed.</p>
-                        <p>It comes complete with a private marble bath, sliding glass walls, and a private Balinese garden.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="dining">
                     <button type="button" onclick="toggleFaq(event, 8)" id="faq-btn-8" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-spa text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -497,11 +484,10 @@
                     </button>
                     <div id="faq-answer-8" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>Massage options include Thai Karma, Shiatsu Karma, Feet Karma, Oil Karma, and Herbal Balm treatments.</p>
-                        <p>Services are available on-site or as in-room treatments alongside custom butler services.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 9)" id="faq-btn-9" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-taxi text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -511,11 +497,10 @@
                     </button>
                     <div id="faq-answer-9" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>Taxi transfers can be arranged to and from any destination in Bali accessible by road.</p>
-                        <p>Pickups must be booked and arranged in advance during the reservation process.</p>
                     </div>
                 </div>
 
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 10)" id="faq-btn-10" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-gem text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -525,11 +510,10 @@
                     </button>
                     <div id="faq-answer-10" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>Select stay dates on the availability calendar to generate a direct reservation request.</p>
-                        <p>Submitting this request syncs directly with our Google Calendar estate roster with 0% commission fees.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 11)" id="faq-btn-11" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-shower text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -539,11 +523,10 @@
                     </button>
                     <div id="faq-answer-11" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>Every villa bathroom is equipped with an on-demand tankless hot water heater.</p>
-                        <p>This provides continuous hot water on demand whenever required.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 12)" id="faq-btn-12" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-broom text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -553,11 +536,10 @@
                     </button>
                     <div id="faq-answer-12" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>Daily clean-up and room makeup services are available across an 11-hour window from 7:00 AM until 6:00 PM daily.</p>
-                        <p>Guests can schedule service times flexibly to enjoy uninterrupted room relaxation during the day.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 13)" id="faq-btn-13" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-map-location-dot text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -567,11 +549,10 @@
                     </button>
                     <div id="faq-answer-13" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>The exact location pin and turn-by-turn navigation for the property can be accessed on Google Maps.</p>
-                        <p>You can also view the embedded live interactive map located further down on this page.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 14)" id="faq-btn-14" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-plane-arrival text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -580,13 +561,11 @@
                         <i id="faq-icon-14" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300 flex-shrink-0"></i>
                     </button>
                     <div id="faq-answer-14" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
-                        <p>Standard driving time to and from Bali Ngurah Rai International Airport is 3.5 hours via the mountain pass route, passing scenic highland viewpoints, rice terraces, and cultural points of interest.</p>
-                        <p>Because this direct route ascends over mountain passes exceeding 1,200 meters in elevation, it presents a decompression sickness risk for scuba divers who have recently completed dives.</p>
-                        <p>An alternate 4.5-hour low-altitude coastal route is available specifically to avoid post-dive altitude restrictions.</p>
+                        <p>Standard driving time to and from Bali Ngurah Rai International Airport is 3.5 hours via the mountain pass route.</p>
                     </div>
                 </div>
 
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 15)" id="faq-btn-15" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-percent text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -595,12 +574,11 @@
                         <i id="faq-icon-15" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300 flex-shrink-0"></i>
                     </button>
                     <div id="faq-answer-15" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
-                        <p>Repeat guests receive an automatic 10% discount on villa bookings when making reservations directly through the official website.</p>
-                        <p>This repeat booking discount cannot be combined with other promotional offers.</p>
+                        <p>Repeat guests receive an automatic 10% discount on villa bookings when making reservations directly.</p>
                     </div>
                 </div>
 
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 16)" id="faq-btn-16" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-user-plus text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -609,12 +587,11 @@
                         <i id="faq-icon-16" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300 flex-shrink-0"></i>
                     </button>
                     <div id="faq-answer-16" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
-                        <p>Friends referred by previous guests receive a 5% discount when booking directly through the website by providing the referrer's full booking name and email address.</p>
-                        <p>This referral discount is not valid with other promotional offers.</p>
+                        <p>Friends referred by previous guests receive a 5% discount when booking directly through the website.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 17)" id="faq-btn-17" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-mattress-pillow text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -623,12 +600,11 @@
                         <i id="faq-icon-17" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300 flex-shrink-0"></i>
                     </button>
                     <div id="faq-answer-17" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
-                        <p>All beds feature single-ply, long-staple cotton in a 600 thread-count sateen weave for luxury softness and breathability.</p>
-                        <p>Guests can select between full goose down pillows or hypoallergenic anti-allergic pillows upon request.</p>
+                        <p>All beds feature single-ply, long-staple cotton in a 600 thread-count sateen weave.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="amenities">
                     <button type="button" onclick="toggleFaq(event, 18)" id="faq-btn-18" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-person-swimming text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -638,11 +614,10 @@
                     </button>
                     <div id="faq-answer-18" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center space-y-1.5">
                         <p>Complimentary water equipment included in the villa rental price consists of masks, snorkels, and fins.</p>
-                        <p>1-person or 2-person kayaks with paddles are also provided for guest enjoyment.</p>
                     </div>
                 </div>
 
-                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 19)" id="faq-btn-19" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
                             <i class="fas fa-umbrella-beach text-luxuryGold/80 text-[11px] mr-2 flex-shrink-0"></i>
@@ -652,48 +627,6 @@
                     </button>
                     <div id="faq-answer-19" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center">
                         <p class="mb-1.5">Alam Bali Villa is located directly along the coast, just 0.015 km (15 meters) from Yehanakan Beach.</p>
-                        <p class="mb-2">Below is the list of key nearby attractions and driving distances:</p>
-                        
-                        <div class="overflow-x-auto rounded border border-luxuryGold/30 mt-2 max-w-xl mx-auto">
-                            <table class="w-full text-left border-collapse text-[10px]">
-                                <thead>
-                                    <tr class="bg-luxuryGrey-dark border-b border-luxuryGold/20 text-luxuryGold/90 font-semibold uppercase tracking-wider">
-                                        <th class="py-1.5 px-2.5">Point of Interest / Attraction</th>
-                                        <th class="py-1.5 px-2.5 text-right">Distance from Villa</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-luxuryGold/15 text-gray-400">
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="py-1.5 px-2.5 font-medium text-gray-300">Yehanakan Beach</td>
-                                        <td class="py-1.5 px-2.5 text-right text-luxuryGold/90 font-mono">0.015 km (15 m)</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="py-1.5 px-2.5 font-medium text-gray-300">Banjar Hot Spring</td>
-                                        <td class="py-1.5 px-2.5 text-right text-luxuryGold/90 font-mono">9.4 km</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="py-1.5 px-2.5 font-medium text-gray-300">Mayong Cultural Walk</td>
-                                        <td class="py-1.5 px-2.5 text-right text-luxuryGold/90 font-mono">11.5 km</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="py-1.5 px-2.5 font-medium text-gray-300">Krisna Water Sports</td>
-                                        <td class="py-1.5 px-2.5 text-right text-luxuryGold/90 font-mono">11.7 km</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="py-1.5 px-2.5 font-medium text-gray-300">Singsing Waterfall</td>
-                                        <td class="py-1.5 px-2.5 text-right text-luxuryGold/90 font-mono">13.2 km</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="py-1.5 px-2.5 font-medium text-gray-300">Wisata Dolphin Lovina</td>
-                                        <td class="py-1.5 px-2.5 text-right text-luxuryGold/90 font-mono">15.2 km</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="py-1.5 px-2.5 font-medium text-gray-300">Munduk Wilderness Outdoor Activities</td>
-                                        <td class="py-1.5 px-2.5 text-right text-luxuryGold/90 font-mono">29.3 km</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
 
@@ -786,7 +719,7 @@
                     </div>
                 </div>
 
-                <!-- Right Form Controls -->
+                <!-- Right Form Controls (Matching image_bc6fbe.png exact layout) -->
                 <div class="lg:col-span-5 bg-luxuryGrey-light p-8 rounded-lg border border-luxuryGold/30 gold-glow">
                     <div class="flex items-center justify-between border-b border-luxuryGold/20 pb-4 mb-6">
                         <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Request</h3>
@@ -794,33 +727,35 @@
                     </div>
                     
                     <form id="booking-form" onsubmit="handleFormSubmission(event)" class="space-y-4">
-                        <!-- Uniform First Row: Room Selected, Check-In, Check-Out -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div class="flex sm:flex-col justify-between items-center sm:items-start gap-2 bg-luxuryGrey-dark/40 sm:bg-transparent p-2 sm:p-0 rounded border sm:border-0 border-luxuryGold/20">
-                                <label for="form-room-select" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold whitespace-nowrap">Room Selected <span class="text-red-400 font-bold">*</span></label>
-                                <select id="form-room-select" onchange="selectRoom(parseInt(this.value))" class="w-auto sm:w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2.5 py-1.5 sm:py-2 text-xs focus:outline-none focus:border-luxuryGold text-luxuryGold font-bold uppercase tracking-wider cursor-pointer h-[36px]">
-                                    <option value="1">Deluxe 1</option>
-                                    <option value="2">Deluxe 2</option>
-                                    <option value="3">Deluxe 3</option>
-                                </select>
-                            </div>
-                            <div class="flex sm:flex-col justify-between items-center sm:items-start gap-2 bg-luxuryGrey-dark/40 sm:bg-transparent p-2 sm:p-0 rounded border sm:border-0 border-luxuryGold/20">
-                                <label for="form-check-in" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold whitespace-nowrap">Check-In <span class="text-red-400 font-bold">*</span></label>
-                                <div class="relative w-auto sm:w-full">
-                                    <span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-luxuryGold/70 text-xs pointer-events-none"><i class="fas fa-calendar-days"></i></span>
-                                    <input type="date" id="form-check-in" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-2.5 pr-8 py-1.5 sm:py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer h-[36px]">
+                        <!-- Room Selected -->
+                        <div class="space-y-1">
+                            <label for="form-room-select" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block">Room Selected <span class="text-red-400 font-bold">*</span></label>
+                            <select id="form-room-select" onchange="selectRoom(parseInt(this.value))" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-luxuryGold font-bold uppercase tracking-wider cursor-pointer">
+                                <option value="1">Deluxe 1</option>
+                                <option value="2">Deluxe 2</option>
+                                <option value="3">Deluxe 3</option>
+                            </select>
+                        </div>
+
+                        <!-- Check-In & Check-Out -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label for="form-check-in" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Check-In <span class="text-red-400 font-bold">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-luxuryGold/70 text-xs pointer-events-none"><i class="fas fa-calendar-days"></i></span>
+                                    <input type="date" id="form-check-in" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-3 pr-8 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer">
                                 </div>
                             </div>
-                            <div class="flex sm:flex-col justify-between items-center sm:items-start gap-2 bg-luxuryGrey-dark/40 sm:bg-transparent p-2 sm:p-0 rounded border sm:border-0 border-luxuryGold/20">
-                                <label for="form-check-out" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold whitespace-nowrap">Check-Out <span class="text-red-400 font-bold">*</span></label>
-                                <div class="relative w-auto sm:w-full">
-                                    <span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-luxuryGold/70 text-xs pointer-events-none"><i class="fas fa-calendar-days"></i></span>
-                                    <input type="date" id="form-check-out" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-2.5 pr-8 py-1.5 sm:py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer h-[36px]">
+                            <div>
+                                <label for="form-check-out" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Check-Out <span class="text-red-400 font-bold">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-luxuryGold/70 text-xs pointer-events-none"><i class="fas fa-calendar-days"></i></span>
+                                    <input type="date" id="form-check-out" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-3 pr-8 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Right-Aligned Total Night Count -->
+                        <!-- Night Count -->
                         <div class="text-right text-xs px-1">
                             <span class="text-gray-400">Total Night Count: </span>
                             <span id="form-nights-display" class="font-bold text-white">0 Nights</span>
@@ -828,25 +763,25 @@
 
                         <!-- Party Composition Counters -->
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div class="flex sm:flex-col justify-between items-center sm:items-start gap-2 bg-luxuryGrey-dark/40 sm:bg-transparent p-2 sm:p-0 rounded border sm:border-0 border-luxuryGold/20">
-                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold whitespace-nowrap">Adults <span class="text-red-400 font-bold">*</span></label>
-                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1 w-28 sm:w-full">
+                            <div>
+                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Adults <span class="text-red-400 font-bold">*</span></label>
+                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1">
                                     <button type="button" onclick="updateCounter('adults', -1)" class="w-7 h-7 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-xs transition-colors focus:outline-none">-</button>
                                     <span id="count-adults" class="text-xs font-bold w-6 text-center">1</span>
                                     <button type="button" onclick="updateCounter('adults', 1)" class="w-7 h-7 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-xs transition-colors focus:outline-none">+</button>
                                 </div>
                             </div>
-                            <div class="flex sm:flex-col justify-between items-center sm:items-start gap-2 bg-luxuryGrey-dark/40 sm:bg-transparent p-2 sm:p-0 rounded border sm:border-0 border-luxuryGold/20">
-                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold whitespace-nowrap">Children</label>
-                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1 w-28 sm:w-full">
+                            <div>
+                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Children</label>
+                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1">
                                     <button type="button" onclick="updateCounter('children', -1)" class="w-7 h-7 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-xs transition-colors focus:outline-none">-</button>
                                     <span id="count-children" class="text-xs font-bold w-6 text-center">0</span>
                                     <button type="button" onclick="updateCounter('children', 1)" class="w-7 h-7 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-xs transition-colors focus:outline-none">+</button>
                                 </div>
                             </div>
-                            <div class="flex sm:flex-col justify-between items-center sm:items-start gap-2 bg-luxuryGrey-dark/40 sm:bg-transparent p-2 sm:p-0 rounded border sm:border-0 border-luxuryGold/20">
-                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold whitespace-nowrap">Pets</label>
-                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1 w-28 sm:w-full">
+                            <div>
+                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Pets</label>
+                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1">
                                     <button type="button" onclick="updateCounter('pets', -1)" class="w-7 h-7 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-xs transition-colors focus:outline-none">-</button>
                                     <span id="count-pets" class="text-xs font-bold w-6 text-center">0</span>
                                     <button type="button" onclick="updateCounter('pets', 1)" class="w-7 h-7 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-xs transition-colors focus:outline-none">+</button>
@@ -854,12 +789,13 @@
                             </div>
                         </div>
 
-                        <!-- Dynamic Pet Type Specification Input -->
+                        <!-- Pet Type Input -->
                         <div id="pet-type-container" class="hidden space-y-1 bg-luxuryGrey-dark/60 p-2.5 rounded border border-luxuryGold/25">
                             <label for="pet-type-input" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block">Dog, cat or ?</label>
                             <input type="text" id="pet-type-input" placeholder="Specify pet type & breed (e.g. 1 Golden Retriever, 1 Cat)..." class="w-full bg-luxuryGrey border border-luxuryGold/30 rounded px-3 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold">
                         </div>
 
+                        <!-- Contact Details -->
                         <div class="space-y-3 pt-2">
                             <span class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block">Contact Detail <span class="text-red-400 font-bold">*</span></span>
                             
@@ -897,6 +833,7 @@
                             </div>
                         </div>
 
+                        <!-- Bespoke Options -->
                         <div class="space-y-3 border-t border-luxuryGold/20 pt-4">
                             <span class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block">Bespoke Options</span>
                             
@@ -988,7 +925,7 @@
                         </div>
 
                         <div class="space-y-3">
-                            <button type="submit" id="submit-btn" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-semibold text-xs tracking-[0.2em] uppercase py-4 rounded transition-all duration-300 gold-glow">
+                            <button type="submit" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-semibold text-xs tracking-[0.2em] uppercase py-4 rounded transition-all duration-300 gold-glow">
                                 Request Sanctuary Booking
                             </button>
                             <a href="mailto:AlamBaliVilla.Indo@gmail.com?subject=Inquiries%20to%20Alam%20Bali%20Villa" class="w-full mt-2 block text-center border border-luxuryGold/40 hover:border-luxuryGold text-luxuryGold hover:bg-white/5 font-semibold text-xs tracking-[0.15em] uppercase py-4 rounded transition-all duration-300">
@@ -1875,9 +1812,180 @@
             container.appendChild(newRow);
         }
 
+        /* --- FAQ Accordion Functions --- */
+        let lastClickedFaqIndex = null;
+
+        function setFaqState(index, open) {
+            const answer = document.getElementById(`faq-answer-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            const btn = document.getElementById(`faq-btn-${index}`);
+            if (!answer || !icon || !btn) return;
+
+            if (open) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+                btn.classList.add('bg-white/5');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                btn.classList.remove('bg-white/5');
+            }
+        }
+
+        function isFaqOpen(index) {
+            const answer = document.getElementById(`faq-answer-${index}`);
+            return answer && !answer.classList.contains('hidden');
+        }
+
+        function compactAllFaqs() {
+            const answers = document.querySelectorAll('[id^="faq-answer-"]');
+            const icons = document.querySelectorAll('[id^="faq-icon-"]');
+            const btns = document.querySelectorAll('[id^="faq-btn-"]');
+
+            answers.forEach(ans => ans.classList.add('hidden'));
+            icons.forEach(ic => ic.classList.remove('rotate-180'));
+            btns.forEach(b => b.classList.remove('bg-white/5'));
+            lastClickedFaqIndex = null;
+            updateToggleAllBtnState(false);
+        }
+
+        function checkAndSyncToggleAllState() {
+            const visibleFaqItems = Array.from(document.querySelectorAll('.faq-item:not(.hidden)'));
+            if (visibleFaqItems.length === 0) return;
+
+            const allExpanded = visibleFaqItems.every(item => {
+                const btn = item.querySelector('[id^="faq-btn-"]');
+                if (btn) {
+                    const index = btn.id.replace('faq-btn-', '');
+                    return isFaqOpen(index);
+                }
+                return false;
+            });
+
+            updateToggleAllBtnState(allExpanded);
+        }
+
+        function updateToggleAllBtnState(isExpanded) {
+            const btnText = document.getElementById('faq-toggle-all-text');
+            const btnIcon = document.getElementById('faq-toggle-all-icon');
+            if (btnText && btnIcon) {
+                if (isExpanded) {
+                    btnText.innerHTML = 'Collapse<span class="text-gray-400 font-normal">/Expand</span> ALL FAQs';
+                    btnIcon.className = "fas fa-angles-up mr-1";
+                } else {
+                    btnText.innerHTML = 'Expand<span class="text-gray-400 font-normal">/Collapse</span> ALL FAQs';
+                    btnIcon.className = "fas fa-angles-down mr-1";
+                }
+            }
+        }
+
+        function toggleAllFaqs() {
+            const visibleFaqItems = Array.from(document.querySelectorAll('.faq-item:not(.hidden)'));
+            if (visibleFaqItems.length === 0) return;
+
+            const allExpanded = visibleFaqItems.every(item => {
+                const btn = item.querySelector('[id^="faq-btn-"]');
+                if (btn) {
+                    const index = btn.id.replace('faq-btn-', '');
+                    return isFaqOpen(index);
+                }
+                return false;
+            });
+
+            const targetState = !allExpanded;
+            visibleFaqItems.forEach(item => {
+                const btn = item.querySelector('[id^="faq-btn-"]');
+                if (btn) {
+                    const index = btn.id.replace('faq-btn-', '');
+                    setFaqState(index, targetState);
+                }
+            });
+            updateToggleAllBtnState(targetState);
+        }
+
+        let lastClickTime = 0;
+        let lastClickIndex = null;
+
+        function toggleFaq(event, index) {
+            const now = new Date().getTime();
+            const isDoubleTap = (lastClickIndex === index && (now - lastClickTime) < 350);
+            lastClickTime = now;
+            lastClickIndex = index;
+
+            const isCtrl = event && (event.ctrlKey || event.metaKey);
+            const isShift = event && event.shiftKey;
+
+            if (isCtrl || isDoubleTap) {
+                const currentlyOpen = isFaqOpen(index);
+                setFaqState(index, !currentlyOpen);
+                lastClickedFaqIndex = index;
+            } else if (isShift && lastClickedFaqIndex !== null) {
+                const visibleFaqItems = Array.from(document.querySelectorAll('.faq-item:not(.hidden)'));
+                const clickedBtn = document.getElementById(`faq-btn-${index}`);
+                const clickedItem = clickedBtn ? clickedBtn.closest('.faq-item') : null;
+                const lastBtn = document.getElementById(`faq-btn-${lastClickedFaqIndex}`);
+                const lastItem = lastBtn ? lastBtn.closest('.faq-item') : null;
+
+                const clickedPos = visibleFaqItems.indexOf(clickedItem);
+                const lastPos = visibleFaqItems.indexOf(lastItem);
+
+                if (clickedPos !== -1 && lastPos !== -1) {
+                    const startPos = Math.min(lastPos, clickedPos);
+                    const endPos = Math.max(lastPos, clickedPos);
+                    for (let i = startPos; i <= endPos; i++) {
+                        const item = visibleFaqItems[i];
+                        const btn = item.querySelector('[id^="faq-btn-"]');
+                        if (btn) {
+                            const itemIdx = btn.id.replace('faq-btn-', '');
+                            setFaqState(itemIdx, true);
+                        }
+                    }
+                } else {
+                    compactAllFaqs();
+                    setFaqState(index, true);
+                }
+                lastClickedFaqIndex = index;
+            } else {
+                const currentlyOpen = isFaqOpen(index);
+                compactAllFaqs();
+                if (!currentlyOpen) {
+                    setFaqState(index, true);
+                }
+                lastClickedFaqIndex = index;
+            }
+            checkAndSyncToggleAllState();
+        }
+
+        function filterFaqs(category) {
+            compactAllFaqs();
+
+            const tabs = document.querySelectorAll('.faq-tab-btn');
+            const items = document.querySelectorAll('.faq-item');
+            
+            tabs.forEach(tab => {
+                if (tab.dataset.category === category) {
+                    tab.classList.remove('text-gray-400', 'border-luxuryGold/30');
+                    tab.classList.add('text-luxuryGold', 'border-luxuryGold', 'bg-luxuryGold/10');
+                } else {
+                    tab.classList.remove('text-luxuryGold', 'border-luxuryGold', 'bg-luxuryGold/10');
+                    tab.classList.add('text-gray-400', 'border-luxuryGold/30');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
+            track = document.getElementById('carousel-track');
             renderCalendar();
             fetchLiveCalendarAvailability();
+            filterFaqs('stay');
         });
     </script>
 </body>
