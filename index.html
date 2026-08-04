@@ -755,29 +755,18 @@
                     </div>
 
                     <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                        <div>
-                            <label class="text-xs uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Suite Preference</label>
-                            <div class="flex flex-wrap items-center gap-2">
+                        <div class="w-full md:w-auto">
+                            <label class="text-xs uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Villa Preference</label>
+                            <div class="flex flex-wrap items-center justify-between sm:justify-start gap-2 w-full">
                                 <button type="button" onclick="selectRoom(1)" id="room-btn-1" class="room-selector-btn border-2 border-luxuryGold/40 rounded-md px-3.5 py-2 text-xs uppercase tracking-wider bg-luxuryGold text-luxuryGrey-dark font-bold transition-all">Deluxe 1</button>
                                 <button type="button" onclick="selectRoom(2)" id="room-btn-2" class="room-selector-btn border-2 border-luxuryGold/40 rounded-md px-3.5 py-2 text-xs uppercase tracking-wider text-gray-300 hover:bg-white/5 transition-all">Deluxe 2</button>
                                 <button type="button" onclick="selectRoom(3)" id="room-btn-3" class="room-selector-btn border-2 border-luxuryGold/40 rounded-md px-3.5 py-2 text-xs uppercase tracking-wider text-gray-300 hover:bg-white/5 transition-all">Deluxe 3</button>
                             </div>
                         </div>
                         
-                        <!-- Month Shift & More Months Counter Controls on the Same Line -->
-                        <div class="flex flex-wrap items-center gap-3">
-                            <!-- Shift Month Controls with Separate Arrow Buttons -->
-                            <div class="inline-flex items-center space-x-2">
-                                <button type="button" onclick="navigateMonth(-1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white transition-colors focus:outline-none font-extrabold text-sm" aria-label="Previous Month">
-                                    <i class="fas fa-chevron-left font-bold"></i>
-                                </button>
-                                <span class="text-xs tracking-wider uppercase text-gray-300 font-bold px-1">Month</span>
-                                <button type="button" onclick="navigateMonth(1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white transition-colors focus:outline-none font-extrabold text-sm" aria-label="Next Month">
-                                    <i class="fas fa-chevron-right font-bold"></i>
-                                </button>
-                            </div>
-
-                            <!-- More Months Counter Controls with Separate Counter Buttons -->
+                        <!-- Month Counter & Month Shift Controls Swapped (Counter on Left, Month on Right) -->
+                        <div class="flex flex-wrap items-center justify-between sm:justify-end gap-3 w-full md:w-auto">
+                            <!-- More Months Counter Controls -->
                             <div class="inline-flex items-center space-x-2">
                                 <button type="button" id="months-minus-btn" onclick="updateMonthsCount(-1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-gray-500 cursor-not-allowed transition-colors focus:outline-none font-extrabold text-sm" disabled aria-label="Decrease Months">
                                     <i class="fas fa-minus font-bold"></i>
@@ -785,6 +774,17 @@
                                 <span id="months-count-display" class="text-xs tracking-wider uppercase text-gray-300 font-bold px-1 min-w-[68px] text-center">2 Months</span>
                                 <button type="button" id="months-plus-btn" onclick="updateMonthsCount(1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white cursor-pointer transition-colors focus:outline-none font-extrabold text-sm" aria-label="Increase Months">
                                     <i class="fas fa-plus font-bold"></i>
+                                </button>
+                            </div>
+
+                            <!-- Shift Month Controls (Last on the Right) -->
+                            <div class="inline-flex items-center space-x-2">
+                                <button type="button" id="prev-month-btn" onclick="navigateMonth(-1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-gray-500 cursor-not-allowed transition-colors focus:outline-none font-extrabold text-sm" disabled aria-label="Previous Month">
+                                    <i class="fas fa-chevron-left font-bold"></i>
+                                </button>
+                                <span class="text-xs tracking-wider uppercase text-gray-300 font-bold px-1">Month</span>
+                                <button type="button" id="next-month-btn" onclick="navigateMonth(1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white transition-colors focus:outline-none font-extrabold text-sm" aria-label="Next Month">
+                                    <i class="fas fa-chevron-right font-bold"></i>
                                 </button>
                             </div>
                         </div>
@@ -992,7 +992,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_221000</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_222000</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1146,6 +1146,22 @@
             }
         }
 
+        function updateMonthNavUI() {
+            const prevBtn = document.getElementById('prev-month-btn');
+            if (!prevBtn) return;
+
+            const realYear = currentDate.getFullYear();
+            const realMonth = currentDate.getMonth();
+
+            if (displayYear < realYear || (displayYear === realYear && displayMonth <= realMonth)) {
+                prevBtn.disabled = true;
+                prevBtn.className = "border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-gray-500 cursor-not-allowed transition-colors focus:outline-none font-extrabold text-sm";
+            } else {
+                prevBtn.disabled = false;
+                prevBtn.className = "border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white cursor-pointer transition-colors focus:outline-none font-extrabold text-sm";
+            }
+        }
+
         function updateSlideGlows(targetIdx) {
             if (!track) return;
             const slides = Array.from(track.children);
@@ -1289,6 +1305,8 @@
                 monthCard.appendChild(daysGrid);
                 container.appendChild(monthCard);
             }
+
+            updateMonthNavUI();
         }
 
         function buildSingleCalendarGrid(gridElement, year, month) {
@@ -1363,9 +1381,20 @@
         }
 
         function navigateMonth(dir) {
-            displayMonth += dir;
-            if (displayMonth > 11) { displayMonth = 0; displayYear++; }
-            if (displayMonth < 0) { displayMonth = 11; displayYear--; }
+            let targetMonth = displayMonth + dir;
+            let targetYear = displayYear;
+            if (targetMonth > 11) { targetMonth = 0; targetYear++; }
+            if (targetMonth < 0) { targetMonth = 11; targetYear--; }
+
+            const realYear = currentDate.getFullYear();
+            const realMonth = currentDate.getMonth();
+
+            if (targetYear < realYear || (targetYear === realYear && targetMonth < realMonth)) {
+                return;
+            }
+
+            displayMonth = targetMonth;
+            displayYear = targetYear;
             renderCalendar();
         }
 
