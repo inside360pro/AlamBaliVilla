@@ -163,12 +163,12 @@
                 <!-- Flex Container for Relative Alignment of Arrow Buttons + Card Viewport -->
                 <div class="flex items-center justify-center w-full gap-2 sm:gap-4 md:gap-5">
                     
-                    <!-- Left Arrow Button (Always outside card in Flex flow) -->
+                    <!-- Left Arrow Button -->
                     <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
                         <i class="fas fa-chevron-left text-luxuryGold"></i>
                     </button>
 
-                    <!-- Viewport Container without inner padding so adjacent slides are completely hidden -->
+                    <!-- Viewport Container -->
                     <div class="overflow-hidden relative rounded-xl h-[400px] sm:h-[340px] md:h-[290px] cursor-grab active:cursor-grabbing flex-grow min-w-0" id="carousel-viewport">
                         <div class="flex h-full" id="carousel-track">
                             
@@ -259,7 +259,7 @@
                         </div>
                     </div>
 
-                    <!-- Right Arrow Button (Always outside card in Flex flow) -->
+                    <!-- Right Arrow Button -->
                     <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
                         <i class="fas fa-chevron-right text-luxuryGold"></i>
                     </button>
@@ -438,7 +438,7 @@
                         <i id="faq-icon-3" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300 flex-shrink-0"></i>
                     </button>
                     <div id="faq-answer-3" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md text-center">
-                        <p class="mb-1.5">Standard check-in starts at 2:00 PM local Balinese time.</p>
+                        <p class="mb-1.5">Standard check-in starts at 14:00 PM local Balinese time.</p>
                         <p>Check-out must be completed before 12:00 PM.</p>
                     </div>
                 </div>
@@ -754,7 +754,7 @@
                         <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Request</h3>
                     </div>
 
-                    <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <label class="text-xs uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Suite Preference</label>
                             <div class="inline-flex rounded-md border border-luxuryGold/30 overflow-hidden">
@@ -764,26 +764,27 @@
                             </div>
                         </div>
                         
-                        <div class="flex flex-col items-start sm:items-end gap-2.5">
+                        <!-- Shift Month & More Months Counter Controls on the Same Line -->
+                        <div class="flex flex-wrap items-center gap-3">
                             <!-- Shift Month Controls -->
-                            <div class="inline-flex items-center space-x-2 border border-luxuryGold/30 rounded-md p-1 bg-luxuryGrey/50">
-                                <button type="button" onclick="navigateMonth(-1)" class="text-luxuryGold hover:text-white px-2.5 py-1 transition-colors focus:outline-none" aria-label="Previous Month">
-                                    <i class="fas fa-chevron-left text-xs"></i>
+                            <div class="inline-flex items-center space-x-2 border-2 border-luxuryGold/40 rounded-md p-1.5 bg-luxuryGrey/50">
+                                <button type="button" onclick="navigateMonth(-1)" class="text-luxuryGold hover:text-white px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm" aria-label="Previous Month">
+                                    <i class="fas fa-chevron-left font-bold"></i>
                                 </button>
-                                <span class="text-xs tracking-wider uppercase text-gray-300 font-semibold px-2">Shift Month</span>
-                                <button type="button" onclick="navigateMonth(1)" class="text-luxuryGold hover:text-white px-2.5 py-1 transition-colors focus:outline-none" aria-label="Next Month">
-                                    <i class="fas fa-chevron-right text-xs"></i>
+                                <span class="text-xs tracking-wider uppercase text-gray-300 font-bold px-2">Shift Month</span>
+                                <button type="button" onclick="navigateMonth(1)" class="text-luxuryGold hover:text-white px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm" aria-label="Next Month">
+                                    <i class="fas fa-chevron-right font-bold"></i>
                                 </button>
                             </div>
 
-                            <!-- More Months Counter Controls (Matching Shift Month Visually) -->
-                            <div class="inline-flex items-center space-x-2 border border-luxuryGold/30 rounded-md p-1 bg-luxuryGrey/50">
-                                <button type="button" id="months-minus-btn" onclick="updateMonthsCount(-1)" class="text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none" disabled aria-label="Decrease Months">
-                                    <i class="fas fa-minus text-xs"></i>
+                            <!-- More Months Counter Controls -->
+                            <div class="inline-flex items-center space-x-2 border-2 border-luxuryGold/40 rounded-md p-1.5 bg-luxuryGrey/50">
+                                <button type="button" id="months-minus-btn" onclick="updateMonthsCount(-1)" class="text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm" disabled aria-label="Decrease Months">
+                                    <i class="fas fa-minus font-bold"></i>
                                 </button>
-                                <span id="months-count-display" class="text-xs tracking-wider uppercase text-gray-300 font-semibold px-2 min-w-[72px] text-center">2 Months</span>
-                                <button type="button" id="months-plus-btn" onclick="updateMonthsCount(1)" class="text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none" aria-label="Increase Months">
-                                    <i class="fas fa-plus text-xs"></i>
+                                <span id="months-count-display" class="text-xs tracking-wider uppercase text-gray-300 font-bold px-2 min-w-[72px] text-center">2 Months</span>
+                                <button type="button" id="months-plus-btn" onclick="updateMonthsCount(1)" class="text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm" aria-label="Increase Months">
+                                    <i class="fas fa-plus font-bold"></i>
                                 </button>
                             </div>
                         </div>
@@ -810,9 +811,10 @@
                                 <span class="text-red-400/80 font-semibold">Booked / Occupied</span>
                             </span>
                         </div>
-                        <div class="text-left sm:text-right">
-                            <p class="text-luxuryGold font-semibold">Check-in: after 2:00 PM</p>
-                            <p class="text-gray-400">Check-out: before 12:00 PM</p>
+                        <div class="text-left sm:text-right space-y-1">
+                            <p class="text-luxuryGold font-semibold">Check-in: after 14:00</p>
+                            <p class="text-gray-300 font-semibold">Check-out: before 12:00</p>
+                            <p class="text-[10px] text-gray-400 italic">Please advise with your booking for earlier or later check in/out times.</p>
                         </div>
                     </div>
                 </div>
@@ -990,7 +992,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_214500</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_220500</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1088,16 +1090,21 @@
 
     <!-- Client Logic Scripts -->
     <script>
-        // Testimonial Carousel Linear Swiping & Drag Logic
+        let selectedRoom = 1;
+        let currentDate = new Date();
+        let displayMonth = currentDate.getMonth();
+        let displayYear = currentDate.getFullYear();
+        let checkInDate = null;
+        let checkOutDate = null;
+        let visibleMonthsCount = 2;
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const guests = { adults: 1, children: 0, pets: 0 };
+
+        // Carousel State Variables
         let track;
         let trackIndex = 1;
         const totalSlides = 5;
-        let totalAll = 7;
         let slideTimer;
-        let isDragging = false;
-        let startX = 0;
-        let deltaX = 0;
-        let visibleMonthsCount = 2;
 
         function updateMonthsCount(change) {
             let newCount = visibleMonthsCount + change;
@@ -1121,20 +1128,20 @@
             if (minusBtn) {
                 if (visibleMonthsCount <= 2) {
                     minusBtn.disabled = true;
-                    minusBtn.className = "text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none";
+                    minusBtn.className = "text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm";
                 } else {
                     minusBtn.disabled = false;
-                    minusBtn.className = "text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none";
+                    minusBtn.className = "text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm";
                 }
             }
 
             if (plusBtn) {
                 if (visibleMonthsCount >= 6) {
                     plusBtn.disabled = true;
-                    plusBtn.className = "text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none";
+                    plusBtn.className = "text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm";
                 } else {
                     plusBtn.disabled = false;
-                    plusBtn.className = "text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none";
+                    plusBtn.className = "text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm";
                 }
             }
         }
@@ -1156,6 +1163,19 @@
             });
         }
 
+        function updateDots(realIdx) {
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+                if (i === realIdx) {
+                    dot.classList.remove('bg-white/30');
+                    dot.classList.add('bg-luxuryGold');
+                } else {
+                    dot.classList.remove('bg-luxuryGold');
+                    dot.classList.add('bg-white/30');
+                }
+            });
+        }
+
         function moveToTrackIndex(targetIdx) {
             if (!track) return;
             const viewport = document.getElementById('carousel-viewport');
@@ -1173,47 +1193,31 @@
         }
 
         function nextSlide() {
-            if (trackIndex >= totalAll - 1) {
-                const viewport = document.getElementById('carousel-viewport');
-                const viewportWidth = viewport ? viewport.offsetWidth : 0;
-                track.style.transition = 'none';
-                trackIndex = 1;
-                track.style.transform = `translateX(${-1 * viewportWidth}px)`;
-                void track.offsetWidth;
-                updateSlideGlows(1);
+            if (trackIndex >= totalSlides) {
+                moveToTrackIndex(0);
+            } else {
+                moveToTrackIndex(trackIndex + 1);
             }
-            moveToTrackIndex(trackIndex + 1);
             resetSlideTimer();
         }
 
         function prevSlide() {
             if (trackIndex <= 0) {
-                const viewport = document.getElementById('carousel-viewport');
-                const viewportWidth = viewport ? viewport.offsetWidth : 0;
-                track.style.transition = 'none';
-                trackIndex = totalSlides;
-                track.style.transform = `translateX(${-totalSlides * viewportWidth}px)`;
-                void track.offsetWidth;
-                updateSlideGlows(totalSlides);
+                moveToTrackIndex(totalSlides - 1);
+            } else {
+                moveToTrackIndex(trackIndex - 1);
             }
-            moveToTrackIndex(trackIndex - 1);
             resetSlideTimer();
         }
 
         function goToSlide(idx) {
-            moveToTrackIndex(idx + 1);
+            moveToTrackIndex(idx);
             resetSlideTimer();
         }
 
         function resetSlideTimer() {
             clearInterval(slideTimer);
             slideTimer = setInterval(nextSlide, 7000);
-        }
-
-        // Calendar Controls & Room Selectors
-        function changeVisibleMonths(count) {
-            visibleMonthsCount = parseInt(count, 10) || 2;
-            renderCalendar();
         }
 
         function selectRoom(roomNum) {
@@ -1780,7 +1784,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            initCarouselClones();
+            track = document.getElementById('carousel-track');
             updateMonthsCounterUI();
             renderCalendar();
             fetchLiveCalendarAvailability();
