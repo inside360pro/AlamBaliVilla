@@ -749,6 +749,11 @@
                 
                 <!-- Left Calendar View -->
                 <div class="lg:col-span-7 bg-luxuryGrey-dark p-6 rounded-lg border border-luxuryGold/30 gold-glow">
+                    <!-- Title before Suite Preference -->
+                    <div class="border-b border-luxuryGold/20 pb-4 mb-6">
+                        <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Request</h3>
+                    </div>
+
                     <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
                             <label class="text-xs uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Suite Preference</label>
@@ -759,26 +764,27 @@
                             </div>
                         </div>
                         
-                        <div class="flex flex-col items-start sm:items-end gap-2">
-                            <div class="flex items-center space-x-3">
-                                <button onclick="navigateMonth(-1)" class="text-luxuryGold hover:text-white p-2 border border-luxuryGold/30 hover:border-luxuryGold rounded transition-colors" aria-label="Previous Month">
+                        <div class="flex flex-col items-start sm:items-end gap-2.5">
+                            <!-- Shift Month Controls -->
+                            <div class="inline-flex items-center space-x-2 border border-luxuryGold/30 rounded-md p-1 bg-luxuryGrey/50">
+                                <button type="button" onclick="navigateMonth(-1)" class="text-luxuryGold hover:text-white px-2.5 py-1 transition-colors focus:outline-none" aria-label="Previous Month">
                                     <i class="fas fa-chevron-left text-xs"></i>
                                 </button>
-                                <span class="text-xs tracking-wider uppercase text-gray-400 font-semibold">Shift Month</span>
-                                <button onclick="navigateMonth(1)" class="text-luxuryGold hover:text-white p-2 border border-luxuryGold/30 hover:border-luxuryGold rounded transition-colors" aria-label="Next Month">
+                                <span class="text-xs tracking-wider uppercase text-gray-300 font-semibold px-2">Shift Month</span>
+                                <button type="button" onclick="navigateMonth(1)" class="text-luxuryGold hover:text-white px-2.5 py-1 transition-colors focus:outline-none" aria-label="Next Month">
                                     <i class="fas fa-chevron-right text-xs"></i>
                                 </button>
                             </div>
 
-                            <div class="flex items-center space-x-2">
-                                <label for="visible-months-select" class="text-[10px] uppercase tracking-wider text-luxuryGold font-semibold">More Months:</label>
-                                <select id="visible-months-select" onchange="changeVisibleMonths(this.value)" class="bg-luxuryGrey border border-luxuryGold/30 rounded px-2.5 py-1 text-xs text-luxuryGold font-semibold focus:outline-none focus:border-luxuryGold cursor-pointer">
-                                    <option value="2" selected>2 Months</option>
-                                    <option value="3">3 Months</option>
-                                    <option value="4">4 Months</option>
-                                    <option value="5">5 Months</option>
-                                    <option value="6">6 Months</option>
-                                </select>
+                            <!-- More Months Counter Controls (Matching Shift Month Visually) -->
+                            <div class="inline-flex items-center space-x-2 border border-luxuryGold/30 rounded-md p-1 bg-luxuryGrey/50">
+                                <button type="button" id="months-minus-btn" onclick="updateMonthsCount(-1)" class="text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none" disabled aria-label="Decrease Months">
+                                    <i class="fas fa-minus text-xs"></i>
+                                </button>
+                                <span id="months-count-display" class="text-xs tracking-wider uppercase text-gray-300 font-semibold px-2 min-w-[72px] text-center">2 Months</span>
+                                <button type="button" id="months-plus-btn" onclick="updateMonthsCount(1)" class="text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none" aria-label="Increase Months">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -984,7 +990,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_214000</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_214500</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1091,160 +1097,44 @@
         let isDragging = false;
         let startX = 0;
         let deltaX = 0;
+        let visibleMonthsCount = 2;
 
-        function initCarouselClones() {
-            track = document.getElementById('carousel-track');
-            const viewport = document.getElementById('carousel-viewport');
-            if (!track || track.children.length === 0) return;
-            if (document.getElementById('slide-clone-first')) return;
+        function updateMonthsCount(change) {
+            let newCount = visibleMonthsCount + change;
+            if (newCount < 2) newCount = 2;
+            if (newCount > 6) newCount = 6;
             
-            const originalSlides = Array.from(track.children);
-            totalAll = originalSlides.length + 2;
-            
-            const firstClone = originalSlides[0].cloneNode(true);
-            firstClone.id = 'slide-clone-first';
-            
-            const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
-            lastClone.id = 'slide-clone-last';
-            
-            track.appendChild(firstClone);
-            track.insertBefore(lastClone, originalSlides[0]);
-            
-            const viewportWidth = viewport ? viewport.clientWidth : 0;
-            track.style.width = `${totalAll * viewportWidth}px`;
-            
-            Array.from(track.children).forEach(slide => {
-                slide.style.width = `${viewportWidth}px`;
-            });
-            
-            track.style.transition = 'none';
-            trackIndex = 1;
-            track.style.transform = `translateX(${-trackIndex * viewportWidth}px)`;
-            
-            updateSlideGlows(1);
-            updateDots(0);
+            visibleMonthsCount = newCount;
+            updateMonthsCounterUI();
+            renderCalendar();
+        }
 
-            track.addEventListener('transitionend', handleTrackTransitionEnd);
+        function updateMonthsCounterUI() {
+            const display = document.getElementById('months-count-display');
+            const minusBtn = document.getElementById('months-minus-btn');
+            const plusBtn = document.getElementById('months-plus-btn');
 
-            if (viewport) {
-                viewport.addEventListener('touchstart', touchStart, { passive: true });
-                viewport.addEventListener('touchmove', touchMove, { passive: true });
-                viewport.addEventListener('touchend', touchEnd);
-                viewport.addEventListener('mousedown', dragStart);
-                viewport.addEventListener('mousemove', dragMove);
-                viewport.addEventListener('mouseup', dragEnd);
-                viewport.addEventListener('mouseleave', dragEnd);
+            if (display) {
+                display.innerText = `${visibleMonthsCount} Months`;
             }
 
-            window.addEventListener('resize', handleCarouselResize);
-        }
-
-        function handleCarouselResize() {
-            const viewport = document.getElementById('carousel-viewport');
-            if (!viewport || !track) return;
-            const viewportWidth = viewport.clientWidth;
-            track.style.width = `${totalAll * viewportWidth}px`;
-            Array.from(track.children).forEach(slide => {
-                slide.style.width = `${viewportWidth}px`;
-            });
-            track.style.transition = 'none';
-            track.style.transform = `translateX(${-trackIndex * viewportWidth}px)`;
-        }
-
-        function touchStart(e) {
-            startX = e.touches[0].clientX;
-            deltaX = 0;
-            isDragging = true;
-            clearInterval(slideTimer);
-            if (track) track.style.transition = 'none';
-        }
-
-        function touchMove(e) {
-            if (!isDragging || !track) return;
-            const viewport = document.getElementById('carousel-viewport');
-            const viewportWidth = viewport ? viewport.clientWidth : 0;
-            deltaX = e.touches[0].clientX - startX;
-            const currentPx = -(trackIndex * viewportWidth) + deltaX;
-            track.style.transform = `translateX(${currentPx}px)`;
-        }
-
-        function touchEnd() {
-            if (!isDragging) return;
-            isDragging = false;
-            finishDrag();
-        }
-
-        function dragStart(e) {
-            e.preventDefault();
-            startX = e.clientX;
-            deltaX = 0;
-            isDragging = true;
-            clearInterval(slideTimer);
-            if (track) {
-                track.style.cursor = 'grabbing';
-                track.style.transition = 'none';
+            if (minusBtn) {
+                if (visibleMonthsCount <= 2) {
+                    minusBtn.disabled = true;
+                    minusBtn.className = "text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none";
+                } else {
+                    minusBtn.disabled = false;
+                    minusBtn.className = "text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none";
+                }
             }
-        }
 
-        function dragMove(e) {
-            if (!isDragging || !track) return;
-            const viewport = document.getElementById('carousel-viewport');
-            const viewportWidth = viewport ? viewport.clientWidth : 0;
-            deltaX = e.clientX - startX;
-            const currentPx = -(trackIndex * viewportWidth) + deltaX;
-            track.style.transform = `translateX(${currentPx}px)`;
-        }
-
-        function dragEnd() {
-            if (!isDragging) return;
-            isDragging = false;
-            if (track) track.style.cursor = 'grab';
-            finishDrag();
-        }
-
-        function finishDrag() {
-            const threshold = 40;
-            if (deltaX < -threshold) {
-                nextSlide();
-            } else if (deltaX > threshold) {
-                prevSlide();
-            } else {
-                moveToTrackIndex(trackIndex);
-            }
-            resetSlideTimer();
-        }
-
-        function handleTrackTransitionEnd(e) {
-            if (e && e.target && e.target !== track) return;
-            const viewport = document.getElementById('carousel-viewport');
-            const viewportWidth = viewport ? viewport.clientWidth : 0;
-
-            if (trackIndex === 0) {
-                track.style.transition = 'none';
-                trackIndex = totalSlides;
-                track.style.transform = `translateX(${-trackIndex * viewportWidth}px)`;
-                void track.offsetWidth;
-                updateSlideGlows(trackIndex);
-                updateDots(totalSlides - 1);
-            } else if (trackIndex === totalAll - 1) {
-                track.style.transition = 'none';
-                trackIndex = 1;
-                track.style.transform = `translateX(${-1 * viewportWidth}px)`;
-                void track.offsetWidth;
-                updateSlideGlows(1);
-                updateDots(0);
-            }
-        }
-
-        function updateDots(realIdx) {
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.getElementById(`dot-${i}`);
-                if (dot) {
-                    if (i === realIdx) {
-                        dot.className = "carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300";
-                    } else {
-                        dot.className = "carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300";
-                    }
+            if (plusBtn) {
+                if (visibleMonthsCount >= 6) {
+                    plusBtn.disabled = true;
+                    plusBtn.className = "text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none";
+                } else {
+                    plusBtn.disabled = false;
+                    plusBtn.className = "text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none";
                 }
             }
         }
@@ -1891,6 +1781,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             initCarouselClones();
+            updateMonthsCounterUI();
             renderCalendar();
             fetchLiveCalendarAvailability();
             resetSlideTimer();
