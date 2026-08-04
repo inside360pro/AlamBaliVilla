@@ -751,39 +751,39 @@
                 <div class="lg:col-span-7 bg-luxuryGrey-dark p-6 rounded-lg border border-luxuryGold/30 gold-glow">
                     <!-- Title before Suite Preference -->
                     <div class="border-b border-luxuryGold/20 pb-4 mb-6">
-                        <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Request</h3>
+                        <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Calendar</h3>
                     </div>
 
                     <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <label class="text-xs uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Suite Preference</label>
-                            <div class="inline-flex rounded-md border border-luxuryGold/30 overflow-hidden">
-                                <button type="button" onclick="selectRoom(1)" id="room-btn-1" class="room-selector-btn px-4 py-2 text-xs uppercase tracking-wider bg-luxuryGold text-luxuryGrey-dark font-bold transition-all">Deluxe 1</button>
-                                <button type="button" onclick="selectRoom(2)" id="room-btn-2" class="room-selector-btn px-4 py-2 text-xs uppercase tracking-wider text-gray-300 hover:bg-white/5 transition-all">Deluxe 2</button>
-                                <button type="button" onclick="selectRoom(3)" id="room-btn-3" class="room-selector-btn px-4 py-2 text-xs uppercase tracking-wider text-gray-300 hover:bg-white/5 transition-all">Deluxe 3</button>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <button type="button" onclick="selectRoom(1)" id="room-btn-1" class="room-selector-btn border-2 border-luxuryGold/40 rounded-md px-3.5 py-2 text-xs uppercase tracking-wider bg-luxuryGold text-luxuryGrey-dark font-bold transition-all">Deluxe 1</button>
+                                <button type="button" onclick="selectRoom(2)" id="room-btn-2" class="room-selector-btn border-2 border-luxuryGold/40 rounded-md px-3.5 py-2 text-xs uppercase tracking-wider text-gray-300 hover:bg-white/5 transition-all">Deluxe 2</button>
+                                <button type="button" onclick="selectRoom(3)" id="room-btn-3" class="room-selector-btn border-2 border-luxuryGold/40 rounded-md px-3.5 py-2 text-xs uppercase tracking-wider text-gray-300 hover:bg-white/5 transition-all">Deluxe 3</button>
                             </div>
                         </div>
                         
-                        <!-- Shift Month & More Months Counter Controls on the Same Line -->
+                        <!-- Month Shift & More Months Counter Controls on the Same Line -->
                         <div class="flex flex-wrap items-center gap-3">
-                            <!-- Shift Month Controls -->
-                            <div class="inline-flex items-center space-x-2 border-2 border-luxuryGold/40 rounded-md p-1.5 bg-luxuryGrey/50">
-                                <button type="button" onclick="navigateMonth(-1)" class="text-luxuryGold hover:text-white px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm" aria-label="Previous Month">
+                            <!-- Shift Month Controls with Separate Arrow Buttons -->
+                            <div class="inline-flex items-center space-x-2">
+                                <button type="button" onclick="navigateMonth(-1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white transition-colors focus:outline-none font-extrabold text-sm" aria-label="Previous Month">
                                     <i class="fas fa-chevron-left font-bold"></i>
                                 </button>
-                                <span class="text-xs tracking-wider uppercase text-gray-300 font-bold px-2">Shift Month</span>
-                                <button type="button" onclick="navigateMonth(1)" class="text-luxuryGold hover:text-white px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm" aria-label="Next Month">
+                                <span class="text-xs tracking-wider uppercase text-gray-300 font-bold px-1">Month</span>
+                                <button type="button" onclick="navigateMonth(1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white transition-colors focus:outline-none font-extrabold text-sm" aria-label="Next Month">
                                     <i class="fas fa-chevron-right font-bold"></i>
                                 </button>
                             </div>
 
-                            <!-- More Months Counter Controls -->
-                            <div class="inline-flex items-center space-x-2 border-2 border-luxuryGold/40 rounded-md p-1.5 bg-luxuryGrey/50">
-                                <button type="button" id="months-minus-btn" onclick="updateMonthsCount(-1)" class="text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm" disabled aria-label="Decrease Months">
+                            <!-- More Months Counter Controls with Separate Counter Buttons -->
+                            <div class="inline-flex items-center space-x-2">
+                                <button type="button" id="months-minus-btn" onclick="updateMonthsCount(-1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-gray-500 cursor-not-allowed transition-colors focus:outline-none font-extrabold text-sm" disabled aria-label="Decrease Months">
                                     <i class="fas fa-minus font-bold"></i>
                                 </button>
-                                <span id="months-count-display" class="text-xs tracking-wider uppercase text-gray-300 font-bold px-2 min-w-[72px] text-center">2 Months</span>
-                                <button type="button" id="months-plus-btn" onclick="updateMonthsCount(1)" class="text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm" aria-label="Increase Months">
+                                <span id="months-count-display" class="text-xs tracking-wider uppercase text-gray-300 font-bold px-1 min-w-[68px] text-center">2 Months</span>
+                                <button type="button" id="months-plus-btn" onclick="updateMonthsCount(1)" class="border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white cursor-pointer transition-colors focus:outline-none font-extrabold text-sm" aria-label="Increase Months">
                                     <i class="fas fa-plus font-bold"></i>
                                 </button>
                             </div>
@@ -813,7 +813,7 @@
                         </div>
                         <div class="text-left sm:text-right space-y-1">
                             <p class="text-luxuryGold font-semibold">Check-in: after 14:00</p>
-                            <p class="text-gray-300 font-semibold">Check-out: before 12:00</p>
+                            <p class="text-luxuryGold font-semibold">Check-out: before 12:00</p>
                             <p class="text-[10px] text-gray-400 italic">Please advise with your booking for earlier or later check in/out times.</p>
                         </div>
                     </div>
@@ -992,7 +992,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_220500</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_221000</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1128,20 +1128,20 @@
             if (minusBtn) {
                 if (visibleMonthsCount <= 2) {
                     minusBtn.disabled = true;
-                    minusBtn.className = "text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm";
+                    minusBtn.className = "border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-gray-500 cursor-not-allowed transition-colors focus:outline-none font-extrabold text-sm";
                 } else {
                     minusBtn.disabled = false;
-                    minusBtn.className = "text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm";
+                    minusBtn.className = "border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white cursor-pointer transition-colors focus:outline-none font-extrabold text-sm";
                 }
             }
 
             if (plusBtn) {
                 if (visibleMonthsCount >= 6) {
                     plusBtn.disabled = true;
-                    plusBtn.className = "text-gray-500 cursor-not-allowed px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm";
+                    plusBtn.className = "border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-gray-500 cursor-not-allowed transition-colors focus:outline-none font-extrabold text-sm";
                 } else {
                     plusBtn.disabled = false;
-                    plusBtn.className = "text-luxuryGold hover:text-white cursor-pointer px-2.5 py-1 transition-colors focus:outline-none font-extrabold text-sm";
+                    plusBtn.className = "border-2 border-luxuryGold/40 rounded-md px-3 py-2 text-luxuryGold hover:text-white cursor-pointer transition-colors focus:outline-none font-extrabold text-sm";
                 }
             }
         }
