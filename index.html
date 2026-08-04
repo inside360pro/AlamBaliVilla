@@ -162,12 +162,12 @@
                 
                 <!-- Viewport Container Wrapper for perfect arrow vertical centering -->
                 <div class="relative w-full">
-                    <!-- Viewport Container with Fixed Height & Generous Padding to Prevent Glow Clipping -->
-                    <div class="overflow-hidden relative rounded-xl p-4 sm:p-5 h-[390px] sm:h-[330px] md:h-[290px] cursor-grab active:cursor-grabbing" id="carousel-viewport">
+                    <!-- Viewport Container without inner padding so adjacent slides are completely hidden -->
+                    <div class="overflow-hidden relative rounded-xl h-[390px] sm:h-[330px] md:h-[290px] cursor-grab active:cursor-grabbing w-full" id="carousel-viewport">
                         <div class="flex h-full" id="carousel-track">
                             
                             <!-- Review 1 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full px-2 sm:px-3" id="slide-0">
+                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-0">
                                 <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-luxuryGold/30 gold-glow w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
                                     <div class="flex justify-center text-luxuryGold text-xs mb-2">
                                         <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
@@ -184,7 +184,7 @@
                             </div>
 
                             <!-- Review 2 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full px-2 sm:px-3" id="slide-1">
+                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-1">
                                 <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
                                     <div class="flex justify-center text-luxuryGold text-xs mb-2">
                                         <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
@@ -201,7 +201,7 @@
                             </div>
 
                             <!-- Review 3 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full px-2 sm:px-3" id="slide-2">
+                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-2">
                                 <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
                                     <div class="flex justify-center text-luxuryGold text-xs mb-2">
                                         <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
@@ -218,7 +218,7 @@
                             </div>
 
                             <!-- Review 4 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full px-2 sm:px-3" id="slide-3">
+                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-3">
                                 <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
                                     <div class="flex justify-center text-luxuryGold text-xs mb-2">
                                         <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
@@ -235,7 +235,7 @@
                             </div>
 
                             <!-- Review 5 -->
-                            <div class="carousel-slide flex-shrink-0 w-full h-full px-2 sm:px-3" id="slide-4">
+                            <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-4">
                                 <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
                                     <div class="flex justify-center text-luxuryGold text-xs mb-2">
                                         <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
@@ -666,7 +666,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_204200</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_204800</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -792,7 +792,7 @@
             track.appendChild(firstClone);
             track.insertBefore(lastClone, originalSlides[0]);
             
-            const viewportWidth = viewport ? viewport.offsetWidth : 0;
+            const viewportWidth = viewport ? viewport.clientWidth : 0;
             track.style.width = `${totalAll * viewportWidth}px`;
             
             Array.from(track.children).forEach(slide => {
@@ -824,7 +824,7 @@
         function handleCarouselResize() {
             const viewport = document.getElementById('carousel-viewport');
             if (!viewport || !track) return;
-            const viewportWidth = viewport.offsetWidth;
+            const viewportWidth = viewport.clientWidth;
             track.style.width = `${totalAll * viewportWidth}px`;
             Array.from(track.children).forEach(slide => {
                 slide.style.width = `${viewportWidth}px`;
@@ -844,7 +844,7 @@
         function touchMove(e) {
             if (!isDragging || !track) return;
             const viewport = document.getElementById('carousel-viewport');
-            const viewportWidth = viewport ? viewport.offsetWidth : 0;
+            const viewportWidth = viewport ? viewport.clientWidth : 0;
             deltaX = e.touches[0].clientX - startX;
             const currentPx = -(trackIndex * viewportWidth) + deltaX;
             track.style.transform = `translateX(${currentPx}px)`;
@@ -871,7 +871,7 @@
         function dragMove(e) {
             if (!isDragging || !track) return;
             const viewport = document.getElementById('carousel-viewport');
-            const viewportWidth = viewport ? viewport.offsetWidth : 0;
+            const viewportWidth = viewport ? viewport.clientWidth : 0;
             deltaX = e.clientX - startX;
             const currentPx = -(trackIndex * viewportWidth) + deltaX;
             track.style.transform = `translateX(${currentPx}px)`;
@@ -899,7 +899,7 @@
         function handleTrackTransitionEnd(e) {
             if (e && e.target && e.target !== track) return;
             const viewport = document.getElementById('carousel-viewport');
-            const viewportWidth = viewport ? viewport.offsetWidth : 0;
+            const viewportWidth = viewport ? viewport.clientWidth : 0;
 
             if (trackIndex === 0) {
                 track.style.transition = 'none';
@@ -951,7 +951,7 @@
         function moveToTrackIndex(targetIdx) {
             if (!track) return;
             const viewport = document.getElementById('carousel-viewport');
-            const viewportWidth = viewport ? viewport.offsetWidth : 0;
+            const viewportWidth = viewport ? viewport.clientWidth : 0;
             
             track.style.transition = 'transform 400ms cubic-bezier(0.25, 1, 0.5, 1)';
             track.style.transform = `translateX(${-targetIdx * viewportWidth}px)`;
