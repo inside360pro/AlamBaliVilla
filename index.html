@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alam Bali Villa | Ultra-Luxury Private Sanctuary</title>
     
-    <!-- Open Graph (OG) Meta Tags for Social Media & Chat Link Previews -->
+    <!-- Open Graph (OG) Meta Tags -->
     <meta property="og:title" content="Alam Bali Villa | Ultra-Luxury Private Sanctuary">
     <meta property="og:description" content="Immerse yourself in ultra-luxury. Explore our premier Balinese quarters, dining reflection pools, and wellness therapies with our interactive 360° VR Tour.">
     <meta property="og:url" content="https://alambalivilla.netlify.app">
@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Immerse yourself in ultra-luxury. Explore with our interactive 360° VR Tour.">
     <meta name="twitter:image" content="https://www.inside360.pro/360_VRtours/IND_AlamBaliVilla/images/og-preview.jpg">
 
-    <!-- Premium Fonts: Playfair Display for Serif Elegance, Inter for High-Legibility UI -->
+    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- FontAwesome for Premium Interface Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -156,11 +156,11 @@
             </div>
             
             <div class="relative max-w-4xl mx-auto select-none flex items-center justify-center gap-2 sm:gap-4 md:gap-5" id="carousel-container">
-                <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-2 text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
+                <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-2 text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
                     <i class="fas fa-chevron-left"></i>
                 </button>
 
-                <div class="overflow-hidden relative rounded-xl h-[400px] sm:h-[340px] md:h-[290px] cursor-grab active:cursor-grabbing flex-grow min-w-0" id="carousel-viewport">
+                <div class="overflow-hidden relative rounded-xl h-[420px] sm:h-[360px] md:h-[300px] cursor-grab active:cursor-grabbing flex-grow min-w-0" id="carousel-viewport">
                     <div class="flex h-full" id="carousel-track">
                         <!-- Review 1 -->
                         <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-0">
@@ -245,7 +245,7 @@
                     </div>
                 </div>
 
-                <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-2 text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
+                <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-2 text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -254,8 +254,8 @@
                 <button onclick="goToSlide(0)" class="carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300" id="dot-0" aria-label="Slide 1"></button>
                 <button onclick="goToSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-1" aria-label="Slide 2"></button>
                 <button onclick="goToSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-2" aria-label="Slide 3"></button>
-                <button onclick="goToSlide(3)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-3"></button>
-                <button onclick="goToSlide(4)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-4" aria-label="Slide 4"></button>
+                <button onclick="goToSlide(3)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-3" aria-label="Slide 4"></button>
+                <button onclick="goToSlide(4)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-4" aria-label="Slide 5"></button>
             </div>
         </div>
     </section>
@@ -345,7 +345,6 @@
         </div>
     </section>
 
-    <!-- FAQs Accordion Section -->
     <section id="faqs" class="py-16 bg-luxuryGrey-dark border-t border-luxuryGold/20">
         <div class="max-w-5xl mx-auto px-4 md:px-6">
             <div class="text-center mb-10">
@@ -377,7 +376,7 @@
             </div>
 
             <div class="space-y-6 px-2" id="faq-list-container">
-                <!-- FAQ Items 1 to 19 -->
+                <!-- 19 FAQ items in center alignment -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -634,7 +633,6 @@
         </div>
     </section>
 
-    <!-- Calendar & Interactive Booking Form -->
     <section id="calendar-booking" class="py-24 bg-luxuryGrey border-t border-luxuryGold/20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -651,7 +649,7 @@
                 
                 <!-- Left Calendar View -->
                 <div class="lg:col-span-7 bg-luxuryGrey-dark p-6 rounded-lg border border-luxuryGold/30 gold-glow">
-                    <div class="border-b border-luxuryGold/20 pb-4 mb-6">
+                    <div class="border-b border-luxuryGold/20 pb-4 mb-6 flex items-center justify-between">
                         <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Calendar</h3>
                     </div>
 
@@ -719,7 +717,7 @@
                     </div>
                 </div>
 
-                <!-- Right Form Controls (Matching image_bc6fbe.png exact layout) -->
+                <!-- Right Form Controls (Matching exact image_bc6fbe.png layout) -->
                 <div class="lg:col-span-5 bg-luxuryGrey-light p-8 rounded-lg border border-luxuryGold/30 gold-glow">
                     <div class="flex items-center justify-between border-b border-luxuryGold/20 pb-4 mb-6">
                         <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Request</h3>
@@ -959,7 +957,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_230000</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_222000</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1123,7 +1121,6 @@
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const guests = { adults: 1, children: 0, pets: 0 };
 
-        // Carousel State Variables
         let track;
         let trackIndex = 1;
         const totalSlides = 5;
