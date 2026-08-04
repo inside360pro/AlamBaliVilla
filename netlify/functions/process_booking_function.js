@@ -106,9 +106,6 @@ exports.handler = async (event) => {
       }
     });
 
-    // --------------------------------------------------------------------------
-    // AUTOMATED EMAIL DISPATCH VIA GMAIL (NODEMAILER)
-    // --------------------------------------------------------------------------
     const gmailUser = process.env.GMAIL_USER || 'AlamBaliVilla.Indo@gmail.com';
     const rawAppPassword = process.env.GMAIL_APP_PASSWORD || '';
     const gmailAppPassword = rawAppPassword.replace(/\s+/g, '');
@@ -144,7 +141,7 @@ exports.handler = async (event) => {
           <p style="margin: 6px 0; font-size: 13px;"><strong>Check-in:</strong> ${checkIn} (after 2:00 PM)</p>
           <p style="margin: 6px 0; font-size: 13px;"><strong>Check-out:</strong> ${checkOut} (before 12:00 PM)</p>
           <p style="margin: 6px 0; font-size: 13px;"><strong>Duration:</strong> ${nights || ''}</p>
-          <p style="margin: 6px 0; font-size: 13px;"><strong>Party:</strong> ${guests?.adults || 1} Adults, ${guests?.children || 0} Children, ${guests?.pets || 0} Pets</p>
+          <p style="margin: 6px 0; font-size: 13px;"><strong>Party: `+ `${guests?.adults || 1} Adults, ${guests?.children || 0} Children, ${guests?.pets || 0} Pets</p>` + `
         </div>
         <p>Your request has been logged with our estate management team. We will contact you shortly to confirm your reservation.</p>
         <p style="margin-top: 32px; color: #D4AF37;">Warmest Regards,<br/><strong>Estate Management Team</strong><br/>Alam Bali Villa<br/><a href="mailto:AlamBaliVilla.Indo@gmail.com" style="color: #D4AF37; text-decoration: underline;">AlamBaliVilla.Indo@gmail.com</a></p>
@@ -160,7 +157,6 @@ exports.handler = async (event) => {
         }
       });
 
-      // Send alert to Host
       await transporter.sendMail({
         from: `"Alam Bali Villa Reservation System" <${gmailUser}>`,
         to: gmailUser,
@@ -169,7 +165,6 @@ exports.handler = async (event) => {
         html: hostEmailHtml
       }).catch(err => console.error('Nodemailer Host Email Error:', err));
 
-      // Send confirmation receipt to Guest
       if (email) {
         await transporter.sendMail({
           from: `"Alam Bali Villa" <${gmailUser}>`,
