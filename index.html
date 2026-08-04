@@ -391,7 +391,7 @@
 
                 <div class="mt-2.5 text-center">
                     <button type="button" id="faq-toggle-all-btn" onclick="toggleAllFaqs()" class="text-[10px] uppercase tracking-wider font-semibold px-3.5 py-1.5 rounded-full border border-luxuryGold/40 text-luxuryGold hover:bg-luxuryGold hover:text-luxuryGrey-dark transition-all duration-300 gold-glow">
-                        <i id="faq-toggle-all-icon" class="fas fa-angles-down mr-1"></i><span id="faq-toggle-all-text">Expand All FAQs</span>
+                        <i id="faq-toggle-all-icon" class="fas fa-angles-down mr-1"></i><span id="faq-toggle-all-text">Expand<span class="text-gray-400 font-normal">/Collapse</span> ALL FAQs</span>
                     </button>
                 </div>
             </div>
@@ -984,7 +984,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_212500</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_214000</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1763,10 +1763,10 @@
             const btnIcon = document.getElementById('faq-toggle-all-icon');
             if (btnText && btnIcon) {
                 if (isExpanded) {
-                    btnText.innerText = "Collapse All FAQs";
+                    btnText.innerHTML = 'Collapse<span class="text-gray-400 font-normal">/Expand</span> ALL FAQs';
                     btnIcon.className = "fas fa-angles-up mr-1";
                 } else {
-                    btnText.innerText = "Expand All FAQs";
+                    btnText.innerHTML = 'Expand<span class="text-gray-400 font-normal">/Collapse</span> ALL FAQs';
                     btnIcon.className = "fas fa-angles-down mr-1";
                 }
             }
