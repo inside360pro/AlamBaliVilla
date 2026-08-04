@@ -158,12 +158,18 @@
                 <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-4"></div>
             </div>
             
-            <div class="relative w-full max-w-4xl mx-auto select-none px-9 sm:px-12 md:px-14" id="carousel-container">
+            <div class="w-full max-w-4xl mx-auto select-none" id="carousel-container">
                 
-                <!-- Viewport Container Wrapper for perfect arrow vertical centering -->
-                <div class="relative w-full">
+                <!-- Flex Container for Relative Alignment of Arrow Buttons + Card Viewport -->
+                <div class="flex items-center justify-center w-full gap-2 sm:gap-4 md:gap-5">
+                    
+                    <!-- Left Arrow Button (Always outside card in Flex flow) -->
+                    <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
+                        <i class="fas fa-chevron-left text-luxuryGold"></i>
+                    </button>
+
                     <!-- Viewport Container without inner padding so adjacent slides are completely hidden -->
-                    <div class="overflow-hidden relative rounded-xl h-[400px] sm:h-[340px] md:h-[290px] cursor-grab active:cursor-grabbing w-full" id="carousel-viewport">
+                    <div class="overflow-hidden relative rounded-xl h-[400px] sm:h-[340px] md:h-[290px] cursor-grab active:cursor-grabbing flex-grow min-w-0" id="carousel-viewport">
                         <div class="flex h-full" id="carousel-track">
                             
                             <!-- Review 1 -->
@@ -253,11 +259,8 @@
                         </div>
                     </div>
 
-                    <!-- Navigation Arrow Buttons (Positioned in Clear Gutter Outside Card on All Layouts) -->
-                    <button onclick="nextSlide()" class="absolute -left-7 sm:-left-9 md:-left-11 top-1/2 -translate-y-1/2 text-luxuryGold hover:text-white transition-colors p-2 text-xl md:text-2xl z-30 focus:outline-none flex items-center justify-center" aria-label="Next Review">
-                        <i class="fas fa-chevron-left text-luxuryGold"></i>
-                    </button>
-                    <button onclick="prevSlide()" class="absolute -right-7 sm:-right-9 md:-right-11 top-1/2 -translate-y-1/2 text-luxuryGold hover:text-white transition-colors p-2 text-xl md:text-2xl z-30 focus:outline-none flex items-center justify-center" aria-label="Previous Review">
+                    <!-- Right Arrow Button (Always outside card in Flex flow) -->
+                    <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-1.5 sm:p-2 text-xl md:text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
                         <i class="fas fa-chevron-right text-luxuryGold"></i>
                     </button>
                 </div>
@@ -666,7 +669,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_205600</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_210100</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
