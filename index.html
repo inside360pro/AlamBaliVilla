@@ -155,107 +155,106 @@
                 <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-4"></div>
             </div>
             
-            <div class="relative max-w-4xl mx-auto select-none flex items-center justify-center gap-2 sm:gap-4 md:gap-5" id="carousel-container">
-                <button onclick="prevSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-2 text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Previous Review">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <div class="overflow-hidden relative rounded-xl h-[420px] sm:h-[360px] md:h-[300px] cursor-grab active:cursor-grabbing flex-grow min-w-0" id="carousel-viewport">
-                    <div class="flex h-full" id="carousel-track">
+            <div class="relative max-w-[80%] lg:max-w-[68%] mx-auto select-none" id="carousel-container">
+                <div class="overflow-hidden relative h-[495px] sm:h-[420px] md:h-[340px] cursor-grab active:cursor-grabbing rounded-lg p-2">
+                    <div class="flex h-full transition-transform duration-500 ease-out" id="carousel-track">
                         <!-- Review 1 -->
-                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-0">
-                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-luxuryGold/30 gold-glow w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2 md:px-4" id="slide-0">
+                            <div class="gold-glow-card bg-luxuryGrey p-8 rounded-lg border border-luxuryGold/30 gold-glow h-full flex flex-col justify-center items-center transition-all duration-300 opacity-100">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-4">
                                     <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
                                 </div>
-                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                <p class="font-serif text-base md:text-lg lg:text-sm italic text-gray-200 leading-snug text-center max-w-3xl mb-6">
                                     "We found the 360 tour photos on Google Maps, contacted the owner directly & managed to get a discount directly from the Villa with a huge saving with our week-long stay. Seeing the exact layouts in 360 meant no surprises!"
                                 </p>
-                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=MB'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Marie Bouvier" draggable="false">
-                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Marie Bouvier</h4>
-                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Paris, France</span>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=MB'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Marie Bouvier" draggable="false">
+                                    <h4 class="font-semibold text-sm lg:text-xs text-white">Marie Bouvier</h4>
+                                    <span class="text-[11px] lg:text-[10px] text-luxuryGold">Paris, France</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Review 2 -->
-                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-1">
-                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2 md:px-4" id="slide-1">
+                            <div class="gold-glow-card bg-luxuryGrey p-8 rounded-lg border border-transparent h-full flex flex-col justify-center items-center transition-all duration-300 opacity-0 shadow-none">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-4">
                                     <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
                                 </div>
-                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                <p class="font-serif text-base md:text-lg lg:text-sm italic text-gray-200 leading-snug text-center max-w-3xl mb-6">
                                     "After seeing the 360 photos of the villa, we had no hesitations to book as all our questions were answered visually. Truly revolutionary booking experience. It looked precisely as captured."
                                 </p>
-                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=RH'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Richard Henderson" draggable="false">
-                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Richard Henderson</h4>
-                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Sydney, Australia</span>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=RH'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Richard Henderson" draggable="false">
+                                    <h4 class="font-semibold text-sm lg:text-xs text-white">Richard Henderson</h4>
+                                    <span class="text-[11px] lg:text-[10px] text-luxuryGold">Sydney, Australia</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Review 3 -->
-                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-2">
-                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2 md:px-4" id="slide-2">
+                            <div class="gold-glow-card bg-luxuryGrey p-8 rounded-lg border border-transparent h-full flex flex-col justify-center items-center transition-all duration-300 opacity-0 shadow-none">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-4">
                                     <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
                                 </div>
-                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                <p class="font-serif text-base md:text-lg lg:text-sm italic text-gray-200 leading-snug text-center max-w-3xl mb-6">
                                     "Everything was perfect! We had a large family reunion. After we saw exactly the space from the 360 photos, we knew that the villa could accommodate us. Space-planning is so vital for large groups!"
                                 </p>
-                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=EL'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Eleanor Vance" draggable="false">
-                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Eleanor Vance</h4>
-                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">London, United Kingdom</span>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=EL'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Eleanor Vance" draggable="false">
+                                    <h4 class="font-semibold text-sm lg:text-xs text-white">Eleanor Vance</h4>
+                                    <span class="text-[11px] lg:text-[10px] text-luxuryGold">London, United Kingdom</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Review 4 -->
-                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-3">
-                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2 md:px-4" id="slide-3">
+                            <div class="gold-glow-card bg-luxuryGrey p-8 rounded-lg border border-transparent h-full flex flex-col justify-center items-center transition-all duration-300 opacity-0 shadow-none">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-4">
                                     <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
                                 </div>
-                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                <p class="font-serif text-base md:text-lg lg:text-sm italic text-gray-200 leading-snug text-center max-w-3xl mb-6">
                                     "We booked using Booking.com. It was so helpful that we could see the entire space in 360. The staff were so helpful & accommodating. Such a peaceful retreat. We'll for sure be back!"
                                 </p>
-                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                    <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=KT'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Kenji Takahashi" draggable="false">
-                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Kenji Takahashi</h4>
-                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Tokyo, Japan</span>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=KT'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Kenji Takahashi" draggable="false">
+                                    <h4 class="font-semibold text-sm lg:text-xs text-white">Kenji Takahashi</h4>
+                                    <span class="text-[11px] lg:text-[10px] text-luxuryGold">Tokyo, Japan</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Review 5 -->
-                        <div class="carousel-slide flex-shrink-0 w-full h-full p-2 sm:p-3" id="slide-4">
-                            <div class="gold-glow-card bg-luxuryGrey p-5 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-between items-center text-center transition-all duration-300">
-                                <div class="flex justify-center text-luxuryGold text-xs mb-2">
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2 md:px-4" id="slide-4">
+                            <div class="gold-glow-card bg-luxuryGrey p-8 rounded-lg border border-transparent h-full flex flex-col justify-center items-center transition-all duration-300 opacity-0 shadow-none">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-4">
                                     <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
                                 </div>
-                                <p class="font-serif text-xs sm:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto my-auto px-1 sm:px-4">
+                                <p class="font-serif text-base md:text-lg lg:text-sm italic text-gray-200 leading-snug text-center max-w-3xl mb-6">
                                     "A masterclass in genuine digital representation. The immaculate Balinese wood-carvings and layout feel like real art. Experiencing it beforehand via VR makes booking an effortless choice."
                                 </p>
-                                <div class="flex flex-col items-center flex-shrink-0 mt-3 sm:mt-4">
-                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=AS'" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-luxuryGold/40 mb-1.5" alt="Amara Sterling" draggable="false">
-                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Amara Sterling</h4>
-                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">New York, USA</span>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=AS'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Amara Sterling" draggable="false">
+                                    <h4 class="font-semibold text-sm lg:text-xs text-white">Amara Sterling</h4>
+                                    <span class="text-[11px] lg:text-[10px] text-luxuryGold">New York, USA</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <button onclick="nextSlide()" class="flex-shrink-0 text-luxuryGold hover:text-white transition-colors p-2 text-2xl focus:outline-none flex items-center justify-center z-30" aria-label="Next Review">
+                <button onclick="nextSlide()" class="absolute left-[-25px] md:left-[-50px] top-1/2 -translate-y-1/2 text-luxuryGold hover:text-white transition-colors p-2 text-2xl z-30 focus:outline-none" aria-label="Next Review">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="prevSlide()" class="absolute right-[-25px] md:right-[-50px] top-1/2 -translate-y-1/2 text-luxuryGold hover:text-white transition-colors p-2 text-2xl z-30 focus:outline-none" aria-label="Previous Review">
                     <i class="fas fa-chevron-right"></i>
                 </button>
-            </div>
-            
-            <div class="flex justify-center items-center space-x-2 mt-6" id="carousel-dots-container">
-                <button onclick="goToSlide(0)" class="carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300" id="dot-0" aria-label="Slide 1"></button>
-                <button onclick="goToSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-1" aria-label="Slide 2"></button>
-                <button onclick="goToSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-2" aria-label="Slide 3"></button>
-                <button onclick="goToSlide(3)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-3" aria-label="Slide 4"></button>
-                <button onclick="goToSlide(4)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-4" aria-label="Slide 5"></button>
+                
+                <div class="flex justify-center items-center space-x-2 mt-6" id="carousel-dots-container">
+                    <button onclick="goToSlide(0)" class="carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300" id="dot-0" aria-label="Slide 1"></button>
+                    <button onclick="goToSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-1" aria-label="Slide 2"></button>
+                    <button onclick="goToSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-2" aria-label="Slide 3"></button>
+                    <button onclick="goToSlide(3)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-3"></button>
+                    <button onclick="goToSlide(4)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-4" aria-label="Slide 4"></button>
+                </div>
             </div>
         </div>
     </section>
@@ -376,7 +375,7 @@
             </div>
 
             <div class="space-y-6 px-2" id="faq-list-container">
-                <!-- 19 FAQ items in center alignment -->
+                <!-- 19 FAQ Items -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300 text-center" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-center p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center justify-center text-center w-full">
@@ -689,7 +688,7 @@
                     </div>
 
                     <div id="calendar-months-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <!-- Dynamic Calendar Grids -->
+                        <!-- Dynamic Grids -->
                     </div>
                     
                     <div class="border-t border-luxuryGold/20 pt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs text-gray-400 gap-4">
@@ -957,7 +956,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_222000</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260804_230000</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
