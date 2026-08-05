@@ -141,7 +141,7 @@ exports.handler = async (event) => {
           <p style="margin: 6px 0; font-size: 13px;"><strong>Check-in:</strong> ${checkIn} (after 2:00 PM)</p>
           <p style="margin: 6px 0; font-size: 13px;"><strong>Check-out:</strong> ${checkOut} (before 12:00 PM)</p>
           <p style="margin: 6px 0; font-size: 13px;"><strong>Duration:</strong> ${nights || ''}</p>
-          <p style="margin: 6px 0; font-size: 13px;"><strong>Party: `+ `${guests?.adults || 1} Adults, ${guests?.children || 0} Children, ${guests?.pets || 0} Pets</p>` + `
+          <p style="margin: 6px 0; font-size: 13px;"><strong>Party:</strong> ${guests?.adults || 1} Adults, ${guests?.children || 0} Children, ${guests?.pets || 0} Pets</p>
         </div>
         <p>Your request has been logged with our estate management team. We will contact you shortly to confirm your reservation.</p>
         <p style="margin-top: 32px; color: #D4AF37;">Warmest Regards,<br/><strong>Estate Management Team</strong><br/>Alam Bali Villa<br/><a href="mailto:AlamBaliVilla.Indo@gmail.com" style="color: #D4AF37; text-decoration: underline;">AlamBaliVilla.Indo@gmail.com</a></p>
