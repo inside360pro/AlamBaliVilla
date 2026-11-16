@@ -1591,22 +1591,42 @@
             const diffDays = Math.ceil(Math.abs(checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
             const nights = `${diffDays} Night${diffDays > 1 ? 's' : ''}`;
 
-            const addOns = [];
-            if (document.getElementById('req-butler').checked) addOns.push('In-Villa Butler Service');
-            if (document.getElementById('req-pickup').checked) addOns.push(`VIP Pickup: ${document.getElementById('pickup-location').value || 'DPS Airport'}`);
-            if (document.getElementById('req-dropoff').checked) addOns.push(`Departure Drop-off: ${document.getElementById('dropoff-location').value || 'Unspecified'}`);
-            if (document.getElementById('req-doublebed').checked) addOns.push('Extra Luxury Double Bed');
-            if (document.getElementById('req-babycot').checked) addOns.push('Private Premium Baby Cot');
+            const butlerChecked = document.getElementById('req-butler').checked;
+            const pickupChecked = document.getElementById('req-pickup').checked;
+            const dropoffChecked = document.getElementById('req-dropoff').checked;
+            const doublebedChecked = document.getElementById('req-doublebed').checked;
+            const babycotChecked = document.getElementById('req-babycot').checked;
+
+            const pickupLoc = document.getElementById('pickup-location').value.trim();
+            const pickupTime = document.getElementById('pickup-time').value.trim();
+            const pickupAnswer = pickupChecked
+                ? `${pickupLoc || 'DPS Airport'}${pickupTime ? ' @' + pickupTime : ''}`
+                : 'NA';
+
+            const dropoffLoc = document.getElementById('dropoff-location').value.trim();
+            const dropoffTime = document.getElementById('dropoff-arrival').value.trim();
+            const dropoffAnswer = dropoffChecked
+                ? `${dropoffLoc || 'Unspecified'}${dropoffTime ? ' @' + dropoffTime : ''}`
+                : 'NA';
+
+            const addOns = [
+                `In-Villa Butler Service: ${butlerChecked ? 'Yes' : 'NA'}`,
+                `VIP Pickup: ${pickupAnswer}`,
+                `Departure Drop-off: ${dropoffAnswer}`,
+                `Extra Luxury Double Bed: ${doublebedChecked ? 'Yes' : 'NA'}`,
+                `Private Premium Baby Cot: ${babycotChecked ? 'Yes' : 'NA'}`
+            ];
 
             const sentStamp = formatDateTimeStamp(new Date());
             const submittedStamp = window.lastSubmittedTimestamp || sentStamp;
             const sentEl = document.getElementById('summary-sent-time');
             if (sentEl) sentEl.innerText = sentStamp;
 
-            const calendarWhatsappFormatter = `${waVal || 'Not provided'}\n• First Name: ${firstName}\n• Last Name: ${lastName}\n• Adults: ${guests.adults}\n• Children: ${guests.children}\n• Pets: ${guests.pets}<!--`;
-            const calendarNightsFormatter = `-->• Stay Range: ${checkin} to ${checkout} (${nights}`;
+            const calendarWhatsappFormatter = `${waVal || 'Not provided'}\n• First Name: ${firstName}\n• Last Name: ${lastName}\n• Adults: ${guests.adults}\n• Children: ${guests.children}\n• Pets: ${guests.pets}\n• Check-in Date: ${checkin}\n• Check-out Date: ${checkout}\n• Total Nights Duration: ${nights}<!--`;
+            const calendarNightsFormatter = `-->\n`;
 
-            const baseAddOns = addOns.length > 0 ? [...addOns] : ['None'];
+            const baseAddOns = [...addOns];
+            baseAddOns[0] = `-->• ${baseAddOns[0]}`;
             baseAddOns[baseAddOns.length - 1] = `${baseAddOns[baseAddOns.length - 1]}\n\n• Submitted: ${submittedStamp}\n• Sent: ${sentStamp}\n`;
 
             const payload = {
