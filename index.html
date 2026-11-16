@@ -973,6 +973,14 @@
                         <span class="text-gray-400">Contact Details:</span>
                         <span id="summary-contact" class="font-bold text-white">-</span>
                     </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Date &amp; Time Submitted:</span>
+                        <span id="summary-submitted-time" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between pb-1">
+                        <span class="text-gray-400">Date &amp; Time Sent:</span>
+                        <span id="summary-sent-time" class="font-bold text-luxuryGold">NULL</span>
+                    </div>
                 </div>
             </div>
             
@@ -1001,6 +1009,16 @@
             <div class="bg-luxuryGrey-dark p-3.5 rounded border border-luxuryGold/20">
                 <span class="text-[10px] uppercase tracking-widest text-luxuryGold font-bold block mb-1">Booking Request Pending</span>
                 <p class="text-xs font-medium text-gray-200">Your booking is Pending & we will confirm in 24 hours.</p>
+                <div class="mt-2.5 pt-2 border-t border-luxuryGold/15 text-[11px] text-gray-400 space-y-1 text-left">
+                    <div class="flex justify-between">
+                        <span>Submitted:</span>
+                        <span id="toast-submitted-time" class="text-white font-semibold">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Sent:</span>
+                        <span id="toast-sent-time" class="text-luxuryGold font-semibold">-</span>
+                    </div>
+                </div>
             </div>
             <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-bold text-xs uppercase tracking-widest py-3.5 rounded transition-all gold-glow">
                 Close Window
@@ -1429,6 +1447,17 @@
             return `${date.getFullYear()}-${mm}-${dd}`;
         }
 
+        function formatDateTimeStamp(date) {
+            if (!date) return 'NULL';
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+            const hh = String(date.getHours()).padStart(2, '0');
+            const min = String(date.getMinutes()).padStart(2, '0');
+            const ss = String(date.getSeconds()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+        }
+
         function updateCounter(type, change) {
             guests[type] = Math.max(0, guests[type] + change);
             if (type === 'adults' && guests.adults === 0) guests.adults = 1;
@@ -1515,11 +1544,22 @@
             const waVal = document.getElementById('guest-whatsapp').value.trim();
             document.getElementById('summary-contact').innerText = `Email: ${emailVal || 'None'} | WhatsApp: ${waVal || 'None'}`;
 
+            const submittedStamp = formatDateTimeStamp(new Date());
+            window.lastSubmittedTimestamp = submittedStamp;
+            const subEl = document.getElementById('summary-submitted-time');
+            const sentEl = document.getElementById('summary-sent-time');
+            if (subEl) subEl.innerText = submittedStamp;
+            if (sentEl) sentEl.innerText = 'NULL';
+
             openModal();
         }
 
         async function confirmBooking() {
-            closeModal();
+            const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+            if (modalConfirmBtn) {
+                modalConfirmBtn.disabled = true;
+                modalConfirmBtn.innerText = 'SENDING...';
+            }
             const confirmBtn = document.getElementById('submit-btn');
             if (confirmBtn) {
                 confirmBtn.disabled = true;
@@ -1543,6 +1583,8 @@
             if (document.getElementById('req-doublebed').checked) addOns.push('Extra Luxury Double Bed');
             if (document.getElementById('req-babycot').checked) addOns.push('Private Premium Baby Cot');
 
+            const sentStamp = formatDateTimeStamp(new Date());
+
             const payload = {
                 firstName,
                 lastName,
@@ -1553,7 +1595,9 @@
                 checkOut: checkout,
                 nights,
                 guests,
-                addOns
+                addOns,
+                submittedAt: window.lastSubmittedTimestamp || sentStamp,
+                sentAt: sentStamp
             };
 
             const endpoints = [
@@ -1583,15 +1627,32 @@
                 }
             }
 
+            const finalSentStamp = formatDateTimeStamp(new Date());
+            const sentEl = document.getElementById('summary-sent-time');
+            if (sentEl) sentEl.innerText = finalSentStamp;
+
+            const toastSubEl = document.getElementById('toast-submitted-time');
+            const toastSentEl = document.getElementById('toast-sent-time');
+            if (toastSubEl) toastSubEl.innerText = window.lastSubmittedTimestamp || sentStamp;
+            if (toastSentEl) toastSentEl.innerText = finalSentStamp;
+
+            if (modalConfirmBtn) {
+                modalConfirmBtn.disabled = false;
+                modalConfirmBtn.innerText = 'Confirm & Send';
+            }
             if (confirmBtn) {
                 confirmBtn.disabled = false;
                 confirmBtn.innerText = 'REQUEST SANCTUARY BOOKING';
             }
 
             if (submitted) {
-                showSuccessToast();
+                setTimeout(() => {
+                    closeModal();
+                    showSuccessToast();
+                }, 600);
                 setTimeout(fetchLiveCalendarAvailability, 1500);
             } else {
+                closeModal();
                 alert('Submission Error: ' + (errorMessage || 'Could not reach booking service. Please try again.'));
             }
         }
