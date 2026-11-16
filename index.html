@@ -358,9 +358,9 @@
                 <div class="w-12 h-0.5 bg-luxuryGold/80 mx-auto mt-4 mb-5"></div>
 
                 <div class="flex flex-wrap justify-center gap-2 text-[10px] uppercase tracking-wider font-semibold">
-                    <button type="button" onclick="filterFaqs('all')" data-category="all" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold bg-luxuryGold/10 text-luxuryGold transition-all">All Questions</button>
+                    <button type="button" onclick="filterFaqs('all')" data-category="all" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">All Questions</button>
                     <button type="button" onclick="filterFaqs('stay')" data-category="stay" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Reservations & Rates</button>
-                    <button type="button" onclick="filterFaqs('amenities')" data-category="amenities" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Suites & Amenities</button>
+                    <button type="button" onclick="filterFaqs('amenities')" data-category="amenities" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold bg-luxuryGold/10 text-luxuryGold transition-all">Suites & Amenities</button>
                     <button type="button" onclick="filterFaqs('dining')" data-category="dining" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Dining & Wellness</button>
                     <button type="button" onclick="filterFaqs('nearby')" data-category="nearby" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Location & Travel</button>
                 </div>
@@ -368,7 +368,7 @@
 
             <div class="space-y-6 px-2" id="faq-list-container">
                 <!-- FAQ-001: Reservations & Rates (stay) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-users-viewfinder text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -383,7 +383,7 @@
                 </div>
 
                 <!-- FAQ-002: Reservations & Rates (stay) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 2)" id="faq-btn-2" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-calendar-week text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -398,7 +398,7 @@
                 </div>
 
                 <!-- FAQ-003: Reservations & Rates (stay) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 3)" id="faq-btn-3" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-clock text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -413,7 +413,7 @@
                 </div>
 
                 <!-- FAQ-004: Reservations & Rates (stay) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 4)" id="faq-btn-4" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-vr-cardboard text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -428,7 +428,7 @@
                 </div>
 
                 <!-- FAQ-005: Dining & Wellness (dining) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
                     <button type="button" onclick="toggleFaq(event, 5)" id="faq-btn-5" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-utensils text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -443,7 +443,7 @@
                 </div>
 
                 <!-- FAQ-006: Dining & Wellness (dining) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
                     <button type="button" onclick="toggleFaq(event, 6)" id="faq-btn-6" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-person-swimming text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -472,7 +472,7 @@
                 </div>
 
                 <!-- FAQ-008: Dining & Wellness (dining) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
                     <button type="button" onclick="toggleFaq(event, 8)" id="faq-btn-8" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-spa text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -487,7 +487,7 @@
                 </div>
 
                 <!-- FAQ-009: Location & Travel (nearby) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 9)" id="faq-btn-9" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-taxi text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -502,7 +502,7 @@
                 </div>
 
                 <!-- FAQ-010: Reservations & Rates (stay) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 10)" id="faq-btn-10" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-calendar-check text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -546,7 +546,7 @@
                 </div>
 
                 <!-- FAQ-013: Location & Travel (nearby) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 13)" id="faq-btn-13" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-map-location-dot text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -560,7 +560,7 @@
                 </div>
 
                 <!-- FAQ-014: Location & Travel (nearby) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 14)" id="faq-btn-14" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-plane-arrival text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -575,7 +575,7 @@
                 </div>
 
                 <!-- FAQ-015: Reservations & Rates (stay) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 15)" id="faq-btn-15" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-award text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -590,7 +590,7 @@
                 </div>
 
                 <!-- FAQ-016: Reservations & Rates (stay) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 16)" id="faq-btn-16" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-user-plus text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -634,7 +634,7 @@
                 </div>
 
                 <!-- FAQ-019: Location & Travel (nearby) -->
-                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
                     <button type="button" onclick="toggleFaq(event, 19)" id="faq-btn-19" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
                             <i class="fas fa-compass text-luxuryGold/80 text-[11px] mr-2"></i>
@@ -1640,6 +1640,7 @@
             renderCalendar();
             fetchLiveCalendarAvailability();
             resetSlideTimer();
+            filterFaqs('amenities');
         });
     </script>
 </body>
