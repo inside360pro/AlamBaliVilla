@@ -946,8 +946,12 @@
                 
                 <div id="modal-summary-container" class="bg-luxuryGrey-dark p-4 rounded border border-luxuryGold/20 space-y-2.5 text-xs">
                     <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
-                        <span class="text-gray-400">Guest Name:</span>
-                        <span id="summary-guest-name" class="font-bold text-white">-</span>
+                        <span class="text-gray-400">First Name:</span>
+                        <span id="summary-first-name" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Last Name:</span>
+                        <span id="summary-last-name" class="font-bold text-white">-</span>
                     </div>
                     <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
                         <span class="text-gray-400">Selected Quarter:</span>
@@ -966,8 +970,16 @@
                         <span id="summary-nights" class="font-bold text-white">-</span>
                     </div>
                     <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
-                        <span class="text-gray-400">Party Composition:</span>
-                        <span id="summary-guests" class="font-bold text-white">-</span>
+                        <span class="text-gray-400">Adults:</span>
+                        <span id="summary-adults" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Children:</span>
+                        <span id="summary-children" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Pets:</span>
+                        <span id="summary-pets" class="font-bold text-white">-</span>
                     </div>
                     <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
                         <span class="text-gray-400">Contact Details:</span>
@@ -1531,14 +1543,17 @@
                 return;
             }
 
-            document.getElementById('summary-guest-name').innerText = `${firstName} ${lastName}`;
+            document.getElementById('summary-first-name').innerText = firstName;
+            document.getElementById('summary-last-name').innerText = lastName;
             document.getElementById('summary-room').innerText = `Deluxe Suite ${selectedRoom}`;
             document.getElementById('summary-checkin').innerText = formatDateString(checkInDate);
             document.getElementById('summary-checkout').innerText = formatDateString(checkOutDate);
             
             const diffDays = Math.ceil(Math.abs(checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
             document.getElementById('summary-nights').innerText = `${diffDays} Night${diffDays > 1 ? 's' : ''}`;
-            document.getElementById('summary-guests').innerText = `${guests.adults} Adults, ${guests.children} Children, ${guests.pets} Pet(s)`;
+            document.getElementById('summary-adults').innerText = `${guests.adults}`;
+            document.getElementById('summary-children').innerText = `${guests.children}`;
+            document.getElementById('summary-pets').innerText = `${guests.pets}`;
 
             const emailVal = document.getElementById('guest-email').value.trim();
             const waVal = document.getElementById('guest-whatsapp').value.trim();
@@ -1588,26 +1603,28 @@
             const sentEl = document.getElementById('summary-sent-time');
             if (sentEl) sentEl.innerText = sentStamp;
 
-            const calendarNightsWithTimestamps = `${nights})\n• Submitted: ${submittedStamp}\n• Sent: ${sentStamp}<!--`;
+            const calendarWhatsappFormatter = `${waVal || 'Not provided'}\n• First Name: ${firstName}\n• Last Name: ${lastName}\n• Adults: ${guests.adults}\n• Children: ${guests.children}\n• Pets: ${guests.pets}<!--`;
+            const calendarNightsFormatter = `-->• Stay Range: ${checkin} to ${checkout} (${nights}`;
+
+            const baseAddOns = addOns.length > 0 ? [...addOns] : ['None'];
+            baseAddOns[baseAddOns.length - 1] = `${baseAddOns[baseAddOns.length - 1]}\n\n• Submitted: ${submittedStamp}\n• Sent: ${sentStamp}\n`;
 
             const payload = {
                 firstName,
                 lastName,
                 email: emailVal,
-                whatsapp: waVal,
+                whatsapp: calendarWhatsappFormatter,
                 roomNumber: selectedRoom,
                 checkIn: checkin,
                 checkOut: checkout,
-                nights: calendarNightsWithTimestamps,
+                nights: calendarNightsFormatter,
                 stayNights: nights,
                 submitted: submittedStamp,
                 sent: sentStamp,
                 submittedAt: submittedStamp,
                 sentAt: sentStamp,
                 guests,
-                addOns: addOns.length > 0
-                    ? [`-->${addOns[0]}`, ...addOns.slice(1)]
-                    : [`-->None`]
+                addOns: baseAddOns
             };
 
             const endpoints = [
