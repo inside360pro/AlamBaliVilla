@@ -104,8 +104,8 @@
     <header class="fixed top-0 left-0 w-full z-40 bg-luxuryGrey-dark/90 backdrop-blur-md border-b border-luxuryGold/10 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <a href="#hero" class="flex flex-col">
-                <span class="font-serif text-2xl tracking-[0.2em] text-white uppercase font-bold">Alam Bali</span>
-                <span class="text-[9px] tracking-[0.5em] text-luxuryGold uppercase font-semibold">Villa</span>
+                <span class="font-serif text-2xl tracking-[0.2em] text-luxuryGold uppercase font-bold">Alam Bali</span>
+                <span class="text-[9px] tracking-[0.5em] text-white uppercase font-semibold">Villa</span>
             </a>
             
             <nav class="hidden lg:flex items-center space-x-8 text-xs tracking-[0.2em] uppercase font-medium">
@@ -150,8 +150,8 @@
     <section id="reviews" class="py-20 md:py-24 bg-luxuryGrey-dark border-y border-luxuryGold/20 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-10 md:mb-12">
-                <span class="text-xs tracking-[0.3em] text-luxuryGold uppercase font-bold block mb-2">Verified Testimonials</span>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold">Unveiling Guest Experiences</h2>
+                <span class="text-xs tracking-[0.3em] text-white uppercase font-bold block mb-2">Verified Testimonials</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-luxuryGold">Unveiling Guest Experiences</h2>
                 <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-4"></div>
             </div>
             
@@ -262,8 +262,8 @@
 
     <section id="villas" class="py-24 max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
-            <span class="text-xs tracking-[0.3em] text-luxuryGold uppercase font-bold block mb-2">The Estate Experience</span>
-            <h2 class="font-serif text-3xl md:text-5xl font-bold">A Sanctuary for the Senses</h2>
+            <span class="text-xs tracking-[0.3em] text-white uppercase font-bold block mb-2">The Estate Experience</span>
+            <h2 class="font-serif text-3xl md:text-5xl font-bold text-luxuryGold">A Sanctuary for the Senses</h2>
             <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
                 Wander through a world curated exclusively for your absolute comfort. Preview our suites, reflection pools, and wellness therapies below.
             </p>
@@ -350,10 +350,10 @@
     <section id="faqs" class="py-16 bg-luxuryGrey-dark border-t border-luxuryGold/20">
         <div class="max-w-[78%] mx-auto px-4 md:px-6">
             <div class="text-center mb-10">
-                <span class="text-[10px] tracking-[0.3em] text-luxuryGold uppercase font-bold block mb-1.5">Sanctuary Inquiries</span>
-                <h2 class="font-serif text-xl md:text-3xl font-bold text-gray-200">Frequently Asked Questions</h2>
+                <span class="text-[10px] tracking-[0.3em] text-gray-200 uppercase font-bold block mb-1.5">Sanctuary Inquiries</span>
+                <h2 class="font-serif text-xl md:text-3xl font-bold text-luxuryGold">Frequently Asked Questions</h2>
                 <p class="text-gray-400 mt-2.5 max-w-xl mx-auto text-[11px] md:text-xs leading-relaxed">
-                    Everything you need to know about reserving your stay, suite configurations, group buyouts, dining hours, pool safety, wellness therapies, and local travel routes.
+                    Everything you need to know about reserving your stay, suite configurations, group bookings, dining hours, pool safety, wellness therapies, and local travel routes.
                 </p>
                 <div class="w-12 h-0.5 bg-luxuryGold/80 mx-auto mt-4 mb-5"></div>
 
@@ -364,13 +364,17 @@
                     <button type="button" onclick="filterFaqs('dining')" data-category="dining" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Dining & Wellness</button>
                     <button type="button" onclick="filterFaqs('nearby')" data-category="nearby" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Location & Travel</button>
                 </div>
+
+                <p class="text-gray-500 italic mt-3.5 text-[10px] md:text-[11px]">
+                    Hold the [Shift] key to open multiple FAQs &amp; the [Control] key to open independent FAQs
+                </p>
             </div>
 
             <div class="space-y-6 px-2" id="faq-list-container">
                 <!-- FAQ-001: Reservations & Rates (stay) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
-                    <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-users-viewfinder text-luxuryGold/80 text-[11px] mr-2"></i>
                             Can I reserve all three private villas at Alam Bali Villa for a group?
                         </span>
@@ -384,8 +388,8 @@
 
                 <!-- FAQ-002: Reservations & Rates (stay) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
-                    <button type="button" onclick="toggleFaq(event, 2)" id="faq-btn-2" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 2)" id="faq-btn-2" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-calendar-week text-luxuryGold/80 text-[11px] mr-2"></i>
                             What discount rates apply for long-term extended stays at Alam Bali Villa?
                         </span>
@@ -399,8 +403,8 @@
 
                 <!-- FAQ-003: Reservations & Rates (stay) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
-                    <button type="button" onclick="toggleFaq(event, 3)" id="faq-btn-3" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 3)" id="faq-btn-3" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-clock text-luxuryGold/80 text-[11px] mr-2"></i>
                             What are the exact check-in and check-out times at Alam Bali Villa?
                         </span>
@@ -414,8 +418,8 @@
 
                 <!-- FAQ-004: Reservations & Rates (stay) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
-                    <button type="button" onclick="toggleFaq(event, 4)" id="faq-btn-4" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 4)" id="faq-btn-4" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-vr-cardboard text-luxuryGold/80 text-[11px] mr-2"></i>
                             How can I view the room layout before booking my stay at Alam Bali Villa?
                         </span>
@@ -429,8 +433,8 @@
 
                 <!-- FAQ-005: Dining & Wellness (dining) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
-                    <button type="button" onclick="toggleFaq(event, 5)" id="faq-btn-5" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 5)" id="faq-btn-5" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-utensils text-luxuryGold/80 text-[11px] mr-2"></i>
                             What dining and bar facilities are available on-site at Alam Bali Villa?
                         </span>
@@ -444,8 +448,8 @@
 
                 <!-- FAQ-006: Dining & Wellness (dining) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
-                    <button type="button" onclick="toggleFaq(event, 6)" id="faq-btn-6" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 6)" id="faq-btn-6" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-person-swimming text-luxuryGold/80 text-[11px] mr-2"></i>
                             What swimming pool facilities, depths, and safety supervision are available at Alam Bali Villa?
                         </span>
@@ -459,8 +463,8 @@
 
                 <!-- FAQ-007: Suites & Amenities (amenities) -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
-                    <button type="button" onclick="toggleFaq(event, 7)" id="faq-btn-7" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 7)" id="faq-btn-7" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-bed text-luxuryGold/80 text-[11px] mr-2"></i>
                             What features are included in the Deluxe Room Suite at Alam Bali Villa?
                         </span>
@@ -473,8 +477,8 @@
 
                 <!-- FAQ-008: Dining & Wellness (dining) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
-                    <button type="button" onclick="toggleFaq(event, 8)" id="faq-btn-8" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 8)" id="faq-btn-8" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-spa text-luxuryGold/80 text-[11px] mr-2"></i>
                             What spa treatments and wellness services are offered at Alam Bali Villa?
                         </span>
@@ -488,8 +492,8 @@
 
                 <!-- FAQ-009: Location & Travel (nearby) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
-                    <button type="button" onclick="toggleFaq(event, 9)" id="faq-btn-9" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 9)" id="faq-btn-9" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-taxi text-luxuryGold/80 text-[11px] mr-2"></i>
                             Does Alam Bali Villa arrange local transportation and island travel?
                         </span>
@@ -503,8 +507,8 @@
 
                 <!-- FAQ-010: Reservations & Rates (stay) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
-                    <button type="button" onclick="toggleFaq(event, 10)" id="faq-btn-10" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 10)" id="faq-btn-10" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-calendar-check text-luxuryGold/80 text-[11px] mr-2"></i>
                             How does direct booking work on the Alam Bali Villa website?
                         </span>
@@ -518,8 +522,8 @@
 
                 <!-- FAQ-011: Suites & Amenities (amenities) -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
-                    <button type="button" onclick="toggleFaq(event, 11)" id="faq-btn-11" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 11)" id="faq-btn-11" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-shower text-luxuryGold/80 text-[11px] mr-2"></i>
                             What hot water heating systems are installed in the villa bathrooms?
                         </span>
@@ -532,8 +536,8 @@
 
                 <!-- FAQ-012: Suites & Amenities (amenities) -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
-                    <button type="button" onclick="toggleFaq(event, 12)" id="faq-btn-12" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 12)" id="faq-btn-12" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-broom text-luxuryGold/80 text-[11px] mr-2"></i>
                             What are the hours for daily room cleaning and makeup services?
                         </span>
@@ -547,8 +551,8 @@
 
                 <!-- FAQ-013: Location & Travel (nearby) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
-                    <button type="button" onclick="toggleFaq(event, 13)" id="faq-btn-13" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 13)" id="faq-btn-13" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-map-location-dot text-luxuryGold/80 text-[11px] mr-2"></i>
                             Where can I access the exact Google Maps location for Alam Bali Villa?
                         </span>
@@ -561,8 +565,8 @@
 
                 <!-- FAQ-014: Location & Travel (nearby) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
-                    <button type="button" onclick="toggleFaq(event, 14)" id="faq-btn-14" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 14)" id="faq-btn-14" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-plane-arrival text-luxuryGold/80 text-[11px] mr-2"></i>
                             How long is the drive from Bali Airport, and is there an altitude restriction route for scuba divers?
                         </span>
@@ -576,8 +580,8 @@
 
                 <!-- FAQ-015: Reservations & Rates (stay) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
-                    <button type="button" onclick="toggleFaq(event, 15)" id="faq-btn-15" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 15)" id="faq-btn-15" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-award text-luxuryGold/80 text-[11px] mr-2"></i>
                             Is there a discount for returning guests who book directly?
                         </span>
@@ -591,8 +595,8 @@
 
                 <!-- FAQ-016: Reservations & Rates (stay) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
-                    <button type="button" onclick="toggleFaq(event, 16)" id="faq-btn-16" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 16)" id="faq-btn-16" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-user-plus text-luxuryGold/80 text-[11px] mr-2"></i>
                             How can I receive a referral discount for introducing a friend?
                         </span>
@@ -606,8 +610,8 @@
 
                 <!-- FAQ-017: Suites & Amenities (amenities) -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
-                    <button type="button" onclick="toggleFaq(event, 17)" id="faq-btn-17" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 17)" id="faq-btn-17" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-mattress-pillow text-luxuryGold/80 text-[11px] mr-2"></i>
                             What bedding material and pillow choices are supplied in the bedrooms?
                         </span>
@@ -621,8 +625,8 @@
 
                 <!-- FAQ-018: Suites & Amenities (amenities) -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
-                    <button type="button" onclick="toggleFaq(event, 18)" id="faq-btn-18" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 18)" id="faq-btn-18" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-water text-luxuryGold/80 text-[11px] mr-2"></i>
                             What complimentary water sports gear is provided with the villa rental?
                         </span>
@@ -635,18 +639,31 @@
 
                 <!-- FAQ-019: Location & Travel (nearby) -->
                 <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
-                    <button type="button" onclick="toggleFaq(event, 19)" id="faq-btn-19" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
-                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                    <button type="button" onclick="toggleFaq(event, 19)" id="faq-btn-19" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
                             <i class="fas fa-compass text-luxuryGold/80 text-[11px] mr-2"></i>
                             What local attractions, beaches, and points of interest are located near Alam Bali Villa?
                         </span>
                         <i id="faq-icon-19" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
                     </button>
                     <div id="faq-answer-19" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
-                        <p class="mb-1.5">Alam Bali Villa is located directly along the coast, just 0.015 km (15 meters) from Yehanakan Beach.</p>
-                        <p>Key nearby attractions and driving distances include Banjar Hot Spring (9.4 km), Mayong Cultural Walk (11.5 km), Krisna Water Sports (11.7 km), Singsing Waterfall (13.2 km), Wisata Dolphin Lovina (15.2 km), and Munduk Wilderness Outdoor Activities (29.3 km).</p>
+                        <p class="mb-2">Alam Bali Villa is located directly along the coast, just 0.015 km (15 meters) from Yehanakan Beach. Key nearby attractions and driving distances from Alam Bali Villa include:</p>
+                        <ul class="list-disc pl-8 space-y-1 text-gray-300/90">
+                            <li><span class="text-gray-200 font-medium">Banjar Hot Spring</span> — 9.4 km</li>
+                            <li><span class="text-gray-200 font-medium">Mayong Cultural Walk</span> — 11.5 km</li>
+                            <li><span class="text-gray-200 font-medium">Krisna Water Sports</span> — 11.7 km</li>
+                            <li><span class="text-gray-200 font-medium">Singsing Waterfall</span> — 13.2 km</li>
+                            <li><span class="text-gray-200 font-medium">Wisata Dolphin Lovina</span> — 15.2 km</li>
+                            <li><span class="text-gray-200 font-medium">Munduk Wilderness Outdoor Activities</span> — 29.3 km</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <button type="button" onclick="toggleAllVisibleFaqs()" id="toggle-all-faqs-btn" class="px-4 py-1.5 rounded-full border border-luxuryGold/30 text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/5 hover:border-luxuryGold transition-all focus:outline-none">
+                    Close/Open All FAQs
+                </button>
             </div>
         </div>
     </section>
@@ -1596,6 +1613,22 @@
             if (menu) menu.classList.add('hidden');
         }
 
+        let lastClickedFaqId = null;
+
+        function setFaqOpenState(id, isOpen) {
+            const answer = document.getElementById(`faq-answer-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            if (!answer) return;
+
+            if (isOpen) {
+                answer.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-180');
+            }
+        }
+
         function filterFaqs(category) {
             const items = document.querySelectorAll('.faq-item');
             const buttons = document.querySelectorAll('.faq-tab-btn');
@@ -1617,21 +1650,84 @@
                     item.classList.add('hidden');
                 }
             });
+
+            for (let i = 1; i <= 19; i++) {
+                setFaqOpenState(i, false);
+            }
+            lastClickedFaqId = null;
         }
 
         function toggleFaq(event, id) {
             const answer = document.getElementById(`faq-answer-${id}`);
-            const icon = document.getElementById(`faq-icon-${id}`);
-            
-            if (answer) {
-                const isHidden = answer.classList.contains('hidden');
-                if (isHidden) {
-                    answer.classList.remove('hidden');
-                    if (icon) icon.classList.add('rotate-180');
-                } else {
-                    answer.classList.add('hidden');
-                    if (icon) icon.classList.remove('rotate-180');
+            if (!answer) return;
+
+            const isCtrl = event && (event.ctrlKey || event.metaKey);
+            const isShift = event && event.shiftKey;
+
+            if (isShift) {
+                if (window.getSelection) {
+                    window.getSelection().removeAllRanges();
                 }
+
+                const visibleFaqItems = Array.from(document.querySelectorAll('#faq-list-container .faq-item:not(.hidden)'));
+                const visibleIds = visibleFaqItems.map(item => {
+                    const btn = item.querySelector('button[id^="faq-btn-"]');
+                    return btn ? parseInt(btn.id.replace('faq-btn-', ''), 10) : null;
+                }).filter(Boolean);
+
+                let anchorId = (lastClickedFaqId !== null && visibleIds.includes(lastClickedFaqId))
+                    ? lastClickedFaqId
+                    : visibleIds.find(vId => {
+                        const ans = document.getElementById(`faq-answer-${vId}`);
+                        return ans && !ans.classList.contains('hidden');
+                    });
+
+                if (anchorId !== undefined && anchorId !== null && visibleIds.includes(id)) {
+                    const startIdx = Math.min(visibleIds.indexOf(anchorId), visibleIds.indexOf(id));
+                    const endIdx = Math.max(visibleIds.indexOf(anchorId), visibleIds.indexOf(id));
+                    for (let idx = startIdx; idx <= endIdx; idx++) {
+                        setFaqOpenState(visibleIds[idx], true);
+                    }
+                } else {
+                    setFaqOpenState(id, true);
+                }
+                lastClickedFaqId = id;
+            } else if (isCtrl) {
+                const isHidden = answer.classList.contains('hidden');
+                setFaqOpenState(id, isHidden);
+                if (isHidden) {
+                    lastClickedFaqId = id;
+                }
+            } else {
+                const isHidden = answer.classList.contains('hidden');
+                for (let i = 1; i <= 19; i++) {
+                    if (i !== id) {
+                        setFaqOpenState(i, false);
+                    }
+                }
+                setFaqOpenState(id, isHidden);
+                lastClickedFaqId = isHidden ? id : null;
+            }
+        }
+
+        function toggleAllVisibleFaqs() {
+            const visibleFaqItems = Array.from(document.querySelectorAll('#faq-list-container .faq-item:not(.hidden)'));
+            const visibleIds = visibleFaqItems.map(item => {
+                const btn = item.querySelector('button[id^="faq-btn-"]');
+                return btn ? parseInt(btn.id.replace('faq-btn-', ''), 10) : null;
+            }).filter(Boolean);
+
+            const anyOpen = visibleIds.some(id => {
+                const answer = document.getElementById(`faq-answer-${id}`);
+                return answer && !answer.classList.contains('hidden');
+            });
+
+            visibleIds.forEach(id => {
+                setFaqOpenState(id, !anyOpen);
+            });
+
+            if (anyOpen) {
+                lastClickedFaqId = null;
             }
         }
 
