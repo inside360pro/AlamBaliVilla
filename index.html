@@ -1454,7 +1454,8 @@
             const dd = String(date.getDate()).padStart(2, '0');
             const hh = String(date.getHours()).padStart(2, '0');
             const min = String(date.getMinutes()).padStart(2, '0');
-            return `${yyyy}-${mm}-${dd} @${hh}:${min}`;
+            const ss = String(date.getSeconds()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd} @${hh}:${min}:${ss}`;
         }
 
         function updateCounter(type, change) {
@@ -1587,7 +1588,7 @@
             const sentEl = document.getElementById('summary-sent-time');
             if (sentEl) sentEl.innerText = sentStamp;
 
-            const calendarNightsWithTimestamps = `${nights})\n- Submitted: ${submittedStamp}\n- Sent: ${sentStamp}\n`;
+            const calendarNightsWithTimestamps = `${nights})\n• Submitted: ${submittedStamp}\n• Sent: ${sentStamp}`;
 
             const payload = {
                 firstName,
@@ -1597,7 +1598,7 @@
                 roomNumber: selectedRoom,
                 checkIn: checkin,
                 checkOut: checkout,
-                nights: calendarNightsWithTimestamps.slice(0, -2),
+                nights: calendarNightsWithTimestamps,
                 stayNights: nights,
                 submitted: submittedStamp,
                 sent: sentStamp,
