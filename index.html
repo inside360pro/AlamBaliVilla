@@ -358,8 +358,8 @@
                 <div class="w-12 h-0.5 bg-luxuryGold/80 mx-auto mt-4 mb-5"></div>
 
                 <div class="flex flex-wrap justify-center gap-2 text-[10px] uppercase tracking-wider font-semibold">
-                    <button type="button" onclick="filterFaqs('all')" data-category="all" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">All Questions</button>
-                    <button type="button" onclick="filterFaqs('stay')" data-category="stay" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold bg-luxuryGold/10 text-luxuryGold transition-all">Reservations & Rates</button>
+                    <button type="button" onclick="filterFaqs('all')" data-category="all" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold bg-luxuryGold/10 text-luxuryGold transition-all">All Questions</button>
+                    <button type="button" onclick="filterFaqs('stay')" data-category="stay" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Reservations & Rates</button>
                     <button type="button" onclick="filterFaqs('amenities')" data-category="amenities" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Suites & Amenities</button>
                     <button type="button" onclick="filterFaqs('dining')" data-category="dining" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Dining & Wellness</button>
                     <button type="button" onclick="filterFaqs('nearby')" data-category="nearby" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Location & Travel</button>
@@ -367,6 +367,7 @@
             </div>
 
             <div class="space-y-6 px-2" id="faq-list-container">
+                <!-- FAQ-001: Reservations & Rates (stay) -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
@@ -381,6 +382,7 @@
                     </div>
                 </div>
 
+                <!-- FAQ-002: Reservations & Rates (stay) -->
                 <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
                     <button type="button" onclick="toggleFaq(event, 2)" id="faq-btn-2" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
                         <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
@@ -392,6 +394,257 @@
                     <div id="faq-answer-2" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
                         <p class="mb-1.5">Alam Bali Villa offers preferential long-stay rates and fractional privileges.</p>
                         <p>Discounted terms apply for extended stays of 7, 14, or 30 days.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-003: Reservations & Rates (stay) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 3)" id="faq-btn-3" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-clock text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What are the exact check-in and check-out times at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-3" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-3" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Standard check-in starts at 2:00 PM local Balinese time.</p>
+                        <p>Check-out must be completed before 12:00 PM.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-004: Reservations & Rates (stay) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 4)" id="faq-btn-4" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-vr-cardboard text-luxuryGold/80 text-[11px] mr-2"></i>
+                            How can I view the room layout before booking my stay at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-4" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-4" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Interactive 360-degree virtual tours are available on the website.</p>
+                        <p>This feature provides complete visual coverage of room layouts prior to reservation.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-005: Dining & Wellness (dining) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                    <button type="button" onclick="toggleFaq(event, 5)" id="faq-btn-5" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-utensils text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What dining and bar facilities are available on-site at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-5" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-5" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">The open-air dining pavilion serves a mix of Indonesian and Mediterranean dishes prepared with mostly locally sourced ingredients, open daily from 6:30 AM to 10:00 PM. High chairs are available for small children, and in-room butler service is provided on request.</p>
+                        <p>The fully stocked bar serves premium liquor, Indonesian beers, and imported beers daily from 6:30 AM to 12:00 AM midnight. Guests are encouraged to pre-order top-end wines and champagnes during booking.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-006: Dining & Wellness (dining) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                    <button type="button" onclick="toggleFaq(event, 6)" id="faq-btn-6" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-person-swimming text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What swimming pool facilities, depths, and safety supervision are available at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-6" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-6" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Alam Bali Villa features a central swimming pool alongside decorative koi reflection pools and stone pool areas.</p>
+                        <p>The main swimming pool ranges from a shallow depth of 80 cm to a deep end of 180 cm. Lifeguard staff are on duty daily from 8:00 AM until 7:00 PM for child safety.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-007: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 7)" id="faq-btn-7" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-bed text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What features are included in the Deluxe Room Suite at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-7" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-7" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p>The Deluxe Room Suite features artisanal timber frame architecture, a royal canopy bed, a private marble bath, sliding glass walls, and a private Balinese garden.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-008: Dining & Wellness (dining) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                    <button type="button" onclick="toggleFaq(event, 8)" id="faq-btn-8" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-spa text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What spa treatments and wellness services are offered at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-8" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-8" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Massage options include Thai Karma, Shiatsu Karma, Feet Karma, Oil Karma, and Herbal Balm treatments.</p>
+                        <p>Services are available on-site or as in-room treatments alongside custom butler services.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-009: Location & Travel (nearby) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                    <button type="button" onclick="toggleFaq(event, 9)" id="faq-btn-9" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-taxi text-luxuryGold/80 text-[11px] mr-2"></i>
+                            Does Alam Bali Villa arrange local transportation and island travel?
+                        </span>
+                        <i id="faq-icon-9" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-9" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Taxi transfers can be arranged to and from any destination in Bali accessible by road.</p>
+                        <p>Pickups must be booked and arranged in advance during the reservation process.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-010: Reservations & Rates (stay) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 10)" id="faq-btn-10" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-calendar-check text-luxuryGold/80 text-[11px] mr-2"></i>
+                            How does direct booking work on the Alam Bali Villa website?
+                        </span>
+                        <i id="faq-icon-10" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-10" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Select stay dates on the availability calendar to generate a pre-populated email reservation request.</p>
+                        <p>Sending this request connects you directly with the Estate Manager with 0% commission fees.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-011: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 11)" id="faq-btn-11" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-shower text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What hot water heating systems are installed in the villa bathrooms?
+                        </span>
+                        <i id="faq-icon-11" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-11" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p>Every villa bathroom is equipped with an on-demand tankless hot water heater, providing continuous hot water on demand.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-012: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 12)" id="faq-btn-12" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-broom text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What are the hours for daily room cleaning and makeup services?
+                        </span>
+                        <i id="faq-icon-12" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-12" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Daily clean-up and room makeup services are available across an 11-hour window from 7:00 AM until 6:00 PM daily.</p>
+                        <p>Guests can schedule service times flexibly to enjoy uninterrupted room relaxation during the day.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-013: Location & Travel (nearby) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                    <button type="button" onclick="toggleFaq(event, 13)" id="faq-btn-13" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-map-location-dot text-luxuryGold/80 text-[11px] mr-2"></i>
+                            Where can I access the exact Google Maps location for Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-13" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-13" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p>The exact location pin and turn-by-turn navigation for the property can be accessed on <a href="https://maps.app.goo.gl/8nGo2mZKK5a9HUmo7" target="_blank" rel="noopener noreferrer" class="text-luxuryGold hover:underline font-semibold">Google Maps</a>.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-014: Location & Travel (nearby) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                    <button type="button" onclick="toggleFaq(event, 14)" id="faq-btn-14" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-plane-arrival text-luxuryGold/80 text-[11px] mr-2"></i>
+                            How long is the drive from Bali Airport, and is there an altitude restriction route for scuba divers?
+                        </span>
+                        <i id="faq-icon-14" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-14" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Standard driving time to and from Bali Ngurah Rai International Airport is 3.5 hours via the mountain pass route, passing scenic highland viewpoints, rice terraces, and cultural points of interest.</p>
+                        <p>Because this direct route ascends over mountain passes exceeding 1,200 meters in elevation, it presents a decompression sickness risk for scuba divers who have recently completed dives. An alternate 4.5-hour low-altitude coastal route is available specifically to avoid post-dive altitude restrictions.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-015: Reservations & Rates (stay) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 15)" id="faq-btn-15" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-award text-luxuryGold/80 text-[11px] mr-2"></i>
+                            Is there a discount for returning guests who book directly?
+                        </span>
+                        <i id="faq-icon-15" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-15" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Repeat guests receive an automatic 10% discount on villa bookings when making reservations directly through the official website.</p>
+                        <p>This repeat booking discount cannot be combined with other promotional offers.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-016: Reservations & Rates (stay) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 16)" id="faq-btn-16" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-user-plus text-luxuryGold/80 text-[11px] mr-2"></i>
+                            How can I receive a referral discount for introducing a friend?
+                        </span>
+                        <i id="faq-icon-16" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-16" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Friends referred by previous guests receive a 5% discount when booking directly through the website by providing the referrer's full booking name and email address.</p>
+                        <p>This referral discount is not valid with other promotional offers.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-017: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 17)" id="faq-btn-17" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-mattress-pillow text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What bedding material and pillow choices are supplied in the bedrooms?
+                        </span>
+                        <i id="faq-icon-17" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-17" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">All beds feature single-ply, long-staple cotton in a 600 thread-count sateen weave for luxury softness and breathability.</p>
+                        <p>Guests can select between full goose down pillows or hypoallergenic anti-allergic pillows upon request.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-018: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 18)" id="faq-btn-18" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-water text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What complimentary water sports gear is provided with the villa rental?
+                        </span>
+                        <i id="faq-icon-18" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-18" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p>Complimentary water equipment included in the villa rental price consists of masks, snorkels, fins, and 1-person or 2-person kayaks with paddles.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-019: Location & Travel (nearby) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                    <button type="button" onclick="toggleFaq(event, 19)" id="faq-btn-19" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-gray-200 flex items-center">
+                            <i class="fas fa-compass text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What local attractions, beaches, and points of interest are located near Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-19" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-19" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Alam Bali Villa is located directly along the coast, just 0.015 km (15 meters) from Yehanakan Beach.</p>
+                        <p>Key nearby attractions and driving distances include Banjar Hot Spring (9.4 km), Mayong Cultural Walk (11.5 km), Krisna Water Sports (11.7 km), Singsing Waterfall (13.2 km), Wisata Dolphin Lovina (15.2 km), and Munduk Wilderness Outdoor Activities (29.3 km).</p>
                     </div>
                 </div>
             </div>
@@ -644,7 +897,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-white">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-luxuryGold uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">260805_180000</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261116_131800</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
