@@ -1588,7 +1588,7 @@
             const sentEl = document.getElementById('summary-sent-time');
             if (sentEl) sentEl.innerText = sentStamp;
 
-            const calendarNightsWithTimestamps = `${nights})\n• Submitted: ${submittedStamp}\n• Sent: ${sentStamp}`;
+            const calendarNightsWithTimestamps = `${nights})\n• Submitted: ${submittedStamp}\n• Sent: ${sentStamp}<!--`;
 
             const payload = {
                 firstName,
@@ -1605,7 +1605,9 @@
                 submittedAt: submittedStamp,
                 sentAt: sentStamp,
                 guests,
-                addOns
+                addOns: addOns.length > 0
+                    ? [`-->${addOns[0]}`, ...addOns.slice(1)]
+                    : [`-->None`]
             };
 
             const endpoints = [
