@@ -395,17 +395,43 @@
         let previousSnapshot = null;
         let isInitialLoad = true;
 
+        function formatTimeNow() {
+            const now = new Date();
+            return now.toTimeString().split(' ')[0];
+        }
+
         function buildEmbedUrl(roomNum, mode, cacheBust) {
-// ... existing code ... -->
+            const srcId = CALENDAR_SOURCES[roomNum];
+            const cb = cacheBust || Date.now();
+            return `https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=${encodeURIComponent(mode)}&src=${srcId}&color=%23D4AF37&_cb=${cb}`;
+        }
+
+        function setCalendarViewMode(mode) {
+            currentViewMode = mode;
+            document.querySelectorAll('.view-mode-btn').forEach(btn => {
+                if (btn.id === `mode-btn-${mode}`) {
+                    btn.classList.add('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
+                    btn.classList.remove('text-gray-300', 'hover:text-white', 'font-semibold');
+                } else {
+                    btn.classList.remove('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
+                    btn.classList.add('text-gray-300', 'hover:text-white', 'font-semibold');
+                }
+            });
             reloadAllIframes();
         }
 
         function reloadAllIframes() {
             const ts = Date.now();
             [1, 2, 3].forEach(roomNum => {
-                const iframe = document.getElementById(`gcal-iframe-${roomNum}`);
-                if (iframe) {
-                    iframe.src = buildEmbedUrl(roomNum, currentViewMode, ts + roomNum);
+                const oldIframe = document.getElementById(`gcal-iframe-${roomNum}`);
+                if (oldIframe && oldIframe.parentNode) {
+                    const freshIframe = document.createElement('iframe');
+                    freshIframe.id = `gcal-iframe-${roomNum}`;
+                    freshIframe.title = `Alam Bali Villa Deluxe ${roomNum} Google Calendar`;
+                    freshIframe.className = 'w-full h-full border-0 gcal-dark-frame';
+                    freshIframe.loading = 'eager';
+                    freshIframe.src = buildEmbedUrl(roomNum, currentViewMode, `${ts}_${roomNum}`);
+                    oldIframe.parentNode.replaceChild(freshIframe, oldIframe);
                 }
             });
         }
