@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alam Bali Villa | Live iCal Bookings Calendar</title>
+    
+    <!-- Open Graph (OG) Meta Tags -->
+    <meta property="og:title" content="Alam Bali Villa | Live iCal Bookings Calendar">
+    <meta property="og:description" content="Real-time Google Calendar synchronization monitor for Deluxe 1, Deluxe 2, and Deluxe 3 suites at Alam Bali Villa.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://media.inside360.pro/360_VRtours/IND_AlamBaliVilla/images/og-preview.jpg">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxuryGrey: {
+                            light: '#2d2d2d',
+                            DEFAULT: '#1f1f1f',
+                            dark: '#141414',
+                        },
+                        luxuryGold: {
+                            light: '#f1d280',
+                            DEFAULT: '#D4AF37',
+                            dark: '#aa841c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .gold-glow {
+            box-shadow: 0 0 15px 1px rgba(212, 175, 55, 0.22);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(20, 20, 20, 0.6);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.8);
+        }
+
+        /* Dark aesthetic filter for embedded Google Calendar iframes while preserving readability */
+        .gcal-dark-frame {
+            filter: invert(0.91) hue-rotate(180deg) contrast(0.95) saturate(1.15);
+            background-color: #ffffff;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.35); }
+            50% { box-shadow: 0 0 24px rgba(212, 175, 55, 0.75); }
+        }
+
+        .change-alert-glow {
+            animation: pulseGlow 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-luxuryGrey text-white font-sans antialiased selection:bg-luxuryGold selection:text-luxuryGrey-dark flex flex-col min-h-screen">
+
+    <!-- Consistent Header matching index.html -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-luxuryGrey-dark/90 backdrop-blur-md border-b border-luxuryGold/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html#hero" class="flex flex-col">
+                <span class="font-serif text-2xl tracking-[0.2em] text-luxuryGold uppercase font-bold">Alam Bali</span>
+                <span class="text-[9px] tracking-[0.5em] text-white uppercase font-semibold">Villa</span>
+            </a>
+            
+            <nav class="hidden lg:flex items-center space-x-8 text-xs tracking-[0.2em] uppercase font-medium">
+                <a href="index.html#hero" class="text-luxuryGold hover:text-white transition-colors">Resort Tour</a>
+                <a href="index.html#reviews" class="text-luxuryGold hover:text-white transition-colors">Reviews</a>
+                <a href="index.html#villas" class="text-luxuryGold hover:text-white transition-colors">Sanctuary Services</a>
+                <a href="index.html#faqs" class="text-luxuryGold hover:text-white transition-colors">FAQs</a>
+                <a href="index.html#calendar-booking" class="text-luxuryGold hover:text-white transition-colors">Bookings</a>
+                <a href="index.html#calendar-booking" class="text-luxuryGold hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden text-luxuryGold hover:text-white focus:outline-none p-2 text-xl transition-colors" aria-label="Toggle Navigation Menu">
+                <i id="mobile-menu-icon" class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-luxuryGrey-dark/95 border-b border-luxuryGold/20 backdrop-blur-md px-6 py-4 transition-all duration-300">
+            <nav class="flex flex-col space-y-3 text-xs tracking-[0.2em] uppercase font-medium text-right">
+                <a href="index.html#hero" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Resort Tour</a>
+                <a href="index.html#reviews" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Reviews</a>
+                <a href="index.html#villas" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Sanctuary Services</a>
+                <a href="index.html#faqs" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">FAQs</a>
+                <a href="index.html#calendar-booking" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Bookings</a>
+                <a href="index.html#calendar-booking" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 block">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Live Google Calendars Monitor -->
+    <main class="flex-grow pt-28 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            
+            <!-- Page Title Section (Exact 2-line title requested) -->
+            <div class="text-center mb-10">
+                <span class="text-xs tracking-[0.3em] text-white uppercase font-bold block mb-3">Read-Only Real-Time Synchronization</span>
+                <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-luxuryGold leading-tight">
+                    Alam Bali Villa<br>Live iCal Bookings Calendar
+                </h1>
+                <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-5 mb-4"></div>
+                <p class="text-gray-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
+                    Monitor incoming booking requests submitted from the main villa webpage directly across our three read-only Google Calendars. Automatically polls &amp; refreshes every 15 seconds.
+                </p>
+            </div>
+
+            <!-- Live Change Notification Banner (Appears automatically when calendar changes are detected) -->
+            <div id="change-alert-banner" class="hidden mb-8 bg-luxuryGrey-dark border-2 border-luxuryGold rounded-lg p-4 sm:p-5 change-alert-glow transition-all duration-300">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-start space-x-3.5">
+                        <div class="w-10 h-10 rounded-full bg-luxuryGold/20 border border-luxuryGold flex items-center justify-center text-luxuryGold flex-shrink-0 mt-0.5">
+                            <i class="fas fa-bell animate-bounce"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs uppercase tracking-widest font-bold text-luxuryGold">Calendar Update Detected</span>
+                                <span id="change-alert-time" class="text-[10px] font-mono bg-luxuryGold/15 text-luxuryGold-light px-2 py-0.5 rounded border border-luxuryGold/30">-</span>
+                            </div>
+                            <p id="change-alert-details" class="text-xs sm:text-sm text-white mt-1 font-medium">
+                                New booking activity synchronized from Google Calendar.
+                            </p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="dismissChangeBanner()" class="px-3.5 py-1.5 rounded border border-luxuryGold/40 text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-luxuryGold hover:text-luxuryGrey-dark transition-colors self-end sm:self-center">
+                        Acknowledge
+                    </button>
+                </div>
+            </div>
+
+            <!-- Control Bar: View Mode & Suite Jump Tools -->
+            <div class="bg-luxuryGrey-dark p-4 sm:p-5 rounded-lg border border-luxuryGold/30 gold-glow mb-8">
+                <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+                    
+                    <!-- Left: Read-Only Access Indicator -->
+                    <div class="flex items-center space-x-2.5 text-xs text-gray-300">
+                        <i class="fas fa-shield-alt text-luxuryGold text-sm"></i>
+                        <span>Access Mode: <strong class="text-white">Public Read-Only Embed</strong> <span class="text-gray-400">(Calendar editing is disabled)</span></span>
+                    </div>
+
+                    <!-- Right: Basic Navigation Tools (View Switcher + Suite Quick-Jump) -->
+                    <div class="flex flex-wrap items-center gap-3 justify-between sm:justify-end">
+                        <!-- Calendar Display Mode Switcher (Agenda Events vs Month Grid) -->
+                        <div class="flex items-center bg-luxuryGrey rounded-md border border-luxuryGold/30 p-0.5">
+                            <button type="button" onclick="setCalendarViewMode('MONTH')" id="mode-btn-MONTH" class="view-mode-btn px-3 py-1.5 rounded text-[10px] uppercase tracking-wider font-bold bg-luxuryGold text-luxuryGrey-dark transition-all">
+                                <i class="fas fa-calendar-alt mr-1"></i> Month Grid
+                            </button>
+                            <button type="button" onclick="setCalendarViewMode('AGENDA')" id="mode-btn-AGENDA" class="view-mode-btn px-3 py-1.5 rounded text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white transition-all">
+                                <i class="fas fa-list-ul mr-1"></i> Events List
+                            </button>
+                            <button type="button" onclick="setCalendarViewMode('WEEK')" id="mode-btn-WEEK" class="view-mode-btn px-3 py-1.5 rounded text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white transition-all">
+                                <i class="fas fa-columns mr-1"></i> Week
+                            </button>
+                        </div>
+
+                        <!-- Quick Navigation Links to Each Suite Calendar -->
+                        <div class="inline-flex rounded-md border border-luxuryGold/30 overflow-hidden text-[10px] uppercase tracking-wider font-semibold">
+                            <a href="#cal-card-1" class="px-3 py-2 bg-luxuryGrey hover:bg-luxuryGold hover:text-luxuryGrey-dark text-luxuryGold transition-colors border-r border-luxuryGold/20">Deluxe 1</a>
+                            <a href="#cal-card-2" class="px-3 py-2 bg-luxuryGrey hover:bg-luxuryGold hover:text-luxuryGrey-dark text-luxuryGold transition-colors border-r border-luxuryGold/20">Deluxe 2</a>
+                            <a href="#cal-card-3" class="px-3 py-2 bg-luxuryGrey hover:bg-luxuryGold hover:text-luxuryGrey-dark text-luxuryGold transition-colors">Deluxe 3</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Three Read-Only Google Calendar Cards -->
+            <div class="space-y-10" id="calendars-grid">
+
+                <!-- DELUXE 1 CALENDAR -->
+                <article id="cal-card-1" class="bg-luxuryGrey-dark rounded-lg border border-luxuryGold/30 gold-glow overflow-hidden transition-all duration-300">
+                    <div class="px-5 py-4 bg-luxuryGrey-light/60 border-b border-luxuryGold/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-luxuryGold/15 border border-luxuryGold/40 flex items-center justify-center text-luxuryGold font-serif font-bold text-sm">1</span>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <h2 class="font-serif text-lg sm:text-xl font-bold text-luxuryGold tracking-wide">Deluxe 1 — Live Calendar</h2>
+                                    <span id="badge-room-1" class="hidden px-2 py-0.5 text-[9px] uppercase tracking-widest font-bold rounded bg-luxuryGold text-luxuryGrey-dark">Updated</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400">Suite 1 Read-Only Public Google Calendar &amp; Events</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <button type="button" onclick="refreshSingleCalendar(1)" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/5 transition-colors">
+                                <i class="fas fa-redo-alt mr-1"></i> Reload Deluxe 1
+                            </button>
+                            <a href="https://calendar.google.com/calendar/embed?src=f16fca523039e0b2bdcf43ae3ee0493eb00bea7f9919273ce3c276821a4cd32f%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
+                                <i class="fas fa-external-link-alt mr-1"></i> Full Tab
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full h-[540px] bg-neutral-900">
+                        <iframe
+                            id="gcal-iframe-1"
+                            title="Alam Bali Villa Deluxe 1 Google Calendar"
+                            src="https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=MONTH&src=ZjE2ZmNhNTIzMDM5ZTBiMmJkY2Y0M2FlM2VlMDQ5M2ViMDBiZWE3Zjk5MTkyNzNjZTNjMjc2ODIxYTRjZDMyZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D4AF37"
+                            class="w-full h-full border-0 gcal-dark-frame"
+                            loading="eager">
+                        </iframe>
+                    </div>
+                </article>
+
+                <!-- DELUXE 2 CALENDAR -->
+                <article id="cal-card-2" class="bg-luxuryGrey-dark rounded-lg border border-luxuryGold/30 gold-glow overflow-hidden transition-all duration-300">
+                    <div class="px-5 py-4 bg-luxuryGrey-light/60 border-b border-luxuryGold/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-luxuryGold/15 border border-luxuryGold/40 flex items-center justify-center text-luxuryGold font-serif font-bold text-sm">2</span>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <h2 class="font-serif text-lg sm:text-xl font-bold text-luxuryGold tracking-wide">Deluxe 2 — Live Calendar</h2>
+                                    <span id="badge-room-2" class="hidden px-2 py-0.5 text-[9px] uppercase tracking-widest font-bold rounded bg-luxuryGold text-luxuryGrey-dark">Updated</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400">Suite 2 Read-Only Public Google Calendar &amp; Events</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <button type="button" onclick="refreshSingleCalendar(2)" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/5 transition-colors">
+                                <i class="fas fa-redo-alt mr-1"></i> Reload Deluxe 2
+                            </button>
+                            <a href="https://calendar.google.com/calendar/embed?src=dcedf488af2fd91f6a5ba5db599a0e3c774b68529d7716540b2673f9a339acb6%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
+                                <i class="fas fa-external-link-alt mr-1"></i> Full Tab
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full h-[540px] bg-neutral-900">
+                        <iframe
+                            id="gcal-iframe-2"
+                            title="Alam Bali Villa Deluxe 2 Google Calendar"
+                            src="https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=MONTH&src=ZGNlZGY0ODhhZjJmZDkxZjZhNWJhNWRiNTk5YTBlM2M3NzRiNjg1MjlkNzcxNjU0MGIyNjczZjlhMzM5YWNiNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D4AF37"
+                            class="w-full h-full border-0 gcal-dark-frame"
+                            loading="eager">
+                        </iframe>
+                    </div>
+                </article>
+
+                <!-- DELUXE 3 CALENDAR -->
+                <article id="cal-card-3" class="bg-luxuryGrey-dark rounded-lg border border-luxuryGold/30 gold-glow overflow-hidden transition-all duration-300">
+                    <div class="px-5 py-4 bg-luxuryGrey-light/60 border-b border-luxuryGold/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-luxuryGold/15 border border-luxuryGold/40 flex items-center justify-center text-luxuryGold font-serif font-bold text-sm">3</span>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <h2 class="font-serif text-lg sm:text-xl font-bold text-luxuryGold tracking-wide">Deluxe 3 — Live Calendar</h2>
+                                    <span id="badge-room-3" class="hidden px-2 py-0.5 text-[9px] uppercase tracking-widest font-bold rounded bg-luxuryGold text-luxuryGrey-dark">Updated</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400">Suite 3 Read-Only Public Google Calendar &amp; Events</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <button type="button" onclick="refreshSingleCalendar(3)" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/5 transition-colors">
+                                <i class="fas fa-redo-alt mr-1"></i> Reload Deluxe 3
+                            </button>
+                            <a href="https://calendar.google.com/calendar/embed?src=4a650b6744ae1a1512a80bb15cb3f99494704c0978ec19818272a6f29e0c5ffa%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
+                                <i class="fas fa-external-link-alt mr-1"></i> Full Tab
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full h-[540px] bg-neutral-900">
+                        <iframe
+                            id="gcal-iframe-3"
+                            title="Alam Bali Villa Deluxe 3 Google Calendar"
+                            src="https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=MONTH&src=NGE2NTBiNjc0NGFlMWExNTEyYTgwYmIxNWNiM2Y5OTQ5NDcwNGMwOTc4ZWMxOTgxODI3MmE2ZjI5ZTBjNWZmYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D4AF37"
+                            class="w-full h-full border-0 gcal-dark-frame"
+                            loading="eager">
+                        </iframe>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Back to Main Villa Page Navigation -->
+            <div class="mt-12 text-center">
+                <a href="index.html#calendar-booking" class="inline-flex items-center space-x-2 px-6 py-3 rounded-md border border-luxuryGold/40 hover:border-luxuryGold text-luxuryGold hover:bg-white/5 text-xs uppercase tracking-[0.2em] font-semibold transition-all">
+                    <i class="fas fa-arrow-left text-[10px]"></i>
+                    <span>Return to Alam Bali Villa Booking Page</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Always-Accessible Refresh & Auto-Sync Control Dock -->
+    <div id="floating-refresh-dock" class="fixed bottom-4 right-4 left-4 sm:left-auto z-50 bg-luxuryGrey-dark/95 backdrop-blur-md border border-luxuryGold/40 rounded-xl p-2.5 sm:p-3 shadow-2xl gold-glow flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-end gap-2.5 sm:gap-3 transition-all duration-300">
+        <button type="button" id="manual-refresh-btn" onclick="triggerManualRefresh()" class="px-4 py-2.5 rounded-lg bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-bold text-[11px] tracking-[0.14em] uppercase flex items-center space-x-2 transition-all gold-glow shadow-lg cursor-pointer">
+            <i id="refresh-btn-icon" class="fas fa-sync-alt text-xs"></i>
+            <span>Refresh Calendars Now</span>
+        </button>
+
+        <div class="flex items-center space-x-2.5 bg-luxuryGrey px-3 py-1.5 rounded-lg border border-luxuryGold/25">
+            <span class="relative flex h-2.5 w-2.5">
+                <span id="sync-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span id="sync-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            </span>
+            <div class="text-[11px] leading-tight">
+                <div class="text-gray-200 font-medium">
+                    Auto-refresh in <span id="countdown-seconds" class="text-luxuryGold font-bold font-mono">15</span>s
+                </div>
+                <div class="text-[10px] text-gray-400">
+                    Last checked: <span id="last-checked-time" class="font-mono text-gray-300">Initializing...</span>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="toggle-auto-btn" onclick="toggleAutoRefresh()" class="px-3 py-2.5 rounded-lg border border-luxuryGold/35 bg-luxuryGrey/80 text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/10 transition-colors cursor-pointer" title="Pause or Resume 15-second automatic polling">
+            <i id="auto-toggle-icon" class="fas fa-pause mr-1"></i>
+            <span id="auto-toggle-text">Auto: ON</span>
+        </button>
+    </div>
+
+    <!-- Consistent Footer matching index.html -->
+    <footer class="bg-luxuryGrey-dark text-white pt-12 pb-24 sm:pb-16 border-t border-luxuryGold/20">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col items-center md:items-start">
+                <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-luxuryGold">Alam Bali</span>
+                <span class="text-[8px] tracking-[0.4em] text-white uppercase font-semibold">Villa</span>
+                <!-- Version Date/Time Stamp -->
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261116_215000</span>
+            </div>
+            
+            <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
+                <p>&copy; 2026 Alam Bali Villa. All rights reserved.</p>
+                <p class="text-[10px] text-gray-500 italic">
+                    Website &amp; 360° Tours created by: 
+                    <a href="https://www.inside360.pro" target="_blank" rel="noopener noreferrer" class="text-luxuryGold hover:underline">www.inside360.pro</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Base64 Calendar IDs corresponding to the 3 shared Google Calendars (Read-Only Public Embeds)
+        const CALENDAR_SOURCES = {
+            1: 'ZjE2ZmNhNTIzMDM5ZTBiMmJkY2Y0M2FlM2VlMDQ5M2ViMDBiZWE3Zjk5MTkyNzNjZTNjMjc2ODIxYTRjZDMyZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t',
+            2: 'ZGNlZGY0ODhhZjJmZDkxZjZhNWJhNWRiNTk5YTBlM2M3NzRiNjg1MjlkNzcxNjU0MGIyNjczZjlhMzM5YWNiNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t',
+            3: 'NGE2NTBiNjc0NGFlMWExNTEyYTgwYmIxNWNiM2Y5OTQ5NDcwNGMwOTc4ZWMxOTgxODI3MmE2ZjI5ZTBjNWZmYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t'
+        };
+
+        let currentViewMode = 'MONTH'; // 'MONTH', 'AGENDA', or 'WEEK'
+        let autoRefreshEnabled = true;
+        let countdownValue = 15;
+        let countdownInterval = null;
+        let previousSnapshot = null;
+
+        function buildEmbedUrl(roomNum, mode, cacheBust) {
+            const src = CALENDAR_SOURCES[roomNum];
+            return `https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=${mode}&src=${src}&color=%23D4AF37&_cb=${cacheBust}`;
+        }
+
+        function formatTimeNow() {
+            const now = new Date();
+            const hh = String(now.getHours()).padStart(2, '0');
+            const mm = String(now.getMinutes()).padStart(2, '0');
+            const ss = String(now.getSeconds()).padStart(2, '0');
+            return `${hh}:${mm}:${ss}`;
+        }
+
+        function setCalendarViewMode(mode) {
+            currentViewMode = mode;
+            document.querySelectorAll('.view-mode-btn').forEach(btn => {
+                btn.classList.remove('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
+                btn.classList.add('text-gray-300', 'font-semibold');
+            });
+            const activeBtn = document.getElementById(`mode-btn-${mode}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-300', 'font-semibold');
+                activeBtn.classList.add('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
+            }
+            reloadAllIframes();
+        }
+
+        function refreshSingleCalendar(roomNum) {
+            const iframe = document.getElementById(`gcal-iframe-${roomNum}`);
+            if (iframe) {
+                iframe.src = buildEmbedUrl(roomNum, currentViewMode, Date.now());
+            }
+            const statusLog = document.getElementById('sync-status-log');
+            if (statusLog) {
+                statusLog.innerText = `Status: Manually reloaded Deluxe ${roomNum} calendar at ${formatTimeNow()}`;
+            }
+        }
+
+        function reloadAllIframes() {
+            const ts = Date.now();
+            [1, 2, 3].forEach(roomNum => {
+                const iframe = document.getElementById(`gcal-iframe-${roomNum}`);
+                if (iframe) {
+                    iframe.src = buildEmbedUrl(roomNum, currentViewMode, ts + roomNum);
+                }
+            });
+        }
+
+        async function checkCalendarChangesAndSync(forceReload = false) {
+            const icon = document.getElementById('refresh-btn-icon');
+            if (icon) icon.classList.add('fa-spin');
+
+            const checkedEl = document.getElementById('last-checked-time');
+            const statusLog = document.getElementById('sync-status-log');
+            const nowStr = formatTimeNow();
+            if (checkedEl) checkedEl.innerText = nowStr;
+
+            let detectedChanges = [];
+            let fetchedLiveState = false;
+
+            try {
+                const endpoints = [
+                    '/.netlify/functions/get_availability_function',
+                    '/.netlify/functions/get-availability'
+                ];
+
+                for (const url of endpoints) {
+                    try {
+                        const response = await fetch(`${url}?t=${Date.now()}`);
+                        if (!response.ok) continue;
+                        const data = await response.json();
+                        if (data && data.success && data.bookedDates) {
+                            fetchedLiveState = true;
+                            const currentSnapshot = {
+                                1: [...(data.bookedDates[1] || [])].sort(),
+                                2: [...(data.bookedDates[2] || [])].sort(),
+                                3: [...(data.bookedDates[3] || [])].sort()
+                            };
+
+                            if (previousSnapshot !== null) {
+                                [1, 2, 3].forEach(roomNum => {
+                                    const prevSet = new Set(previousSnapshot[roomNum]);
+                                    const currSet = new Set(currentSnapshot[roomNum]);
+                                    const added = currentSnapshot[roomNum].filter(d => !prevSet.has(d));
+                                    const removed = previousSnapshot[roomNum].filter(d => !currSet.has(d));
+
+                                    if (added.length > 0 || removed.length > 0) {
+                                        let summary = `Deluxe ${roomNum}: `;
+                                        const parts = [];
+                                        if (added.length > 0) parts.push(`+${added.length} date(s) added (${added.slice(0, 3).join(', ')}${added.length > 3 ? '...' : ''})`);
+                                        if (removed.length > 0) parts.push(`-${removed.length} date(s) cleared`);
+                                        summary += parts.join(', ');
+                                        detectedChanges.push({ roomNum, summary });
+                                    }
+                                });
+                            }
+
+                            previousSnapshot = currentSnapshot;
+                            break;
+                        }
+                    } catch (e) {
+                        // Continue to fallback endpoint or direct iframe reload
+                    }
+                }
+            } catch (err) {
+                console.warn('Availability poll warning:', err);
+            }
+
+            // Reload all 3 Google Calendar iframes on manual refresh, on detected change, or on every 15-second cycle
+            reloadAllIframes();
+
+            if (detectedChanges.length > 0) {
+                showChangeNotification(detectedChanges, nowStr);
+                if (statusLog) {
+                    statusLog.innerText = `CHANGE DETECTED (${nowStr}): ${detectedChanges.map(c => c.summary).join(' | ')}`;
+                    statusLog.classList.remove('text-gray-400');
+                    statusLog.classList.add('text-luxuryGold', 'font-semibold');
+                }
+            } else {
+                if (statusLog) {
+                    statusLog.innerText = forceReload
+                        ? `Status: All 3 Google Calendars manually refreshed at ${nowStr}.`
+                        : `Status: Auto-refreshed all 3 Google Calendars at ${nowStr}${fetchedLiveState ? ' — no new diffs since last poll.' : '.'}`;
+                }
+            }
+
+            setTimeout(() => {
+                if (icon) icon.classList.remove('fa-spin');
+            }, 600);
+        }
+
+        function showChangeNotification(changes, timeStr) {
+            const banner = document.getElementById('change-alert-banner');
+            const timeEl = document.getElementById('change-alert-time');
+            const detailsEl = document.getElementById('change-alert-details');
+
+            if (timeEl) timeEl.innerText = timeStr;
+            if (detailsEl) {
+                detailsEl.innerText = `Calendar change detected automatically — ${changes.map(c => c.summary).join(' • ')}`;
+            }
+            if (banner) {
+                banner.classList.remove('hidden');
+            }
+
+            // Highlight updated suite badges & cards
+            [1, 2, 3].forEach(r => {
+                const badge = document.getElementById(`badge-room-${r}`);
+                const card = document.getElementById(`cal-card-${r}`);
+                const changed = changes.some(c => c.roomNum === r);
+                if (badge) badge.classList.toggle('hidden', !changed);
+                if (card) {
+                    if (changed) {
+                        card.classList.add('border-luxuryGold', 'change-alert-glow');
+                    } else {
+                        card.classList.remove('change-alert-glow');
+                    }
+                }
+            });
+        }
+
+        function dismissChangeBanner() {
+            const banner = document.getElementById('change-alert-banner');
+            if (banner) banner.classList.add('hidden');
+            [1, 2, 3].forEach(r => {
+                const badge = document.getElementById(`badge-room-${r}`);
+                const card = document.getElementById(`cal-card-${r}`);
+                if (badge) badge.classList.add('hidden');
+                if (card) card.classList.remove('change-alert-glow');
+            });
+        }
+
+        function triggerManualRefresh() {
+            countdownValue = 15;
+            const countEl = document.getElementById('countdown-seconds');
+            if (countEl) countEl.innerText = countdownValue;
+            checkCalendarChangesAndSync(true);
+        }
+
+        function toggleAutoRefresh() {
+            autoRefreshEnabled = !autoRefreshEnabled;
+            const icon = document.getElementById('auto-toggle-icon');
+            const text = document.getElementById('auto-toggle-text');
+            const ping = document.getElementById('sync-ping');
+            const dot = document.getElementById('sync-dot');
+
+            if (autoRefreshEnabled) {
+                if (icon) icon.className = 'fas fa-pause mr-1';
+                if (text) text.innerText = 'Auto: ON';
+                if (ping) ping.classList.remove('hidden');
+                if (dot) {
+                    dot.classList.remove('bg-yellow-500');
+                    dot.classList.add('bg-green-500');
+                }
+            } else {
+                if (icon) icon.className = 'fas fa-play mr-1';
+                if (text) text.innerText = 'Auto: PAUSED';
+                if (ping) ping.classList.add('hidden');
+                if (dot) {
+                    dot.classList.remove('bg-green-500');
+                    dot.classList.add('bg-yellow-500');
+                }
+            }
+        }
+
+        function startAutoRefreshLoop() {
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                if (!autoRefreshEnabled) return;
+                countdownValue--;
+                if (countdownValue <= 0) {
+                    countdownValue = 15;
+                    checkCalendarChangesAndSync(false);
+                }
+                const countEl = document.getElementById('countdown-seconds');
+                if (countEl) countEl.innerText = countdownValue;
+            }, 1000);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkCalendarChangesAndSync(false);
+            startAutoRefreshLoop();
+        });
+    </script>
+</body>
+</html>
