@@ -974,11 +974,11 @@
                         <span id="summary-contact" class="font-bold text-white">-</span>
                     </div>
                     <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
-                        <span class="text-gray-400">Date &amp; Time Submitted:</span>
+                        <span class="text-gray-400">Submitted:</span>
                         <span id="summary-submitted-time" class="font-bold text-white">-</span>
                     </div>
                     <div class="flex justify-between pb-1">
-                        <span class="text-gray-400">Date &amp; Time Sent:</span>
+                        <span class="text-gray-400">Sent:</span>
                         <span id="summary-sent-time" class="font-bold text-luxuryGold">NULL</span>
                     </div>
                 </div>
@@ -1454,8 +1454,7 @@
             const dd = String(date.getDate()).padStart(2, '0');
             const hh = String(date.getHours()).padStart(2, '0');
             const min = String(date.getMinutes()).padStart(2, '0');
-            const ss = String(date.getSeconds()).padStart(2, '0');
-            return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+            return `${yyyy}-${mm}-${dd} @${hh}:${min}`;
         }
 
         function updateCounter(type, change) {
@@ -1584,6 +1583,11 @@
             if (document.getElementById('req-babycot').checked) addOns.push('Private Premium Baby Cot');
 
             const sentStamp = formatDateTimeStamp(new Date());
+            const submittedStamp = window.lastSubmittedTimestamp || sentStamp;
+            const sentEl = document.getElementById('summary-sent-time');
+            if (sentEl) sentEl.innerText = sentStamp;
+
+            const calendarNightsWithTimestamps = `${nights})\n- Submitted: ${submittedStamp}\n- Sent: ${sentStamp}\n`;
 
             const payload = {
                 firstName,
@@ -1593,11 +1597,14 @@
                 roomNumber: selectedRoom,
                 checkIn: checkin,
                 checkOut: checkout,
-                nights,
+                nights: calendarNightsWithTimestamps.slice(0, -2),
+                stayNights: nights,
+                submitted: submittedStamp,
+                sent: sentStamp,
+                submittedAt: submittedStamp,
+                sentAt: sentStamp,
                 guests,
-                addOns,
-                submittedAt: window.lastSubmittedTimestamp || sentStamp,
-                sentAt: sentStamp
+                addOns
             };
 
             const endpoints = [
@@ -1627,14 +1634,10 @@
                 }
             }
 
-            const finalSentStamp = formatDateTimeStamp(new Date());
-            const sentEl = document.getElementById('summary-sent-time');
-            if (sentEl) sentEl.innerText = finalSentStamp;
-
             const toastSubEl = document.getElementById('toast-submitted-time');
             const toastSentEl = document.getElementById('toast-sent-time');
-            if (toastSubEl) toastSubEl.innerText = window.lastSubmittedTimestamp || sentStamp;
-            if (toastSentEl) toastSentEl.innerText = finalSentStamp;
+            if (toastSubEl) toastSubEl.innerText = submittedStamp;
+            if (toastSentEl) toastSentEl.innerText = sentStamp;
 
             if (modalConfirmBtn) {
                 modalConfirmBtn.disabled = false;
