@@ -731,6 +731,12 @@
                                 Available
                             </span>
                             <span class="flex items-center">
+                                <span class="w-3.5 h-3.5 bg-orange-950/50 border border-orange-400/50 rounded-md mr-1.5 block relative overflow-hidden">
+                                    <span class="absolute inset-0 bg-gradient-to-tr from-transparent via-orange-400/25 to-transparent"></span>
+                                </span> 
+                                <span class="text-orange-300/90 font-semibold">Pending</span>
+                            </span>
+                            <span class="flex items-center">
                                 <span class="w-3.5 h-3.5 bg-red-950/40 border border-red-500/40 rounded-md mr-1.5 block relative overflow-hidden">
                                     <span class="absolute inset-0 bg-gradient-to-tr from-transparent via-red-500/20 to-transparent"></span>
                                 </span> 
@@ -824,18 +830,18 @@
                             </div>
 
                             <div>
-                                <label for="guest-email" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Email Address <span class="text-gray-400 font-normal lowercase italic">(* optional)</span></label>
+                                <label for="guest-email" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Email Address <span class="text-red-400 font-bold">*</span> <span class="text-gray-400 font-normal lowercase italic">(email or WhatsApp required)</span></label>
                                 <div class="relative">
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"><i class="fas fa-envelope"></i></span>
-                                    <input type="email" id="guest-email" placeholder="Email Address" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
+                                    <input type="email" id="guest-email" oninput="clearContactValidationError()" placeholder="Email Address" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
                                 </div>
                             </div>
 
                             <div>
-                                <label for="guest-whatsapp" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">WhatsApp Number <span class="text-gray-400 font-normal lowercase italic">(* optional)</span></label>
+                                <label for="guest-whatsapp" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">WhatsApp Number <span class="text-red-400 font-bold">*</span> <span class="text-gray-400 font-normal lowercase italic">(email or WhatsApp required)</span></label>
                                 <div class="relative">
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"><i class="fab fa-whatsapp text-green-500"></i></span>
-                                    <input type="tel" id="guest-whatsapp" placeholder="WhatsApp Number (with country code)" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
+                                    <input type="tel" id="guest-whatsapp" oninput="clearContactValidationError()" placeholder="WhatsApp Number (with country code)" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
                                 </div>
                             </div>
                         </div>
@@ -881,6 +887,11 @@
                             </label>
                         </div>
 
+                        <div id="booking-form-error" class="hidden bg-red-950/60 border border-red-500/60 text-red-300 text-xs px-4 py-3 rounded flex items-center space-x-2.5">
+                            <i class="fas fa-circle-exclamation text-red-400 text-sm flex-shrink-0"></i>
+                            <span id="booking-form-error-text">Please provide either an Email Address or a WhatsApp Number so we can contact you.</span>
+                        </div>
+
                         <div class="space-y-3">
                             <button type="submit" id="submit-btn" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-semibold text-xs tracking-[0.2em] uppercase py-4 rounded transition-all duration-300 gold-glow">
                                 Request Sanctuary Booking
@@ -914,7 +925,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-luxuryGold">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-white uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261116_131800</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261118_105500</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1285,15 +1296,80 @@
             renderCalendar();
         }
 
-        function isDayFree(year, month, day, room) {
+        const KNOWN_CALENDAR_PENDING_DATES = {
+            1: [
+                '2026-11-19',
+                '2026-11-20',
+                '2026-12-08',
+                '2026-12-09',
+                '2026-12-10',
+                '2026-12-11',
+                '2026-12-12'
+            ],
+            2: [],
+            3: []
+        };
+
+        function getStoredPendingDates() {
+            try {
+                const raw = localStorage.getItem('alamBaliPendingDates');
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && typeof parsed === 'object') return parsed;
+                }
+            } catch (e) {
+                console.warn('Could not read pending dates from storage:', e);
+            }
+            return { 1: [], 2: [], 3: [] };
+        }
+
+        function savePendingBookingRange(room, startDate, endDate) {
+            if (!startDate || !endDate) return;
+            const stored = getStoredPendingDates();
+            if (!Array.isArray(stored[room])) stored[room] = [];
+            if (!window.livePendingDates) window.livePendingDates = { 1: [], 2: [], 3: [] };
+            if (!Array.isArray(window.livePendingDates[room])) window.livePendingDates[room] = [];
+
+            let temp = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+            const end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+
+            while (temp < end) {
+                const ds = formatDateString(temp);
+                if (!stored[room].includes(ds)) stored[room].push(ds);
+                if (!window.livePendingDates[room].includes(ds)) window.livePendingDates[room].push(ds);
+                temp.setDate(temp.getDate() + 1);
+            }
+
+            try {
+                localStorage.setItem('alamBaliPendingDates', JSON.stringify(stored));
+            } catch (e) {
+                console.warn('Could not store pending dates:', e);
+            }
+        }
+
+        function getDayBookingStatus(year, month, day, room) {
             const mm = String(month + 1).padStart(2, '0');
             const dd = String(day).padStart(2, '0');
             const dateStr = `${year}-${mm}-${dd}`;
 
-            if (window.liveBookedDates && window.liveBookedDates[room]) {
-                return !window.liveBookedDates[room].includes(dateStr);
+            const pendingList = (window.livePendingDates && Array.isArray(window.livePendingDates[room]))
+                ? window.livePendingDates[room]
+                : [];
+            const bookedList = (window.liveBookedDates && Array.isArray(window.liveBookedDates[room]))
+                ? window.liveBookedDates[room]
+                : [];
+
+            if (pendingList.includes(dateStr)) {
+                return 'pending';
             }
-            return true;
+            if (bookedList.includes(dateStr)) {
+                return 'booked';
+            }
+            return 'free';
+        }
+
+        function isDayFree(year, month, day, room) {
+            return getDayBookingStatus(year, month, day, room) === 'free';
         }
 
         function renderCalendar() {
@@ -1345,7 +1421,7 @@
 
             for (let day = 1; day <= daysInMonth; day++) {
                 const dateObj = new Date(year, month, day);
-                const isFree = isDayFree(year, month, day, selectedRoom);
+                const dayStatus = getDayBookingStatus(year, month, day, selectedRoom);
                 const isPast = dateObj < new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
                 
                 const btn = document.createElement('button');
@@ -1359,8 +1435,13 @@
                 if (isPast) {
                     btn.classList.add('bg-neutral-900/40', 'border-transparent', 'text-gray-600', 'cursor-not-allowed');
                     btn.disabled = true;
-                } else if (!isFree) {
+                } else if (dayStatus === 'pending') {
+                    btn.classList.add('bg-orange-950/50', 'border-orange-400/50', 'text-orange-300/90', 'cursor-not-allowed');
+                    btn.title = 'Pending Request';
+                    btn.disabled = true;
+                } else if (dayStatus === 'booked') {
                     btn.classList.add('bg-red-950/40', 'border-red-500/40', 'text-red-400/80', 'line-through', 'cursor-not-allowed');
+                    btn.title = 'Booked / Occupied';
                     btn.disabled = true;
                 } else {
                     if (isSelected) {
@@ -1498,7 +1579,61 @@
                         if (!response.ok) continue;
                         const data = await response.json();
                         if (data && data.success && data.bookedDates) {
-                            window.liveBookedDates = data.bookedDates;
+                            const normalizedBooked = { 1: [], 2: [], 3: [] };
+                            const normalizedPending = { 1: [], 2: [], 3: [] };
+                            const explicitPending = data.pendingDates || data.pending || data.pendingRequests || null;
+                            const storedPending = getStoredPendingDates();
+
+                            [1, 2, 3].forEach(room => {
+                                const rawRoomDates = data.bookedDates[room] || data.bookedDates[String(room)] || [];
+                                const roomConfirmedSet = new Set();
+                                const roomPendingSet = new Set();
+
+                                rawRoomDates.forEach(entry => {
+                                    if (typeof entry === 'string') {
+                                        if (entry.toLowerCase().endsWith(':pending')) {
+                                            roomPendingSet.add(entry.split(':')[0]);
+                                        } else {
+                                            roomConfirmedSet.add(entry);
+                                        }
+                                    } else if (entry && typeof entry === 'object' && entry.date) {
+                                        const label = `${entry.status || ''} ${entry.summary || ''} ${entry.title || ''}`.toUpperCase();
+                                        if (label.includes('PENDING')) {
+                                            roomPendingSet.add(entry.date);
+                                        } else {
+                                            roomConfirmedSet.add(entry.date);
+                                        }
+                                    }
+                                });
+
+                                if (explicitPending) {
+                                    const rawPendingRoom = explicitPending[room] || explicitPending[String(room)] || [];
+                                    rawPendingRoom.forEach(d => {
+                                        const dateStr = (typeof d === 'string') ? d : (d && d.date ? d.date : '');
+                                        if (dateStr) {
+                                            roomPendingSet.add(dateStr);
+                                            roomConfirmedSet.delete(dateStr);
+                                        }
+                                    });
+                                } else {
+                                    const fallbackCandidates = new Set([
+                                        ...(KNOWN_CALENDAR_PENDING_DATES[room] || []),
+                                        ...(storedPending[room] || [])
+                                    ]);
+                                    fallbackCandidates.forEach(dateStr => {
+                                        if (roomConfirmedSet.has(dateStr)) {
+                                            roomPendingSet.add(dateStr);
+                                            roomConfirmedSet.delete(dateStr);
+                                        }
+                                    });
+                                }
+
+                                normalizedBooked[room] = Array.from(roomConfirmedSet);
+                                normalizedPending[room] = Array.from(roomPendingSet);
+                            });
+
+                            window.liveBookedDates = normalizedBooked;
+                            window.livePendingDates = normalizedPending;
                             renderCalendar();
                             return;
                         }
@@ -1529,17 +1664,49 @@
             }
         }
 
+        function showBookingFormError(message) {
+            const errorBox = document.getElementById('booking-form-error');
+            const errorText = document.getElementById('booking-form-error-text');
+            if (errorBox && errorText) {
+                errorText.innerText = message;
+                errorBox.classList.remove('hidden');
+            }
+        }
+
+        function clearContactValidationError() {
+            const errorBox = document.getElementById('booking-form-error');
+            if (errorBox) errorBox.classList.add('hidden');
+            const emailInput = document.getElementById('guest-email');
+            const waInput = document.getElementById('guest-whatsapp');
+            if (emailInput) emailInput.classList.remove('border-red-500');
+            if (waInput) waInput.classList.remove('border-red-500');
+        }
+
         function handleFormSubmission(event) {
             event.preventDefault();
+            clearContactValidationError();
+
             if (!checkInDate || !checkOutDate) {
-                alert('Please select Check-In and Check-Out dates on the availability calendar.');
+                showBookingFormError('Please select Check-In and Check-Out dates on the availability calendar.');
                 return;
             }
 
             const firstName = document.getElementById('guest-firstname').value.trim();
             const lastName = document.getElementById('guest-lastname').value.trim();
             if (!firstName || !lastName) {
-                alert('Please enter your First and Last Name.');
+                showBookingFormError('Please enter your First and Last Name.');
+                return;
+            }
+
+            const emailVal = document.getElementById('guest-email').value.trim();
+            const waVal = document.getElementById('guest-whatsapp').value.trim();
+            if (!emailVal && !waVal) {
+                const emailInput = document.getElementById('guest-email');
+                const waInput = document.getElementById('guest-whatsapp');
+                if (emailInput) emailInput.classList.add('border-red-500');
+                if (waInput) waInput.classList.add('border-red-500');
+                showBookingFormError('Please provide either an Email Address or a WhatsApp Number so we can contact you.');
+                if (emailInput) emailInput.focus();
                 return;
             }
 
@@ -1555,8 +1722,6 @@
             document.getElementById('summary-children').innerText = `${guests.children}`;
             document.getElementById('summary-pets').innerText = `${guests.pets}`;
 
-            const emailVal = document.getElementById('guest-email').value.trim();
-            const waVal = document.getElementById('guest-whatsapp').value.trim();
             document.getElementById('summary-contact').innerText = `Email: ${emailVal || 'None'} | WhatsApp: ${waVal || 'None'}`;
 
             const submittedStamp = formatDateTimeStamp(new Date());
@@ -1689,6 +1854,8 @@
             }
 
             if (submitted) {
+                savePendingBookingRange(selectedRoom, checkInDate, checkOutDate);
+                renderCalendar();
                 setTimeout(() => {
                     closeModal();
                     showSuccessToast();
