@@ -723,24 +723,24 @@
                     <div class="border-t border-luxuryGold/20 pt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs text-gray-400 gap-4">
                         <div class="flex flex-wrap items-center gap-4">
                             <span class="flex items-center">
-                                <span class="w-3.5 h-3.5 bg-luxuryGold border border-luxuryGold shadow-[0_0_8px_rgba(212,175,55,0.4)] rounded-md mr-1.5 block"></span> 
-                                Selected
-                            </span>
-                            <span class="flex items-center">
                                 <span class="w-3.5 h-3.5 bg-neutral-800 border border-luxuryGold/30 rounded-md mr-1.5 block"></span> 
                                 Available
                             </span>
                             <span class="flex items-center">
-                                <span class="w-3.5 h-3.5 bg-orange-950/50 border border-orange-400/50 rounded-md mr-1.5 block relative overflow-hidden">
-                                    <span class="absolute inset-0 bg-gradient-to-tr from-transparent via-orange-400/25 to-transparent"></span>
-                                </span> 
-                                <span class="text-orange-300/90 font-semibold">Pending</span>
+                                <span class="w-3.5 h-3.5 bg-luxuryGold border border-luxuryGold shadow-[0_0_8px_rgba(212,175,55,0.4)] rounded-md mr-1.5 block"></span> 
+                                Selected
                             </span>
                             <span class="flex items-center">
                                 <span class="w-3.5 h-3.5 bg-red-950/40 border border-red-500/40 rounded-md mr-1.5 block relative overflow-hidden">
                                     <span class="absolute inset-0 bg-gradient-to-tr from-transparent via-red-500/20 to-transparent"></span>
                                 </span> 
                                 <span class="text-red-400/80 font-semibold">Booked / Occupied</span>
+                            </span>
+                            <span class="flex items-center">
+                                <span class="w-3.5 h-3.5 bg-pink-950/50 border border-pink-400/50 rounded-md mr-1.5 block relative overflow-hidden">
+                                    <span class="absolute inset-0 bg-gradient-to-tr from-transparent via-pink-400/25 to-transparent"></span>
+                                </span> 
+                                <span class="text-pink-400 font-semibold">Pending</span>
                             </span>
                         </div>
                         <div class="text-left sm:text-right">
@@ -925,7 +925,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-luxuryGold">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-white uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261118_105500</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261118_112500</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1299,12 +1299,21 @@
         const KNOWN_CALENDAR_PENDING_DATES = {
             1: [
                 '2026-11-19',
-                '2026-11-20',
+                '2026-11-20'
+            ],
+            2: [],
+            3: []
+        };
+
+        const CONFIRMED_RESERVED_DATES = {
+            1: [
                 '2026-12-08',
                 '2026-12-09',
                 '2026-12-10',
                 '2026-12-11',
-                '2026-12-12'
+                '2026-12-12',
+                '2026-12-13',
+                '2026-12-14'
             ],
             2: [],
             3: []
@@ -1315,7 +1324,14 @@
                 const raw = localStorage.getItem('alamBaliPendingDates');
                 if (raw) {
                     const parsed = JSON.parse(raw);
-                    if (parsed && typeof parsed === 'object') return parsed;
+                    if (parsed && typeof parsed === 'object') {
+                        [1, 2, 3].forEach(r => {
+                            if (Array.isArray(parsed[r]) && Array.isArray(CONFIRMED_RESERVED_DATES[r])) {
+                                parsed[r] = parsed[r].filter(d => !CONFIRMED_RESERVED_DATES[r].includes(d));
+                            }
+                        });
+                        return parsed;
+                    }
                 }
             } catch (e) {
                 console.warn('Could not read pending dates from storage:', e);
@@ -1436,7 +1452,7 @@
                     btn.classList.add('bg-neutral-900/40', 'border-transparent', 'text-gray-600', 'cursor-not-allowed');
                     btn.disabled = true;
                 } else if (dayStatus === 'pending') {
-                    btn.classList.add('bg-orange-950/50', 'border-orange-400/50', 'text-orange-300/90', 'cursor-not-allowed');
+                    btn.classList.add('bg-pink-950/50', 'border-pink-400/50', 'text-pink-400', 'cursor-not-allowed');
                     btn.title = 'Pending Request';
                     btn.disabled = true;
                 } else if (dayStatus === 'booked') {
@@ -1620,8 +1636,9 @@
                                         ...(KNOWN_CALENDAR_PENDING_DATES[room] || []),
                                         ...(storedPending[room] || [])
                                     ]);
+                                    const confirmedSet = new Set(CONFIRMED_RESERVED_DATES[room] || []);
                                     fallbackCandidates.forEach(dateStr => {
-                                        if (roomConfirmedSet.has(dateStr)) {
+                                        if (roomConfirmedSet.has(dateStr) && !confirmedSet.has(dateStr)) {
                                             roomPendingSet.add(dateStr);
                                             roomConfirmedSet.delete(dateStr);
                                         }
