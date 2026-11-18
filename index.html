@@ -928,7 +928,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-luxuryGold">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-white uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261118_140900</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261118_142500</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1046,9 +1046,31 @@
                     </div>
                 </div>
             </div>
-            <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-bold text-xs uppercase tracking-widest py-3.5 rounded transition-all gold-glow">
+            <button type="button" onclick="handleSuccessToastClose()" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-bold text-xs uppercase tracking-widest py-3.5 rounded transition-all gold-glow">
                 Close Window
             </button>
+        </div>
+    </div>
+
+    <div id="ical-redirect-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-luxuryGrey-light w-full max-w-md rounded-lg border border-luxuryGold/30 p-6 shadow-2xl gold-glow text-center space-y-5">
+            <div class="w-12 h-12 bg-luxuryGold/10 border border-luxuryGold/30 rounded-full flex items-center justify-center mx-auto text-luxuryGold text-xl">
+                <i class="fas fa-calendar-days"></i>
+            </div>
+            <div>
+                <h4 class="font-serif text-lg font-bold text-white mb-2">Live iCAL Booking Calendar</h4>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                    The "Live iCAL booking calendar page" will be opened in a separate browser tab so you can view the live changes and booking requests that have been added to Balinese Villas' Google account.
+                </p>
+            </div>
+            <div class="flex items-center justify-center space-x-3 pt-2">
+                <button type="button" onclick="closeIcalRedirectModal()" class="flex-1 px-5 py-3 rounded border border-luxuryGold/30 text-xs font-semibold uppercase text-gray-400 hover:text-white hover:bg-white/5 transition-all tracking-wider focus:outline-none">
+                    Cancel
+                </button>
+                <button type="button" onclick="confirmOpenIcalCalendarTab()" class="flex-1 px-5 py-3 rounded bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark text-xs font-bold uppercase tracking-wider transition-all gold-glow focus:outline-none">
+                    OK
+                </button>
+            </div>
         </div>
     </div>
 
@@ -1901,6 +1923,86 @@
             const toast = document.getElementById('success-toast');
             if (toast) {
                 toast.classList.remove('hidden');
+            }
+        }
+
+        const ICAL_CALENDAR_PAGE_URL = window.location.hostname === 'alambalivilla.netlify.app'
+            ? '/alambalivilla_ical_bookings'
+            : 'https://alambalivilla.netlify.app/alambalivilla_ical_bookings';
+        const ICAL_HEARTBEAT_KEY = 'alamBaliIcalTabHeartbeat';
+        let icalTabHeartbeatTimer = null;
+
+        function isIcalCalendarTabOpen() {
+            try {
+                if (window.icalCalendarTabRef && !window.icalCalendarTabRef.closed) {
+                    return true;
+                }
+            } catch (e) {
+                console.warn('Could not inspect calendar tab reference:', e);
+            }
+
+            try {
+                const lastBeat = parseInt(localStorage.getItem(ICAL_HEARTBEAT_KEY) || '0', 10);
+                if (lastBeat && (Date.now() - lastBeat) < 4000) {
+                    return true;
+                }
+            } catch (e) {
+                console.warn('Could not read calendar tab heartbeat:', e);
+            }
+
+            return false;
+        }
+
+        function startTrackingIcalCalendarTab(winRef) {
+            window.icalCalendarTabRef = winRef;
+            if (icalTabHeartbeatTimer) clearInterval(icalTabHeartbeatTimer);
+
+            const updateBeat = () => {
+                try {
+                    if (window.icalCalendarTabRef && !window.icalCalendarTabRef.closed) {
+                        localStorage.setItem(ICAL_HEARTBEAT_KEY, String(Date.now()));
+                    } else {
+                        localStorage.removeItem(ICAL_HEARTBEAT_KEY);
+                        clearInterval(icalTabHeartbeatTimer);
+                        icalTabHeartbeatTimer = null;
+                    }
+                } catch (e) {
+                    clearInterval(icalTabHeartbeatTimer);
+                    icalTabHeartbeatTimer = null;
+                }
+            };
+
+            updateBeat();
+            icalTabHeartbeatTimer = setInterval(updateBeat, 1500);
+        }
+
+        function handleSuccessToastClose() {
+            const toast = document.getElementById('success-toast');
+            if (toast) {
+                toast.classList.add('hidden');
+            }
+
+            if (!isIcalCalendarTabOpen()) {
+                const redirectModal = document.getElementById('ical-redirect-modal');
+                if (redirectModal) {
+                    redirectModal.classList.remove('hidden');
+                }
+            }
+        }
+
+        function closeIcalRedirectModal() {
+            const redirectModal = document.getElementById('ical-redirect-modal');
+            if (redirectModal) {
+                redirectModal.classList.add('hidden');
+            }
+        }
+
+        function confirmOpenIcalCalendarTab() {
+            closeIcalRedirectModal();
+            const newTab = window.open(ICAL_CALENDAR_PAGE_URL, 'AlamBaliVilla_Live_iCal_Calendar');
+            if (newTab) {
+                startTrackingIcalCalendarTab(newTab);
+                newTab.focus();
             }
         }
 
