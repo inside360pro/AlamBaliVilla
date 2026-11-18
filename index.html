@@ -695,6 +695,9 @@
                         
                         <div class="flex flex-col items-start sm:items-end gap-2">
                             <div class="flex items-center space-x-3">
+                                <button type="button" onclick="goToToday()" class="text-luxuryGold hover:text-white px-2.5 py-1.5 border border-luxuryGold/30 hover:border-luxuryGold rounded transition-colors text-xs tracking-wider uppercase font-semibold" aria-label="Go to Today">
+                                    Today
+                                </button>
                                 <button onclick="navigateMonth(-1)" class="text-luxuryGold hover:text-white p-2 border border-luxuryGold/30 hover:border-luxuryGold rounded transition-colors" aria-label="Previous Month">
                                     <i class="fas fa-chevron-left text-xs"></i>
                                 </button>
@@ -734,7 +737,7 @@
                                 <span class="w-3.5 h-3.5 bg-red-950/40 border border-red-500/40 rounded-md mr-1.5 block relative overflow-hidden">
                                     <span class="absolute inset-0 bg-gradient-to-tr from-transparent via-red-500/20 to-transparent"></span>
                                 </span> 
-                                <span class="text-red-400/80 font-semibold">Booked / Occupied</span>
+                                <span class="text-red-400/80 font-semibold">Booked/Occupied</span>
                             </span>
                             <span class="flex items-center">
                                 <span class="w-3.5 h-3.5 bg-pink-950/50 border border-pink-400/50 rounded-md mr-1.5 block relative overflow-hidden">
@@ -925,7 +928,7 @@
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-luxuryGold">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-white uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261118_112500</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261118_123900</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -1395,7 +1398,7 @@
             container.innerHTML = '';
 
             if (visibleMonthsCount > 2) {
-                container.className = "grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 max-h-[620px] overflow-y-auto pr-2 custom-scrollbar";
+                container.className = "grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 max-h-[620px] overflow-y-auto pr-2 custom-scrollbar md:max-h-none md:overflow-visible md:pr-0";
             } else {
                 container.className = "grid grid-cols-1 md:grid-cols-2 gap-6 mb-6";
             }
@@ -1452,12 +1455,14 @@
                     btn.classList.add('bg-neutral-900/40', 'border-transparent', 'text-gray-600', 'cursor-not-allowed');
                     btn.disabled = true;
                 } else if (dayStatus === 'pending') {
-                    btn.classList.add('bg-pink-950/50', 'border-pink-400/50', 'text-pink-400', 'cursor-not-allowed');
+                    btn.classList.add('bg-red-950/40', 'border-red-500/40', 'text-red-400/80', 'cursor-not-allowed');
                     btn.title = 'Pending Request';
                     btn.disabled = true;
                 } else if (dayStatus === 'booked') {
-                    btn.classList.add('bg-red-950/40', 'border-red-500/40', 'text-red-400/80', 'line-through', 'cursor-not-allowed');
-                    btn.title = 'Booked / Occupied';
+                    btn.classList.add('bg-red-950/40', 'border-red-500/40', 'text-[#686868]', 'line-through', 'decoration-[#686868]', 'cursor-not-allowed');
+                    btn.style.color = '#686868';
+                    btn.style.textDecorationColor = '#686868';
+                    btn.title = 'Booked/Occupied';
                     btn.disabled = true;
                 } else {
                     if (isSelected) {
@@ -1507,6 +1512,14 @@
             displayMonth += dir;
             if (displayMonth > 11) { displayMonth = 0; displayYear++; }
             if (displayMonth < 0) { displayMonth = 11; displayYear--; }
+            renderCalendar();
+        }
+
+        function goToToday() {
+            const now = new Date();
+            currentDate = now;
+            displayMonth = now.getMonth();
+            displayYear = now.getFullYear();
             renderCalendar();
         }
 
