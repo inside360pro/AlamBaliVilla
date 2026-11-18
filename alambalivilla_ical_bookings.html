@@ -131,31 +131,8 @@
                 </h1>
                 <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-5 mb-4"></div>
                 <p class="text-gray-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
-                    Monitor incoming booking requests submitted from the main villa webpage directly across our three read-only Google Calendars. Automatically polls &amp; refreshes every 15 seconds.
+                    Monitor incoming booking requests submitted from the main villa webpage directly across our three read-only Google Calendars.
                 </p>
-            </div>
-
-            <!-- Live Change Notification Banner (Appears automatically when calendar changes are detected) -->
-            <div id="change-alert-banner" class="hidden mb-8 bg-luxuryGrey-dark border-2 border-luxuryGold rounded-lg p-4 sm:p-5 change-alert-glow transition-all duration-300">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-start space-x-3.5">
-                        <div class="w-10 h-10 rounded-full bg-luxuryGold/20 border border-luxuryGold flex items-center justify-center text-luxuryGold flex-shrink-0 mt-0.5">
-                            <i class="fas fa-bell animate-bounce"></i>
-                        </div>
-                        <div>
-                            <div class="flex items-center space-x-2">
-                                <span class="text-xs uppercase tracking-widest font-bold text-luxuryGold">Calendar Update Detected</span>
-                                <span id="change-alert-time" class="text-[10px] font-mono bg-luxuryGold/15 text-luxuryGold-light px-2 py-0.5 rounded border border-luxuryGold/30">-</span>
-                            </div>
-                            <p id="change-alert-details" class="text-xs sm:text-sm text-white mt-1 font-medium">
-                                New booking activity synchronized from Google Calendar.
-                            </p>
-                        </div>
-                    </div>
-                    <button type="button" onclick="dismissChangeBanner()" class="px-3.5 py-1.5 rounded border border-luxuryGold/40 text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-luxuryGold hover:text-luxuryGrey-dark transition-colors self-end sm:self-center">
-                        Acknowledge
-                    </button>
-                </div>
             </div>
 
             <!-- Control Bar: View Mode & Suite Jump Tools -->
@@ -211,9 +188,6 @@
                         </div>
 
                         <div class="flex items-center space-x-2">
-                            <button type="button" onclick="refreshSingleCalendar(1)" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/5 transition-colors">
-                                <i class="fas fa-redo-alt mr-1"></i> Reload Deluxe 1
-                            </button>
                             <a href="https://calendar.google.com/calendar/embed?src=f16fca523039e0b2bdcf43ae3ee0493eb00bea7f9919273ce3c276821a4cd32f%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
                                 <i class="fas fa-external-link-alt mr-1"></i> Full Tab
                             </a>
@@ -246,9 +220,6 @@
                         </div>
 
                         <div class="flex items-center space-x-2">
-                            <button type="button" onclick="refreshSingleCalendar(2)" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/5 transition-colors">
-                                <i class="fas fa-redo-alt mr-1"></i> Reload Deluxe 2
-                            </button>
                             <a href="https://calendar.google.com/calendar/embed?src=dcedf488af2fd91f6a5ba5db599a0e3c774b68529d7716540b2673f9a339acb6%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
                                 <i class="fas fa-external-link-alt mr-1"></i> Full Tab
                             </a>
@@ -281,9 +252,6 @@
                         </div>
 
                         <div class="flex items-center space-x-2">
-                            <button type="button" onclick="refreshSingleCalendar(3)" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/5 transition-colors">
-                                <i class="fas fa-redo-alt mr-1"></i> Reload Deluxe 3
-                            </button>
                             <a href="https://calendar.google.com/calendar/embed?src=4a650b6744ae1a1512a80bb15cb3f99494704c0978ec19818272a6f29e0c5ffa%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
                                 <i class="fas fa-external-link-alt mr-1"></i> Full Tab
                             </a>
@@ -314,31 +282,51 @@
     </main>
 
     <!-- Floating Always-Accessible Refresh & Auto-Sync Control Dock -->
-    <div id="floating-refresh-dock" class="fixed bottom-4 right-4 left-4 sm:left-auto z-50 bg-luxuryGrey-dark/95 backdrop-blur-md border border-luxuryGold/40 rounded-xl p-2.5 sm:p-3 shadow-2xl gold-glow flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-end gap-2.5 sm:gap-3 transition-all duration-300">
-        <button type="button" id="manual-refresh-btn" onclick="triggerManualRefresh()" class="px-4 py-2.5 rounded-lg bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-bold text-[11px] tracking-[0.14em] uppercase flex items-center space-x-2 transition-all gold-glow shadow-lg cursor-pointer">
-            <i id="refresh-btn-icon" class="fas fa-sync-alt text-xs"></i>
-            <span>Refresh Calendars Now</span>
-        </button>
-
-        <div class="flex items-center space-x-2.5 bg-luxuryGrey px-3 py-1.5 rounded-lg border border-luxuryGold/25">
-            <span class="relative flex h-2.5 w-2.5">
-                <span id="sync-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span id="sync-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-            </span>
-            <div class="text-[11px] leading-tight">
-                <div class="text-gray-200 font-medium">
-                    Auto-refresh in <span id="countdown-seconds" class="text-luxuryGold font-bold font-mono">15</span>s
+    <div id="floating-refresh-dock" class="fixed bottom-4 right-4 left-4 sm:left-auto z-50 bg-luxuryGrey-dark/95 backdrop-blur-md border border-luxuryGold/40 rounded-xl p-2.5 sm:p-3 shadow-2xl gold-glow flex flex-col gap-2.5 max-w-full sm:max-w-xl transition-all duration-300">
+        
+        <!-- Live Change Notification Alert (Accumulating list with independent Acknowledge buttons) -->
+        <div id="change-alert-banner" class="hidden bg-luxuryGrey border border-luxuryGold rounded-lg p-3 change-alert-glow transition-all duration-300">
+            <div class="flex items-center justify-between gap-2 pb-2 border-b border-luxuryGold/20">
+                <div class="flex items-center space-x-2">
+                    <div class="w-6 h-6 rounded-full bg-luxuryGold/20 border border-luxuryGold flex items-center justify-center text-luxuryGold flex-shrink-0">
+                        <i class="fas fa-bell animate-bounce text-[10px]"></i>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-luxuryGold">Calendar Update Detected</span>
                 </div>
-                <div class="text-[10px] text-gray-400">
-                    Last checked: <span id="last-checked-time" class="font-mono text-gray-300">Initializing...</span>
-                </div>
+                <span id="change-alert-count" class="text-[9px] font-mono bg-luxuryGold/15 text-luxuryGold-light px-1.5 py-0.5 rounded border border-luxuryGold/30">0 Pending</span>
             </div>
+            <ul id="change-alert-list" class="mt-2 space-y-2 max-h-52 overflow-y-auto pr-1 custom-scrollbar list-none">
+                <!-- Individual change items with independent Acknowledge buttons injected dynamically -->
+            </ul>
         </div>
 
-        <button type="button" id="toggle-auto-btn" onclick="toggleAutoRefresh()" class="px-3 py-2.5 rounded-lg border border-luxuryGold/35 bg-luxuryGrey/80 text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/10 transition-colors cursor-pointer" title="Pause or Resume 15-second automatic polling">
-            <i id="auto-toggle-icon" class="fas fa-pause mr-1"></i>
-            <span id="auto-toggle-text">Auto: ON</span>
-        </button>
+        <!-- Refresh Buttons & Countdown Controls -->
+        <div class="flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-end gap-2.5 sm:gap-3">
+            <button type="button" id="manual-refresh-btn" onclick="triggerManualRefresh()" class="px-4 py-2.5 rounded-lg bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-bold text-[11px] tracking-[0.14em] uppercase flex items-center space-x-2 transition-all gold-glow shadow-lg cursor-pointer">
+                <i id="refresh-btn-icon" class="fas fa-sync-alt text-xs"></i>
+                <span>Refresh Calendars Now</span>
+            </button>
+
+            <div class="flex items-center space-x-2.5 bg-luxuryGrey px-3 py-1.5 rounded-lg border border-luxuryGold/25">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span id="sync-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span id="sync-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                </span>
+                <div class="text-[11px] leading-tight">
+                    <div class="text-gray-200 font-medium">
+                        Auto-refresh in <span id="countdown-seconds" class="text-luxuryGold font-bold font-mono">60</span>s
+                    </div>
+                    <div class="text-[10px] text-gray-400">
+                        Last checked: <span id="last-checked-time" class="font-mono text-gray-300">Initializing...</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="toggle-auto-btn" onclick="toggleAutoRefresh()" class="px-3 py-2.5 rounded-lg border border-luxuryGold/35 bg-luxuryGrey/80 text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/10 transition-colors cursor-pointer" title="Pause or Resume 60-second automatic polling">
+                <i id="auto-toggle-icon" class="fas fa-pause mr-1"></i>
+                <span id="auto-toggle-text">Auto: ON</span>
+            </button>
+        </div>
     </div>
 
     <!-- Consistent Footer matching index.html -->
@@ -371,69 +359,62 @@
 
         let currentViewMode = 'MONTH'; // 'MONTH', 'AGENDA', or 'WEEK'
         let autoRefreshEnabled = true;
-        let countdownValue = 15;
+        let countdownValue = 60;
         let countdownInterval = null;
         let previousSnapshot = null;
-
-        function buildEmbedUrl(roomNum, mode, cacheBust) {
-            const src = CALENDAR_SOURCES[roomNum];
-            return `https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=${mode}&src=${src}&color=%23D4AF37&_cb=${cacheBust}`;
-        }
+        let unacknowledgedChanges = [];
+        let changeEntryCounter = 0;
 
         function formatTimeNow() {
             const now = new Date();
-            const hh = String(now.getHours()).padStart(2, '0');
-            const mm = String(now.getMinutes()).padStart(2, '0');
-            const ss = String(now.getSeconds()).padStart(2, '0');
-            return `${hh}:${mm}:${ss}`;
+            return now.toTimeString().split(' ')[0];
+        }
+
+        function buildEmbedUrl(roomNum, mode, cacheBust) {
+            const srcId = CALENDAR_SOURCES[roomNum];
+            const cb = cacheBust || Date.now();
+            return `https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=${encodeURIComponent(mode)}&src=${srcId}&color=%23D4AF37&_cb=${cb}`;
         }
 
         function setCalendarViewMode(mode) {
             currentViewMode = mode;
             document.querySelectorAll('.view-mode-btn').forEach(btn => {
-                btn.classList.remove('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
-                btn.classList.add('text-gray-300', 'font-semibold');
+                if (btn.id === `mode-btn-${mode}`) {
+                    btn.classList.add('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
+                    btn.classList.remove('text-gray-300', 'hover:text-white', 'font-semibold');
+                } else {
+                    btn.classList.remove('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
+                    btn.classList.add('text-gray-300', 'hover:text-white', 'font-semibold');
+                }
             });
-            const activeBtn = document.getElementById(`mode-btn-${mode}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('text-gray-300', 'font-semibold');
-                activeBtn.classList.add('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
-            }
             reloadAllIframes();
-        }
-
-        function refreshSingleCalendar(roomNum) {
-            const iframe = document.getElementById(`gcal-iframe-${roomNum}`);
-            if (iframe) {
-                iframe.src = buildEmbedUrl(roomNum, currentViewMode, Date.now());
-            }
-            const statusLog = document.getElementById('sync-status-log');
-            if (statusLog) {
-                statusLog.innerText = `Status: Manually reloaded Deluxe ${roomNum} calendar at ${formatTimeNow()}`;
-            }
         }
 
         function reloadAllIframes() {
             const ts = Date.now();
             [1, 2, 3].forEach(roomNum => {
-                const iframe = document.getElementById(`gcal-iframe-${roomNum}`);
-                if (iframe) {
-                    iframe.src = buildEmbedUrl(roomNum, currentViewMode, ts + roomNum);
+                const oldIframe = document.getElementById(`gcal-iframe-${roomNum}`);
+                if (oldIframe && oldIframe.parentNode) {
+                    const freshIframe = document.createElement('iframe');
+                    freshIframe.id = `gcal-iframe-${roomNum}`;
+                    freshIframe.title = `Alam Bali Villa Deluxe ${roomNum} Google Calendar`;
+                    freshIframe.className = 'w-full h-full border-0 gcal-dark-frame';
+                    freshIframe.loading = 'eager';
+                    freshIframe.src = buildEmbedUrl(roomNum, currentViewMode, `${ts}_${roomNum}`);
+                    oldIframe.parentNode.replaceChild(freshIframe, oldIframe);
                 }
             });
         }
 
-        async function checkCalendarChangesAndSync(forceReload = false) {
+        async function checkCalendarChangesAndSync() {
             const icon = document.getElementById('refresh-btn-icon');
             if (icon) icon.classList.add('fa-spin');
 
             const checkedEl = document.getElementById('last-checked-time');
-            const statusLog = document.getElementById('sync-status-log');
             const nowStr = formatTimeNow();
             if (checkedEl) checkedEl.innerText = nowStr;
 
             let detectedChanges = [];
-            let fetchedLiveState = false;
 
             try {
                 const endpoints = [
@@ -447,7 +428,6 @@
                         if (!response.ok) continue;
                         const data = await response.json();
                         if (data && data.success && data.bookedDates) {
-                            fetchedLiveState = true;
                             const currentSnapshot = {
                                 1: [...(data.bookedDates[1] || [])].sort(),
                                 2: [...(data.bookedDates[2] || [])].sort(),
@@ -483,22 +463,11 @@
                 console.warn('Availability poll warning:', err);
             }
 
-            // Reload all 3 Google Calendar iframes on manual refresh, on detected change, or on every 15-second cycle
+            // Reload all 3 Google Calendar iframes on manual refresh, on detected change, or on every 60-second cycle
             reloadAllIframes();
 
             if (detectedChanges.length > 0) {
                 showChangeNotification(detectedChanges, nowStr);
-                if (statusLog) {
-                    statusLog.innerText = `CHANGE DETECTED (${nowStr}): ${detectedChanges.map(c => c.summary).join(' | ')}`;
-                    statusLog.classList.remove('text-gray-400');
-                    statusLog.classList.add('text-luxuryGold', 'font-semibold');
-                }
-            } else {
-                if (statusLog) {
-                    statusLog.innerText = forceReload
-                        ? `Status: All 3 Google Calendars manually refreshed at ${nowStr}.`
-                        : `Status: Auto-refreshed all 3 Google Calendars at ${nowStr}${fetchedLiveState ? ' — no new diffs since last poll.' : '.'}`;
-                }
             }
 
             setTimeout(() => {
@@ -507,26 +476,64 @@
         }
 
         function showChangeNotification(changes, timeStr) {
+            changes.forEach(change => {
+                changeEntryCounter += 1;
+                unacknowledgedChanges.push({
+                    id: changeEntryCounter,
+                    roomNum: change.roomNum,
+                    summary: change.summary,
+                    timeStr: timeStr
+                });
+            });
+
+            renderChangeNotifications();
+        }
+
+        function renderChangeNotifications() {
             const banner = document.getElementById('change-alert-banner');
-            const timeEl = document.getElementById('change-alert-time');
-            const detailsEl = document.getElementById('change-alert-details');
+            const listEl = document.getElementById('change-alert-list');
+            const countEl = document.getElementById('change-alert-count');
+            const dock = document.getElementById('floating-refresh-dock');
 
-            if (timeEl) timeEl.innerText = timeStr;
-            if (detailsEl) {
-                detailsEl.innerText = `Calendar change detected automatically — ${changes.map(c => c.summary).join(' • ')}`;
-            }
-            if (banner) {
+            if (!listEl || !banner) return;
+
+            if (unacknowledgedChanges.length === 0) {
+                listEl.innerHTML = '';
+                banner.classList.add('hidden');
+                if (dock) dock.classList.remove('change-alert-glow');
+            } else {
+                if (countEl) {
+                    countEl.innerText = `${unacknowledgedChanges.length} Pending`;
+                }
+
+                listEl.innerHTML = unacknowledgedChanges.map(item => `
+                    <li id="change-item-${item.id}" class="flex items-start justify-between gap-2.5 bg-luxuryGrey-dark/80 border border-luxuryGold/25 rounded-md p-2">
+                        <div class="min-w-0 flex-1">
+                            <span class="inline-block text-[9px] font-mono bg-luxuryGold/15 text-luxuryGold-light px-1.5 py-0.5 rounded border border-luxuryGold/30 mb-1">${item.timeStr}</span>
+                            <p class="text-[11px] text-white font-medium leading-snug break-words">
+                                Calendar change detected automatically — ${item.summary}
+                            </p>
+                        </div>
+                        <button type="button" onclick="acknowledgeChangeItem(${item.id})" class="px-2.5 py-1 rounded border border-luxuryGold/40 text-[9px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-luxuryGold hover:text-luxuryGrey-dark transition-colors flex-shrink-0 cursor-pointer">
+                            Acknowledge
+                        </button>
+                    </li>
+                `).join('');
+
                 banner.classList.remove('hidden');
+                if (dock) {
+                    dock.classList.add('border-luxuryGold', 'change-alert-glow');
+                }
             }
 
-            // Highlight updated suite badges & cards
+            // Update suite badges & card highlights based on remaining unacknowledged items
             [1, 2, 3].forEach(r => {
                 const badge = document.getElementById(`badge-room-${r}`);
                 const card = document.getElementById(`cal-card-${r}`);
-                const changed = changes.some(c => c.roomNum === r);
-                if (badge) badge.classList.toggle('hidden', !changed);
+                const hasUnackedForRoom = unacknowledgedChanges.some(item => item.roomNum === r);
+                if (badge) badge.classList.toggle('hidden', !hasUnackedForRoom);
                 if (card) {
-                    if (changed) {
+                    if (hasUnackedForRoom) {
                         card.classList.add('border-luxuryGold', 'change-alert-glow');
                     } else {
                         card.classList.remove('change-alert-glow');
@@ -535,22 +542,16 @@
             });
         }
 
-        function dismissChangeBanner() {
-            const banner = document.getElementById('change-alert-banner');
-            if (banner) banner.classList.add('hidden');
-            [1, 2, 3].forEach(r => {
-                const badge = document.getElementById(`badge-room-${r}`);
-                const card = document.getElementById(`cal-card-${r}`);
-                if (badge) badge.classList.add('hidden');
-                if (card) card.classList.remove('change-alert-glow');
-            });
+        function acknowledgeChangeItem(itemId) {
+            unacknowledgedChanges = unacknowledgedChanges.filter(item => item.id !== itemId);
+            renderChangeNotifications();
         }
 
         function triggerManualRefresh() {
-            countdownValue = 15;
+            countdownValue = 60;
             const countEl = document.getElementById('countdown-seconds');
             if (countEl) countEl.innerText = countdownValue;
-            checkCalendarChangesAndSync(true);
+            checkCalendarChangesAndSync();
         }
 
         function toggleAutoRefresh() {
@@ -561,6 +562,9 @@
             const dot = document.getElementById('sync-dot');
 
             if (autoRefreshEnabled) {
+                countdownValue = 60;
+                const countEl = document.getElementById('countdown-seconds');
+                if (countEl) countEl.innerText = countdownValue;
                 if (icon) icon.className = 'fas fa-pause mr-1';
                 if (text) text.innerText = 'Auto: ON';
                 if (ping) ping.classList.remove('hidden');
@@ -585,8 +589,8 @@
                 if (!autoRefreshEnabled) return;
                 countdownValue--;
                 if (countdownValue <= 0) {
-                    countdownValue = 15;
-                    checkCalendarChangesAndSync(false);
+                    countdownValue = 60;
+                    checkCalendarChangesAndSync();
                 }
                 const countEl = document.getElementById('countdown-seconds');
                 if (countEl) countEl.innerText = countdownValue;
@@ -604,7 +608,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            checkCalendarChangesAndSync(false);
+            checkCalendarChangesAndSync();
             startAutoRefreshLoop();
         });
     </script>
