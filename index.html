@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alam Bali Villa | Live iCal Bookings Calendar</title>
+    <title>Alam Bali Villa | Ultra-Luxury Private Sanctuary</title>
     
     <!-- Open Graph (OG) Meta Tags -->
-    <meta property="og:title" content="Alam Bali Villa | Live iCal Bookings Calendar">
-    <meta property="og:description" content="Real-time Google Calendar synchronization monitor for Deluxe 1, Deluxe 2, and Deluxe 3 suites at Alam Bali Villa.">
+    <meta property="og:title" content="Alam Bali Villa | Ultra-Luxury Private Sanctuary">
+    <meta property="og:description" content="Immerse yourself in ultra-luxury. Explore our premier Balinese quarters, dining reflection pools, and wellness therapies with our interactive 360° VR Tour.">
+    <meta property="og:url" content="https://alambalivilla.netlify.app">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://media.inside360.pro/360_VRtours/IND_AlamBaliVilla/images/og-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alam Bali Villa | Ultra-Luxury Private Sanctuary">
+    <meta name="twitter:description" content="Immerse yourself in ultra-luxury. Explore with our interactive 360° VR Tour.">
+    <meta name="twitter:image" content="https://media.inside360.pro/360_VRtours/IND_AlamBaliVilla/images/og-preview.jpg">
 
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,8 +57,30 @@
     </script>
     
     <style>
+        iframe {
+            overflow: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        iframe::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .calendar-day-transition {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         .gold-glow {
             box-shadow: 0 0 15px 1px rgba(212, 175, 55, 0.22);
+        }
+
+        #carousel-track {
+            will-change: transform;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+            cursor: pointer;
         }
 
         .custom-scrollbar::-webkit-scrollbar {
@@ -66,40 +97,24 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: rgba(212, 175, 55, 0.8);
         }
-
-        /* Dark aesthetic filter for embedded Google Calendar iframes while preserving readability */
-        .gcal-dark-frame {
-            filter: invert(0.91) hue-rotate(180deg) contrast(0.95) saturate(1.15);
-            background-color: #ffffff;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.35); }
-            50% { box-shadow: 0 0 24px rgba(212, 175, 55, 0.75); }
-        }
-
-        .change-alert-glow {
-            animation: pulseGlow 2s infinite;
-        }
     </style>
 </head>
-<body class="bg-luxuryGrey text-white font-sans antialiased selection:bg-luxuryGold selection:text-luxuryGrey-dark flex flex-col min-h-screen">
+<body class="bg-luxuryGrey text-white font-sans antialiased selection:bg-luxuryGold selection:text-luxuryGrey-dark">
 
-    <!-- Consistent Header matching index.html -->
     <header class="fixed top-0 left-0 w-full z-40 bg-luxuryGrey-dark/90 backdrop-blur-md border-b border-luxuryGold/10 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="index.html#hero" class="flex flex-col">
+            <a href="#hero" class="flex flex-col">
                 <span class="font-serif text-2xl tracking-[0.2em] text-luxuryGold uppercase font-bold">Alam Bali</span>
                 <span class="text-[9px] tracking-[0.5em] text-white uppercase font-semibold">Villa</span>
             </a>
             
             <nav class="hidden lg:flex items-center space-x-8 text-xs tracking-[0.2em] uppercase font-medium">
-                <a href="index.html#hero" class="text-luxuryGold hover:text-white transition-colors">Resort Tour</a>
-                <a href="index.html#reviews" class="text-luxuryGold hover:text-white transition-colors">Reviews</a>
-                <a href="index.html#villas" class="text-luxuryGold hover:text-white transition-colors">Sanctuary Services</a>
-                <a href="index.html#faqs" class="text-luxuryGold hover:text-white transition-colors">FAQs</a>
-                <a href="index.html#calendar-booking" class="text-luxuryGold hover:text-white transition-colors">Bookings</a>
-                <a href="index.html#calendar-booking" class="text-luxuryGold hover:text-white transition-colors">Contact</a>
+                <a href="#hero" class="text-luxuryGold hover:text-white transition-colors">Resort Tour</a>
+                <a href="#reviews" class="text-luxuryGold hover:text-white transition-colors">Reviews</a>
+                <a href="#villas" class="text-luxuryGold hover:text-white transition-colors">Sanctuary Services</a>
+                <a href="#faqs" class="text-luxuryGold hover:text-white transition-colors">FAQs</a>
+                <a href="#calendar-booking" class="text-luxuryGold hover:text-white transition-colors">Bookings</a>
+                <a href="#calendar-booking" class="text-luxuryGold hover:text-white transition-colors">Contact</a>
             </nav>
 
             <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden text-luxuryGold hover:text-white focus:outline-none p-2 text-xl transition-colors" aria-label="Toggle Navigation Menu">
@@ -109,241 +124,797 @@
 
         <div id="mobile-menu" class="hidden lg:hidden bg-luxuryGrey-dark/95 border-b border-luxuryGold/20 backdrop-blur-md px-6 py-4 transition-all duration-300">
             <nav class="flex flex-col space-y-3 text-xs tracking-[0.2em] uppercase font-medium text-right">
-                <a href="index.html#hero" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Resort Tour</a>
-                <a href="index.html#reviews" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Reviews</a>
-                <a href="index.html#villas" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Sanctuary Services</a>
-                <a href="index.html#faqs" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">FAQs</a>
-                <a href="index.html#calendar-booking" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Bookings</a>
-                <a href="index.html#calendar-booking" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 block">Contact</a>
+                <a href="#hero" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Resort Tour</a>
+                <a href="#reviews" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Reviews</a>
+                <a href="#villas" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Sanctuary Services</a>
+                <a href="#faqs" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">FAQs</a>
+                <a href="#calendar-booking" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 border-b border-luxuryGold/10 block">Bookings</a>
+                <a href="#calendar-booking" onclick="closeMobileMenu()" class="text-luxuryGold hover:text-white transition-colors py-2 block">Contact</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Live Google Calendars Monitor -->
-    <main class="flex-grow pt-28 pb-20">
+    <section id="hero" class="relative pt-20 h-[48vh] md:h-[80vh] w-full overflow-hidden flex flex-col justify-end bg-black">
+        <div class="absolute inset-0 w-full h-full z-0">
+            <iframe 
+                src="https://media.inside360.pro/360_VRtours/IND_AlamBaliVilla/index.html" 
+                class="w-full h-full border-0" 
+                allowfullscreen="true" 
+                allow="xr-spatial-tracking; gyroscope; accelerometer"
+                scrolling="no"
+                loading="eager">
+            </iframe>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-20 md:py-24 bg-luxuryGrey-dark border-y border-luxuryGold/20 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 md:mb-12">
+                <span class="text-xs tracking-[0.3em] text-white uppercase font-bold block mb-2">Verified Testimonials</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-luxuryGold">Unveiling Guest Experiences</h2>
+                <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-4"></div>
+            </div>
             
-            <!-- Page Title Section (Exact 2-line title requested) -->
+            <div class="relative w-full max-w-4xl mx-auto select-none px-2 sm:px-6 md:px-10" id="carousel-container">
+                
+                <div class="overflow-hidden relative rounded-lg p-2 min-h-[380px] sm:min-h-[320px] md:min-h-[280px] cursor-grab active:cursor-grabbing" id="carousel-viewport">
+                    <div class="flex h-full transition-transform duration-500 ease-out" id="carousel-track">
+                        
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2" id="slide-0">
+                            <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-luxuryGold/30 gold-glow w-full h-full flex flex-col justify-center items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-3">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-sm sm:text-base md:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto mb-6">
+                                    "We found the 360 tour photos on Google Maps, contacted the owner directly & managed to get a discount directly from the Villa with a huge saving with our week-long stay. Seeing the exact layouts in 360 meant no surprises!"
+                                </p>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=MB'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Marie Bouvier" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Marie Bouvier</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Paris, France</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2" id="slide-1">
+                            <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-center items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-3">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-sm sm:text-base md:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto mb-6">
+                                    "After seeing the 360 photos of the villa, we had no hesitations to book as all our questions were answered visually. Truly revolutionary booking experience. It looked precisely as captured."
+                                </p>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=RH'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Richard Henderson" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Richard Henderson</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Sydney, Australia</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2" id="slide-2">
+                            <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-center items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-3">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-sm sm:text-base md:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto mb-6">
+                                    "Everything was perfect! We had a large family reunion. After we saw exactly the space from the 360 photos, we knew that the villa could accommodate us. Space-planning is so vital for large groups!"
+                                </p>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=EL'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Eleanor Vance" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Eleanor Vance</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">London, United Kingdom</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2" id="slide-3">
+                            <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-center items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-3">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-sm sm:text-base md:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto mb-6">
+                                    "We booked using Booking.com. It was so helpful that we could see the entire space in 360. The staff were so helpful & accommodating. Such a peaceful retreat. We'll for sure be back!"
+                                </p>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=KT'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Kenji Takahashi" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Kenji Takahashi</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">Tokyo, Japan</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide flex-shrink-0 w-full h-full px-2" id="slide-4">
+                            <div class="gold-glow-card bg-luxuryGrey p-6 sm:p-8 rounded-lg border border-transparent w-full h-full flex flex-col justify-center items-center text-center transition-all duration-300">
+                                <div class="flex justify-center text-luxuryGold text-xs mb-3">
+                                    <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="font-serif text-sm sm:text-base md:text-base italic text-gray-200 leading-relaxed max-w-2xl mx-auto mb-6">
+                                    "A masterclass in genuine digital representation. The immaculate Balinese wood-carvings and layout feel like real art. Experiencing it beforehand via VR makes booking an effortless choice."
+                                </p>
+                                <div class="flex flex-col items-center">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120&h=120" onerror="this.src='https://placehold.co/120x120/1f1f1f/D4AF37?text=AS'" class="w-12 h-12 rounded-full object-cover border border-luxuryGold/40 mb-2" alt="Amara Sterling" draggable="false">
+                                    <h4 class="font-semibold text-xs sm:text-sm text-white">Amara Sterling</h4>
+                                    <span class="text-[10px] sm:text-[11px] text-luxuryGold">New York, USA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="nextSlide()" class="absolute left-[-12px] sm:left-[-20px] md:left-[-40px] top-1/2 -translate-y-1/2 text-luxuryGold hover:text-white transition-colors p-2 text-xl md:text-2xl z-30 focus:outline-none bg-luxuryGrey-dark/80 sm:bg-transparent rounded-full" aria-label="Next Review">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="prevSlide()" class="absolute right-[-12px] sm:right-[-20px] md:right-[-40px] top-1/2 -translate-y-1/2 text-luxuryGold hover:text-white transition-colors p-2 text-xl md:text-2xl z-30 focus:outline-none bg-luxuryGrey-dark/80 sm:bg-transparent rounded-full" aria-label="Previous Review">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="flex justify-center items-center space-x-2 mt-6" id="carousel-dots-container">
+                    <button onclick="goToSlide(0)" class="carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300" id="dot-0" aria-label="Slide 1"></button>
+                    <button onclick="goToSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-1" aria-label="Slide 2"></button>
+                    <button onclick="goToSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-2" aria-label="Slide 3"></button>
+                    <button onclick="goToSlide(3)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-3" aria-label="Slide 4"></button>
+                    <button onclick="goToSlide(4)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300" id="dot-4" aria-label="Slide 5"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="villas" class="py-24 max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs tracking-[0.3em] text-white uppercase font-bold block mb-2">The Estate Experience</span>
+            <h2 class="font-serif text-3xl md:text-5xl font-bold text-luxuryGold">A Sanctuary for the Senses</h2>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+                Wander through a world curated exclusively for your absolute comfort. Preview our suites, reflection pools, and wellness therapies below.
+            </p>
+            <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-6"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="flex flex-col bg-luxuryGrey-light rounded-lg border border-luxuryGold/30 gold-glow transition-all duration-300">
+                <div class="h-96 w-full relative rounded-t-lg overflow-hidden">
+                    <iframe 
+                        src="https://media.inside360.pro/360_VRtours/IND_AlamBaliVilla/Deluxe.html" 
+                        class="w-full h-full border-0 absolute inset-0" 
+                        allowfullscreen="true" 
+                        allow="xr-spatial-tracking; gyroscope; accelerometer"
+                        scrolling="no"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-serif text-xl font-bold text-luxuryGold mb-2">Deluxe Room Suite</h3>
+                        <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                            Artisanal timber frame architecture with royal canopy beds, private marble baths, and sliding glass walls opening to lush tropical gardens.
+                        </p>
+                    </div>
+                    <a href="#calendar-booking" class="mt-4 text-xs tracking-[0.2em] uppercase font-semibold text-luxuryGold hover:text-white flex items-center transition-colors">
+                        Reserve <i class="fas fa-arrow-right ml-2 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col bg-luxuryGrey-light rounded-lg border border-luxuryGold/30 gold-glow transition-all duration-300">
+                <div class="h-96 w-full relative rounded-t-lg overflow-hidden">
+                    <iframe 
+                        src="https://media.inside360.pro/360_VRtours/IND_AlamBaliVilla/Services.html" 
+                        class="w-full h-full border-0 absolute inset-0" 
+                        allowfullscreen="true" 
+                        allow="xr-spatial-tracking; gyroscope; accelerometer"
+                        scrolling="no"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-serif text-xl font-bold text-luxuryGold mb-2">Exclusive Services</h3>
+                        <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                            Immerse yourself in premium wellness treatments, therapeutic stone pool therapies, and custom island tours ready on demand.
+                        </p>
+                    </div>
+                    <a href="#calendar-booking" class="mt-4 text-xs tracking-[0.2em] uppercase font-semibold text-luxuryGold hover:text-white flex items-center transition-colors">
+                        Reserve <i class="fas fa-arrow-right ml-2 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col bg-luxuryGrey-light rounded-lg border border-luxuryGold/30 gold-glow transition-all duration-300">
+                <div class="h-96 w-full relative rounded-t-lg overflow-hidden">
+                    <iframe 
+                        src="https://media.inside360.pro/360_VRtours/IND_AlamBaliVilla/Restaurant.html" 
+                        class="w-full h-full border-0 absolute inset-0" 
+                        allowfullscreen="true" 
+                        allow="xr-spatial-tracking; gyroscope; accelerometer"
+                        scrolling="no"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-serif text-xl font-bold text-luxuryGold mb-2">Restaurant & Bar</h3>
+                        <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                            Open-air dining over koi reflection pools, delivering contemporary Balinese and Mediterranean sensory dining experiences.
+                        </p>
+                    </div>
+                    <a href="#calendar-booking" class="mt-4 text-xs tracking-[0.2em] uppercase font-semibold text-luxuryGold hover:text-white flex items-center transition-colors">
+                        Reserve <i class="fas fa-arrow-right ml-2 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faqs" class="py-16 bg-luxuryGrey-dark border-t border-luxuryGold/20">
+        <div class="max-w-[78%] mx-auto px-4 md:px-6">
             <div class="text-center mb-10">
-                <span class="text-xs tracking-[0.3em] text-white uppercase font-bold block mb-3">Read-Only Real-Time Synchronization</span>
-                <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-luxuryGold leading-tight">
-                    Alam Bali Villa<br>Live iCal Bookings Calendar
-                </h1>
-                <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-5 mb-4"></div>
-                <p class="text-gray-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
-                    Monitor incoming booking requests submitted from the main villa webpage directly across our three read-only Google Calendars.
+                <span class="text-[10px] tracking-[0.3em] text-gray-200 uppercase font-bold block mb-1.5">Sanctuary Inquiries</span>
+                <h2 class="font-serif text-xl md:text-3xl font-bold text-luxuryGold">Frequently Asked Questions</h2>
+                <p class="text-gray-400 mt-2.5 max-w-xl mx-auto text-[11px] md:text-xs leading-relaxed">
+                    Everything you need to know about reserving your stay, suite configurations, group bookings, dining hours, pool safety, wellness therapies, and local travel routes.
+                </p>
+                <div class="w-12 h-0.5 bg-luxuryGold/80 mx-auto mt-4 mb-5"></div>
+
+                <div class="flex flex-wrap justify-center gap-2 text-[10px] uppercase tracking-wider font-semibold">
+                    <button type="button" onclick="filterFaqs('all')" data-category="all" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">All Questions</button>
+                    <button type="button" onclick="filterFaqs('stay')" data-category="stay" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Reservations & Rates</button>
+                    <button type="button" onclick="filterFaqs('amenities')" data-category="amenities" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold bg-luxuryGold/10 text-luxuryGold transition-all">Suites & Amenities</button>
+                    <button type="button" onclick="filterFaqs('dining')" data-category="dining" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Dining & Wellness</button>
+                    <button type="button" onclick="filterFaqs('nearby')" data-category="nearby" class="faq-tab-btn px-3 py-1 rounded-full border border-luxuryGold/30 text-gray-400 hover:text-luxuryGold hover:bg-white/5 transition-all">Location & Travel</button>
+                </div>
+
+                <p class="text-gray-500 italic mt-3.5 text-[10px] md:text-[11px]">
+                    Hold the [Shift] key to open multiple FAQs &amp; the [Control] key to open independent FAQs
                 </p>
             </div>
 
-            <!-- Control Bar: View Mode & Suite Jump Tools -->
-            <div class="bg-luxuryGrey-dark p-4 sm:p-5 rounded-lg border border-luxuryGold/30 gold-glow mb-8">
-                <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
-                    
-                    <!-- Left: Read-Only Access Indicator -->
-                    <div class="flex items-center space-x-2.5 text-xs text-gray-300">
-                        <i class="fas fa-shield-alt text-luxuryGold text-sm"></i>
-                        <span>Access Mode: <strong class="text-white">Public Read-Only Embed</strong> <span class="text-gray-400">(Calendar editing is disabled)</span></span>
+            <div class="space-y-6 px-2" id="faq-list-container">
+                <!-- FAQ-001: Reservations & Rates (stay) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 1)" id="faq-btn-1" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-users-viewfinder text-luxuryGold/80 text-[11px] mr-2"></i>
+                            Can I reserve all three private villas at Alam Bali Villa for a group?
+                        </span>
+                        <i id="faq-icon-1" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-1" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Yes, you can reserve the entire property using the Full Sanctuary Package.</p>
+                        <p>This buyout secures all 3 private villa estates, the central pool, and restaurant facilities for complete privacy.</p>
                     </div>
+                </div>
 
-                    <!-- Right: Basic Navigation Tools (View Switcher + Suite Quick-Jump) -->
-                    <div class="flex flex-wrap items-center gap-3 justify-between sm:justify-end">
-                        <!-- Calendar Display Mode Switcher (Agenda Events vs Month Grid) -->
-                        <div class="flex items-center bg-luxuryGrey rounded-md border border-luxuryGold/30 p-0.5">
-                            <button type="button" onclick="setCalendarViewMode('MONTH')" id="mode-btn-MONTH" class="view-mode-btn px-3 py-1.5 rounded text-[10px] uppercase tracking-wider font-bold bg-luxuryGold text-luxuryGrey-dark transition-all">
-                                <i class="fas fa-calendar-alt mr-1"></i> Month Grid
-                            </button>
-                            <button type="button" onclick="setCalendarViewMode('AGENDA')" id="mode-btn-AGENDA" class="view-mode-btn px-3 py-1.5 rounded text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white transition-all">
-                                <i class="fas fa-list-ul mr-1"></i> Events List
-                            </button>
-                            <button type="button" onclick="setCalendarViewMode('WEEK')" id="mode-btn-WEEK" class="view-mode-btn px-3 py-1.5 rounded text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white transition-all">
-                                <i class="fas fa-columns mr-1"></i> Week
-                            </button>
-                        </div>
+                <!-- FAQ-002: Reservations & Rates (stay) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 2)" id="faq-btn-2" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-calendar-week text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What discount rates apply for long-term extended stays at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-2" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-2" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Alam Bali Villa offers preferential long-stay rates and fractional privileges.</p>
+                        <p>Discounted terms apply for extended stays of 7, 14, or 30 days.</p>
+                    </div>
+                </div>
 
-                        <!-- Quick Navigation Links to Each Suite Calendar -->
-                        <div class="inline-flex rounded-md border border-luxuryGold/30 overflow-hidden text-[10px] uppercase tracking-wider font-semibold">
-                            <a href="#cal-card-1" class="px-3 py-2 bg-luxuryGrey hover:bg-luxuryGold hover:text-luxuryGrey-dark text-luxuryGold transition-colors border-r border-luxuryGold/20">Deluxe 1</a>
-                            <a href="#cal-card-2" class="px-3 py-2 bg-luxuryGrey hover:bg-luxuryGold hover:text-luxuryGrey-dark text-luxuryGold transition-colors border-r border-luxuryGold/20">Deluxe 2</a>
-                            <a href="#cal-card-3" class="px-3 py-2 bg-luxuryGrey hover:bg-luxuryGold hover:text-luxuryGrey-dark text-luxuryGold transition-colors">Deluxe 3</a>
-                        </div>
+                <!-- FAQ-003: Reservations & Rates (stay) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 3)" id="faq-btn-3" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-clock text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What are the exact check-in and check-out times at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-3" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-3" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Standard check-in starts at 2:00 PM local Balinese time.</p>
+                        <p>Check-out must be completed before 12:00 PM.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-004: Reservations & Rates (stay) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 4)" id="faq-btn-4" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-vr-cardboard text-luxuryGold/80 text-[11px] mr-2"></i>
+                            How can I view the room layout before booking my stay at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-4" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-4" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Interactive 360-degree virtual tours are available on the website.</p>
+                        <p>This feature provides complete visual coverage of room layouts prior to reservation.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-005: Dining & Wellness (dining) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                    <button type="button" onclick="toggleFaq(event, 5)" id="faq-btn-5" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-utensils text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What dining and bar facilities are available on-site at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-5" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-5" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">The open-air dining pavilion serves a mix of Indonesian and Mediterranean dishes prepared with mostly locally sourced ingredients, open daily from 6:30 AM to 10:00 PM. High chairs are available for small children, and in-room butler service is provided on request.</p>
+                        <p>The fully stocked bar serves premium liquor, Indonesian beers, and imported beers daily from 6:30 AM to 12:00 AM midnight. Guests are encouraged to pre-order top-end wines and champagnes during booking.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-006: Dining & Wellness (dining) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                    <button type="button" onclick="toggleFaq(event, 6)" id="faq-btn-6" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-person-swimming text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What swimming pool facilities, depths, and safety supervision are available at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-6" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-6" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Alam Bali Villa features a central swimming pool alongside decorative koi reflection pools and stone pool areas.</p>
+                        <p>The main swimming pool ranges from a shallow depth of 80 cm to a deep end of 180 cm. Lifeguard staff are on duty daily from 8:00 AM until 7:00 PM for child safety.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-007: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 7)" id="faq-btn-7" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-bed text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What features are included in the Deluxe Room Suite at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-7" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-7" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p>The Deluxe Room Suite features artisanal timber frame architecture, a royal canopy bed, a private marble bath, sliding glass walls, and a private Balinese garden.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-008: Dining & Wellness (dining) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="dining">
+                    <button type="button" onclick="toggleFaq(event, 8)" id="faq-btn-8" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-spa text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What spa treatments and wellness services are offered at Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-8" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-8" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Massage options include Thai Karma, Shiatsu Karma, Feet Karma, Oil Karma, and Herbal Balm treatments.</p>
+                        <p>Services are available on-site or as in-room treatments alongside custom butler services.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-009: Location & Travel (nearby) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                    <button type="button" onclick="toggleFaq(event, 9)" id="faq-btn-9" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-taxi text-luxuryGold/80 text-[11px] mr-2"></i>
+                            Does Alam Bali Villa arrange local transportation and island travel?
+                        </span>
+                        <i id="faq-icon-9" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-9" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Taxi transfers can be arranged to and from any destination in Bali accessible by road.</p>
+                        <p>Pickups must be booked and arranged in advance during the reservation process.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-010: Reservations & Rates (stay) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 10)" id="faq-btn-10" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-calendar-check text-luxuryGold/80 text-[11px] mr-2"></i>
+                            How does direct booking work on the Alam Bali Villa website?
+                        </span>
+                        <i id="faq-icon-10" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-10" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Select stay dates on the availability calendar to generate a pre-populated email reservation request.</p>
+                        <p>Sending this request connects you directly with the Estate Manager with 0% commission fees.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-011: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 11)" id="faq-btn-11" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-shower text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What hot water heating systems are installed in the villa bathrooms?
+                        </span>
+                        <i id="faq-icon-11" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-11" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p>Every villa bathroom is equipped with an on-demand tankless hot water heater, providing continuous hot water on demand.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-012: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 12)" id="faq-btn-12" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-broom text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What are the hours for daily room cleaning and makeup services?
+                        </span>
+                        <i id="faq-icon-12" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-12" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Daily clean-up and room makeup services are available across an 11-hour window from 7:00 AM until 6:00 PM daily.</p>
+                        <p>Guests can schedule service times flexibly to enjoy uninterrupted room relaxation during the day.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-013: Location & Travel (nearby) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                    <button type="button" onclick="toggleFaq(event, 13)" id="faq-btn-13" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-map-location-dot text-luxuryGold/80 text-[11px] mr-2"></i>
+                            Where can I access the exact Google Maps location for Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-13" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-13" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p>The exact location pin and turn-by-turn navigation for the property can be accessed on <a href="https://maps.app.goo.gl/8nGo2mZKK5a9HUmo7" target="_blank" rel="noopener noreferrer" class="text-luxuryGold hover:underline font-semibold">Google Maps</a>.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-014: Location & Travel (nearby) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                    <button type="button" onclick="toggleFaq(event, 14)" id="faq-btn-14" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-plane-arrival text-luxuryGold/80 text-[11px] mr-2"></i>
+                            How long is the drive from Bali Airport, and is there an altitude restriction route for scuba divers?
+                        </span>
+                        <i id="faq-icon-14" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-14" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Standard driving time to and from Bali Ngurah Rai International Airport is 3.5 hours via the mountain pass route, passing scenic highland viewpoints, rice terraces, and cultural points of interest.</p>
+                        <p>Because this direct route ascends over mountain passes exceeding 1,200 meters in elevation, it presents a decompression sickness risk for scuba divers who have recently completed dives. An alternate 4.5-hour low-altitude coastal route is available specifically to avoid post-dive altitude restrictions.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-015: Reservations & Rates (stay) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 15)" id="faq-btn-15" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-award text-luxuryGold/80 text-[11px] mr-2"></i>
+                            Is there a discount for returning guests who book directly?
+                        </span>
+                        <i id="faq-icon-15" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-15" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Repeat guests receive an automatic 10% discount on villa bookings when making reservations directly through the official website.</p>
+                        <p>This repeat booking discount cannot be combined with other promotional offers.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-016: Reservations & Rates (stay) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="stay">
+                    <button type="button" onclick="toggleFaq(event, 16)" id="faq-btn-16" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-user-plus text-luxuryGold/80 text-[11px] mr-2"></i>
+                            How can I receive a referral discount for introducing a friend?
+                        </span>
+                        <i id="faq-icon-16" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-16" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">Friends referred by previous guests receive a 5% discount when booking directly through the website by providing the referrer's full booking name and email address.</p>
+                        <p>This referral discount is not valid with other promotional offers.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-017: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 17)" id="faq-btn-17" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-mattress-pillow text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What bedding material and pillow choices are supplied in the bedrooms?
+                        </span>
+                        <i id="faq-icon-17" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-17" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-1.5">All beds feature single-ply, long-staple cotton in a 600 thread-count sateen weave for luxury softness and breathability.</p>
+                        <p>Guests can select between full goose down pillows or hypoallergenic anti-allergic pillows upon request.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-018: Suites & Amenities (amenities) -->
+                <div class="faq-item bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="amenities">
+                    <button type="button" onclick="toggleFaq(event, 18)" id="faq-btn-18" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-water text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What complimentary water sports gear is provided with the villa rental?
+                        </span>
+                        <i id="faq-icon-18" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-18" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p>Complimentary water equipment included in the villa rental price consists of masks, snorkels, fins, and 1-person or 2-person kayaks with paddles.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ-019: Location & Travel (nearby) -->
+                <div class="faq-item hidden bg-luxuryGrey rounded-md border border-luxuryGold/30 gold-glow transition-all duration-300" data-category="nearby">
+                    <button type="button" onclick="toggleFaq(event, 19)" id="faq-btn-19" class="w-full text-left p-4 flex justify-between items-center space-x-3 focus:outline-none hover:bg-white/5 rounded-md transition-colors select-none">
+                        <span class="font-serif text-xs md:text-sm font-semibold text-luxuryGold flex items-center">
+                            <i class="fas fa-compass text-luxuryGold/80 text-[11px] mr-2"></i>
+                            What local attractions, beaches, and points of interest are located near Alam Bali Villa?
+                        </span>
+                        <i id="faq-icon-19" class="fas fa-chevron-down text-luxuryGold/80 text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-19" class="hidden px-4 pb-4 pt-2 text-[11px] text-gray-300/90 leading-relaxed border-t border-luxuryGold/15 bg-luxuryGrey-dark/40 rounded-b-md">
+                        <p class="mb-2">Alam Bali Villa is located directly along the coast, just 0.015 km (15 meters) from Yehanakan Beach. Key nearby attractions and driving distances from Alam Bali Villa include:</p>
+                        <ul class="list-disc pl-8 space-y-1 text-gray-300/90">
+                            <li><span class="text-gray-200 font-medium">Banjar Hot Spring</span> — 9.4 km</li>
+                            <li><span class="text-gray-200 font-medium">Mayong Cultural Walk</span> — 11.5 km</li>
+                            <li><span class="text-gray-200 font-medium">Krisna Water Sports</span> — 11.7 km</li>
+                            <li><span class="text-gray-200 font-medium">Singsing Waterfall</span> — 13.2 km</li>
+                            <li><span class="text-gray-200 font-medium">Wisata Dolphin Lovina</span> — 15.2 km</li>
+                            <li><span class="text-gray-200 font-medium">Munduk Wilderness Outdoor Activities</span> — 29.3 km</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Three Read-Only Google Calendar Cards -->
-            <div class="space-y-10" id="calendars-grid">
-
-                <!-- DELUXE 1 CALENDAR -->
-                <article id="cal-card-1" class="bg-luxuryGrey-dark rounded-lg border border-luxuryGold/30 gold-glow overflow-hidden transition-all duration-300">
-                    <div class="px-5 py-4 bg-luxuryGrey-light/60 border-b border-luxuryGold/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div class="flex items-center space-x-3">
-                            <span class="w-8 h-8 rounded-full bg-luxuryGold/15 border border-luxuryGold/40 flex items-center justify-center text-luxuryGold font-serif font-bold text-sm">1</span>
-                            <div>
-                                <div class="flex items-center space-x-2">
-                                    <h2 class="font-serif text-lg sm:text-xl font-bold text-luxuryGold tracking-wide">Deluxe 1 — Live Calendar</h2>
-                                    <span id="badge-room-1" class="hidden px-2 py-0.5 text-[9px] uppercase tracking-widest font-bold rounded bg-luxuryGold text-luxuryGrey-dark">Updated</span>
-                                </div>
-                                <p class="text-[11px] text-gray-400">Suite 1 Read-Only Public Google Calendar &amp; Events</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-2">
-                            <a href="https://calendar.google.com/calendar/embed?src=f16fca523039e0b2bdcf43ae3ee0493eb00bea7f9919273ce3c276821a4cd32f%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
-                                <i class="fas fa-external-link-alt mr-1"></i> Full Tab
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="relative w-full h-[540px] bg-neutral-900">
-                        <iframe
-                            id="gcal-iframe-1"
-                            title="Alam Bali Villa Deluxe 1 Google Calendar"
-                            src="https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=MONTH&src=ZjE2ZmNhNTIzMDM5ZTBiMmJkY2Y0M2FlM2VlMDQ5M2ViMDBiZWE3Zjk5MTkyNzNjZTNjMjc2ODIxYTRjZDMyZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D4AF37"
-                            class="w-full h-full border-0 gcal-dark-frame"
-                            loading="eager">
-                        </iframe>
-                    </div>
-                </article>
-
-                <!-- DELUXE 2 CALENDAR -->
-                <article id="cal-card-2" class="bg-luxuryGrey-dark rounded-lg border border-luxuryGold/30 gold-glow overflow-hidden transition-all duration-300">
-                    <div class="px-5 py-4 bg-luxuryGrey-light/60 border-b border-luxuryGold/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div class="flex items-center space-x-3">
-                            <span class="w-8 h-8 rounded-full bg-luxuryGold/15 border border-luxuryGold/40 flex items-center justify-center text-luxuryGold font-serif font-bold text-sm">2</span>
-                            <div>
-                                <div class="flex items-center space-x-2">
-                                    <h2 class="font-serif text-lg sm:text-xl font-bold text-luxuryGold tracking-wide">Deluxe 2 — Live Calendar</h2>
-                                    <span id="badge-room-2" class="hidden px-2 py-0.5 text-[9px] uppercase tracking-widest font-bold rounded bg-luxuryGold text-luxuryGrey-dark">Updated</span>
-                                </div>
-                                <p class="text-[11px] text-gray-400">Suite 2 Read-Only Public Google Calendar &amp; Events</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-2">
-                            <a href="https://calendar.google.com/calendar/embed?src=dcedf488af2fd91f6a5ba5db599a0e3c774b68529d7716540b2673f9a339acb6%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
-                                <i class="fas fa-external-link-alt mr-1"></i> Full Tab
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="relative w-full h-[540px] bg-neutral-900">
-                        <iframe
-                            id="gcal-iframe-2"
-                            title="Alam Bali Villa Deluxe 2 Google Calendar"
-                            src="https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=MONTH&src=ZGNlZGY0ODhhZjJmZDkxZjZhNWJhNWRiNTk5YTBlM2M3NzRiNjg1MjlkNzcxNjU0MGIyNjczZjlhMzM5YWNiNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D4AF37"
-                            class="w-full h-full border-0 gcal-dark-frame"
-                            loading="eager">
-                        </iframe>
-                    </div>
-                </article>
-
-                <!-- DELUXE 3 CALENDAR -->
-                <article id="cal-card-3" class="bg-luxuryGrey-dark rounded-lg border border-luxuryGold/30 gold-glow overflow-hidden transition-all duration-300">
-                    <div class="px-5 py-4 bg-luxuryGrey-light/60 border-b border-luxuryGold/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div class="flex items-center space-x-3">
-                            <span class="w-8 h-8 rounded-full bg-luxuryGold/15 border border-luxuryGold/40 flex items-center justify-center text-luxuryGold font-serif font-bold text-sm">3</span>
-                            <div>
-                                <div class="flex items-center space-x-2">
-                                    <h2 class="font-serif text-lg sm:text-xl font-bold text-luxuryGold tracking-wide">Deluxe 3 — Live Calendar</h2>
-                                    <span id="badge-room-3" class="hidden px-2 py-0.5 text-[9px] uppercase tracking-widest font-bold rounded bg-luxuryGold text-luxuryGrey-dark">Updated</span>
-                                </div>
-                                <p class="text-[11px] text-gray-400">Suite 3 Read-Only Public Google Calendar &amp; Events</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-2">
-                            <a href="https://calendar.google.com/calendar/embed?src=4a650b6744ae1a1512a80bb15cb3f99494704c0978ec19818272a6f29e0c5ffa%40group.calendar.google.com&ctz=Asia%2FMakassar" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded border border-luxuryGold/30 hover:border-luxuryGold text-[10px] uppercase tracking-wider font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors" title="Open Read-Only Public Calendar in New Tab">
-                                <i class="fas fa-external-link-alt mr-1"></i> Full Tab
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="relative w-full h-[540px] bg-neutral-900">
-                        <iframe
-                            id="gcal-iframe-3"
-                            title="Alam Bali Villa Deluxe 3 Google Calendar"
-                            src="https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=MONTH&src=NGE2NTBiNjc0NGFlMWExNTEyYTgwYmIxNWNiM2Y5OTQ5NDcwNGMwOTc4ZWMxOTgxODI3MmE2ZjI5ZTBjNWZmYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D4AF37"
-                            class="w-full h-full border-0 gcal-dark-frame"
-                            loading="eager">
-                        </iframe>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Back to Main Villa Page Navigation -->
-            <div class="mt-12 text-center">
-                <a href="index.html#calendar-booking" class="inline-flex items-center space-x-2 px-6 py-3 rounded-md border border-luxuryGold/40 hover:border-luxuryGold text-luxuryGold hover:bg-white/5 text-xs uppercase tracking-[0.2em] font-semibold transition-all">
-                    <i class="fas fa-arrow-left text-[10px]"></i>
-                    <span>Return to Alam Bali Villa Booking Page</span>
-                </a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Floating Always-Accessible Refresh & Auto-Sync Control Dock -->
-    <div id="floating-refresh-dock" class="fixed bottom-4 right-4 left-4 sm:left-auto z-50 bg-luxuryGrey-dark/95 backdrop-blur-md border border-luxuryGold/40 rounded-xl p-2.5 sm:p-3 shadow-2xl gold-glow flex flex-col gap-2.5 max-w-full sm:max-w-xl transition-all duration-300">
-        
-        <!-- Live Change Notification Alert (Attached directly inside the floating refresh dock) -->
-        <div id="change-alert-banner" class="hidden bg-luxuryGrey border border-luxuryGold rounded-lg p-3 change-alert-glow transition-all duration-300">
-            <div class="flex items-start justify-between gap-3">
-                <div class="flex items-start space-x-2.5">
-                    <div class="w-8 h-8 rounded-full bg-luxuryGold/20 border border-luxuryGold flex items-center justify-center text-luxuryGold flex-shrink-0 mt-0.5">
-                        <i class="fas fa-bell animate-bounce text-xs"></i>
-                    </div>
-                    <div>
-                        <div class="flex flex-wrap items-center gap-1.5">
-                            <span class="text-[10px] uppercase tracking-widest font-bold text-luxuryGold">Calendar Update Detected</span>
-                            <span id="change-alert-time" class="text-[9px] font-mono bg-luxuryGold/15 text-luxuryGold-light px-1.5 py-0.5 rounded border border-luxuryGold/30">-</span>
-                        </div>
-                        <p id="change-alert-details" class="text-[11px] text-white mt-1 font-medium leading-snug">
-                            New booking activity synchronized from Google Calendar.
-                        </p>
-                    </div>
-                </div>
-                <button type="button" onclick="dismissChangeBanner()" class="px-2.5 py-1 rounded border border-luxuryGold/40 text-[9px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-luxuryGold hover:text-luxuryGrey-dark transition-colors flex-shrink-0 cursor-pointer">
-                    Acknowledge
+            <div class="mt-8 text-center">
+                <button type="button" onclick="toggleAllVisibleFaqs()" id="toggle-all-faqs-btn" class="px-4 py-1.5 rounded-full border border-luxuryGold/30 text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/5 hover:border-luxuryGold transition-all focus:outline-none">
+                    Close/Open All FAQs
                 </button>
             </div>
         </div>
+    </section>
 
-        <!-- Refresh Buttons & Countdown Controls -->
-        <div class="flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-end gap-2.5 sm:gap-3">
-            <button type="button" id="manual-refresh-btn" onclick="triggerManualRefresh()" class="px-4 py-2.5 rounded-lg bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-bold text-[11px] tracking-[0.14em] uppercase flex items-center space-x-2 transition-all gold-glow shadow-lg cursor-pointer">
-                <i id="refresh-btn-icon" class="fas fa-sync-alt text-xs"></i>
-                <span>Refresh Calendars Now</span>
-            </button>
-
-            <div class="flex items-center space-x-2.5 bg-luxuryGrey px-3 py-1.5 rounded-lg border border-luxuryGold/25">
-                <span class="relative flex h-2.5 w-2.5">
-                    <span id="sync-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span id="sync-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-                </span>
-                <div class="text-[11px] leading-tight">
-                    <div class="text-gray-200 font-medium">
-                        Auto-refresh in <span id="countdown-seconds" class="text-luxuryGold font-bold font-mono">60</span>s
-                    </div>
-                    <div class="text-[10px] text-gray-400">
-                        Last checked: <span id="last-checked-time" class="font-mono text-gray-300">Initializing...</span>
-                    </div>
-                </div>
+    <section id="calendar-booking" class="py-24 bg-luxuryGrey border-t border-luxuryGold/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs tracking-[0.3em] text-luxuryGold uppercase font-bold block mb-2">Secure Your Private Experience</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold">Reserving Your Sanctuary</h2>
+                <div class="w-16 h-0.5 bg-luxuryGold mx-auto mt-4 mb-6"></div>
+                
+                <p class="text-gray-300 text-sm md:text-base max-w-3xl mx-auto italic font-serif border border-luxuryGold/30 gold-glow px-8 py-4 bg-luxuryGrey-dark/50 rounded-lg">
+                    "Guests desiring extended restoration are granted preferential terms. Select durations of 7, 14, or 30 days unlock premium fractional privileges. Synchronized directly with our Google Calendar estate roster."
+                </p>
             </div>
 
-            <button type="button" id="toggle-auto-btn" onclick="toggleAutoRefresh()" class="px-3 py-2.5 rounded-lg border border-luxuryGold/35 bg-luxuryGrey/80 text-[10px] uppercase tracking-wider font-semibold text-luxuryGold hover:bg-white/10 transition-colors cursor-pointer" title="Pause or Resume 60-second automatic polling">
-                <i id="auto-toggle-icon" class="fas fa-pause mr-1"></i>
-                <span id="auto-toggle-text">Auto: ON</span>
-            </button>
-        </div>
-    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <div class="lg:col-span-7 bg-luxuryGrey-dark p-6 rounded-lg border border-luxuryGold/30 gold-glow">
+                    <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div>
+                            <label class="text-xs uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Suite Preference</label>
+                            <div class="inline-flex rounded-md border border-luxuryGold/30 overflow-hidden">
+                                <button type="button" onclick="selectRoom(1)" id="room-btn-1" class="room-selector-btn px-4 py-2 text-xs uppercase tracking-wider bg-luxuryGold text-luxuryGrey-dark font-bold transition-all">Deluxe 1</button>
+                                <button type="button" onclick="selectRoom(2)" id="room-btn-2" class="room-selector-btn px-4 py-2 text-xs uppercase tracking-wider text-gray-300 hover:bg-white/5 transition-all">Deluxe 2</button>
+                                <button type="button" onclick="selectRoom(3)" id="room-btn-3" class="room-selector-btn px-4 py-2 text-xs uppercase tracking-wider text-gray-300 hover:bg-white/5 transition-all">Deluxe 3</button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col items-start sm:items-end gap-2">
+                            <div class="flex items-center space-x-3">
+                                <button onclick="navigateMonth(-1)" class="text-luxuryGold hover:text-white p-2 border border-luxuryGold/30 hover:border-luxuryGold rounded transition-colors" aria-label="Previous Month">
+                                    <i class="fas fa-chevron-left text-xs"></i>
+                                </button>
+                                <span class="text-xs tracking-wider uppercase text-gray-400 font-semibold">Shift Month</span>
+                                <button onclick="navigateMonth(1)" class="text-luxuryGold hover:text-white p-2 border border-luxuryGold/30 hover:border-luxuryGold rounded transition-colors" aria-label="Next Month">
+                                    <i class="fas fa-chevron-right text-xs"></i>
+                                </button>
+                            </div>
 
-    <!-- Consistent Footer matching index.html -->
-    <footer class="bg-luxuryGrey-dark text-white pt-12 pb-24 sm:pb-16 border-t border-luxuryGold/20">
+                            <div class="flex items-center space-x-2">
+                                <label for="visible-months-select" class="text-[10px] uppercase tracking-wider text-luxuryGold font-semibold">More Months:</label>
+                                <select id="visible-months-select" onchange="changeVisibleMonths(this.value)" class="bg-luxuryGrey border border-luxuryGold/30 rounded px-2.5 py-1 text-xs text-luxuryGold font-semibold focus:outline-none focus:border-luxuryGold cursor-pointer">
+                                    <option value="2" selected>2 Months</option>
+                                    <option value="3">3 Months</option>
+                                    <option value="4">4 Months</option>
+                                    <option value="5">5 Months</option>
+                                    <option value="6">6 Months</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="calendar-months-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    </div>
+                    
+                    <div class="border-t border-luxuryGold/20 pt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs text-gray-400 gap-4">
+                        <div class="flex flex-wrap items-center gap-4">
+                            <span class="flex items-center">
+                                <span class="w-3.5 h-3.5 bg-luxuryGold border border-luxuryGold shadow-[0_0_8px_rgba(212,175,55,0.4)] rounded-md mr-1.5 block"></span> 
+                                Selected
+                            </span>
+                            <span class="flex items-center">
+                                <span class="w-3.5 h-3.5 bg-neutral-800 border border-luxuryGold/30 rounded-md mr-1.5 block"></span> 
+                                Available
+                            </span>
+                            <span class="flex items-center">
+                                <span class="w-3.5 h-3.5 bg-red-950/40 border border-red-500/40 rounded-md mr-1.5 block relative overflow-hidden">
+                                    <span class="absolute inset-0 bg-gradient-to-tr from-transparent via-red-500/20 to-transparent"></span>
+                                </span> 
+                                <span class="text-red-400/80 font-semibold">Booked / Occupied</span>
+                            </span>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <p class="text-luxuryGold font-semibold">Check-in: after 2:00 PM</p>
+                            <p class="text-gray-400">Check-out: before 12:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-luxuryGrey-light p-8 rounded-lg border border-luxuryGold/30 gold-glow">
+                    <div class="flex items-center justify-between border-b border-luxuryGold/20 pb-4 mb-6">
+                        <h3 class="font-serif text-xl font-bold text-white tracking-wide">Booking Request</h3>
+                        <span class="text-[10px] text-red-400 font-semibold tracking-wider uppercase"><span class="font-bold">*</span> Mandatory</span>
+                    </div>
+                    
+                    <form id="booking-form" onsubmit="handleFormSubmission(event)" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="form-check-in" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Check-In <span class="text-red-400 font-bold">*</span></label>
+                                <input type="date" id="form-check-in" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer">
+                            </div>
+                            <div>
+                                <label for="form-check-out" class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Check-Out <span class="text-red-400 font-bold">*</span></label>
+                                <input type="date" id="form-check-out" onchange="handleDateInputChange()" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200 cursor-pointer">
+                            </div>
+                        </div>
+                        
+                        <div class="bg-luxuryGrey-dark/40 px-3 py-2 rounded border border-luxuryGold/30 flex justify-between items-center text-xs">
+                            <label for="form-room-select" class="text-gray-400 cursor-pointer">Room Selected <span class="text-red-400 font-bold">*</span>:</label>
+                            <select id="form-room-select" onchange="selectRoom(parseInt(this.value))" class="bg-luxuryGrey-dark text-luxuryGold font-bold tracking-wider uppercase text-xs border border-luxuryGold/30 rounded px-2 py-1 focus:outline-none focus:border-luxuryGold cursor-pointer">
+                                <option value="1">Deluxe 1</option>
+                                <option value="2">Deluxe 2</option>
+                                <option value="3">Deluxe 3</option>
+                            </select>
+                        </div>
+
+                        <div class="px-1 py-1 flex justify-between items-center text-xs">
+                            <span class="text-gray-400">Total Night Count:</span>
+                            <span id="form-nights-display" class="font-bold text-white">0 Nights</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Adults <span class="text-red-400 font-bold">*</span></label>
+                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1">
+                                    <button type="button" onclick="updateCounter('adults', -1)" class="w-8 h-8 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-sm transition-colors focus:outline-none">-</button>
+                                    <span id="count-adults" class="text-sm font-bold w-6 text-center">1</span>
+                                    <button type="button" onclick="updateCounter('adults', 1)" class="w-8 h-8 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-sm transition-colors focus:outline-none">+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Children</label>
+                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1">
+                                    <button type="button" onclick="updateCounter('children', -1)" class="w-8 h-8 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-sm transition-colors focus:outline-none">-</button>
+                                    <span id="count-children" class="text-sm font-bold w-6 text-center">0</span>
+                                    <button type="button" onclick="updateCounter('children', 1)" class="w-8 h-8 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-sm transition-colors focus:outline-none">+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block mb-2">Dogs / Cats</label>
+                                <div class="flex items-center justify-between bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-2 py-1">
+                                    <button type="button" onclick="updateCounter('pets', -1)" class="w-8 h-8 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-sm transition-colors focus:outline-none">-</button>
+                                    <span id="count-pets" class="text-sm font-bold w-6 text-center">0</span>
+                                    <button type="button" onclick="updateCounter('pets', 1)" class="w-8 h-8 rounded-full border border-luxuryGold/30 hover:border-luxuryGold hover:text-luxuryGold flex items-center justify-center text-sm transition-colors focus:outline-none">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <label class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block">Contact Detail</label>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="guest-firstname" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">First Name <span class="text-red-400 font-bold">*</span></label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"><i class="fas fa-user"></i></span>
+                                        <input type="text" id="guest-firstname" placeholder="First Name" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="guest-lastname" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Last Name <span class="text-red-400 font-bold">*</span></label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"><i class="fas fa-user"></i></span>
+                                        <input type="text" id="guest-lastname" placeholder="Last Name" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="guest-email" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">Email Address <span class="text-gray-400 font-normal lowercase italic">(* optional)</span></label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" id="guest-email" placeholder="Email Address" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="guest-whatsapp" class="text-[9px] uppercase tracking-widest text-luxuryGold font-semibold block mb-1">WhatsApp Number <span class="text-gray-400 font-normal lowercase italic">(* optional)</span></label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"><i class="fab fa-whatsapp text-green-500"></i></span>
+                                    <input type="tel" id="guest-whatsapp" placeholder="WhatsApp Number (with country code)" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded pl-9 pr-3 py-2 text-xs focus:outline-none focus:border-luxuryGold text-gray-200">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-luxuryGold/20 pt-4">
+                            <span class="text-[10px] uppercase tracking-widest text-luxuryGold font-semibold block">Bespoke Options</span>
+                            
+                            <label class="flex items-start space-x-3 text-xs text-gray-300 cursor-pointer py-1">
+                                <input type="checkbox" id="req-butler" class="mt-0.5 accent-luxuryGold rounded">
+                                <span>Request Private In-Villa Butler Service</span>
+                            </label>
+
+                            <div class="space-y-2 border-b border-luxuryGold/15 pb-2">
+                                <label class="flex items-start space-x-3 text-xs text-gray-300 cursor-pointer">
+                                    <input type="checkbox" id="req-pickup" onchange="toggleRequirementField('pickup')" class="mt-0.5 accent-luxuryGold rounded">
+                                    <span>Airport / Regional VIP Pickup</span>
+                                </label>
+                                <div id="pickup-details" class="hidden pl-6 space-y-2">
+                                    <input type="text" id="pickup-location" placeholder="Pickup Location (e.g., DPS Airport)" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold">
+                                    <input type="time" id="pickup-time" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold">
+                                </div>
+                            </div>
+
+                            <div class="space-y-2 border-b border-luxuryGold/15 pb-2">
+                                <label class="flex items-start space-x-3 text-xs text-gray-300 cursor-pointer">
+                                    <input type="checkbox" id="req-dropoff" onchange="toggleRequirementField('dropoff')" class="mt-0.5 accent-luxuryGold rounded">
+                                    <span>Exclusive Departure Drop-off</span>
+                                </label>
+                                <div id="dropoff-details" class="hidden pl-6 space-y-2">
+                                    <input type="text" id="dropoff-location" placeholder="Drop-off Destination" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold">
+                                    <input type="time" id="dropoff-arrival" class="w-full bg-luxuryGrey-dark border border-luxuryGold/30 rounded px-3 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-luxuryGold">
+                                </div>
+                            </div>
+
+                            <label class="flex items-start space-x-3 text-xs text-gray-300 cursor-pointer py-1">
+                                <input type="checkbox" id="req-doublebed" class="mt-0.5 accent-luxuryGold rounded">
+                                <span>Extra Luxury Double Bed Setup</span>
+                            </label>
+                            
+                            <label class="flex items-start space-x-3 text-xs text-gray-300 cursor-pointer py-1">
+                                <input type="checkbox" id="req-babycot" class="mt-0.5 accent-luxuryGold rounded">
+                                <span>Private Premium Baby Cot</span>
+                            </label>
+                        </div>
+
+                        <div class="space-y-3">
+                            <button type="submit" id="submit-btn" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-semibold text-xs tracking-[0.2em] uppercase py-4 rounded transition-all duration-300 gold-glow">
+                                Request Sanctuary Booking
+                            </button>
+                            <a href="mailto:AlamBaliVilla.Indo@gmail.com?subject=Inquiries%20to%20Alam%20Bali%20Villa" class="w-full mt-2 block text-center border border-luxuryGold/40 hover:border-luxuryGold text-luxuryGold hover:bg-white/5 font-semibold text-xs tracking-[0.15em] uppercase py-4 rounded transition-all duration-300">
+                                other email inquiries: AlamBaliVilla.Indo@gmail.com
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 max-w-7xl mx-auto px-6">
+        <div class="w-[80%] mx-auto h-[450px] relative rounded-lg border border-luxuryGold/30 gold-glow p-0.5">
+            <div class="w-full h-full rounded-[7px] overflow-hidden relative">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.139724467172!2d114.89806951149696!3d-8.188676791808877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd17801baf3aae5%3A0x57ea86f5a9ea1fcd!2sAlam%20Bali%20Villa!5e0!3m2!1sen!2sth!4v1781936873050!5m2!1sen!2sth" 
+                    class="w-full h-full border-0 absolute inset-0 z-10" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-luxuryGrey-dark text-white py-12 border-t border-luxuryGold/20">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex flex-col items-center md:items-start">
                 <span class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-luxuryGold">Alam Bali</span>
                 <span class="text-[8px] tracking-[0.4em] text-white uppercase font-semibold">Villa</span>
                 <!-- Version Date/Time Stamp -->
-                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261116_215000</span>
+                <span class="text-[9px] tracking-[0.15em] text-gray-400/80 font-mono mt-1 select-none">261116_131800</span>
             </div>
             
             <div class="text-center md:text-right text-xs text-gray-400 space-y-2">
@@ -356,224 +927,784 @@
         </div>
     </footer>
 
+    <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-luxuryGrey-light w-full max-w-xl rounded-lg border border-luxuryGold/30 overflow-hidden shadow-2xl transition-all scale-95 duration-300" id="modal-box">
+            <div class="bg-luxuryGrey-dark p-6 border-b border-luxuryGold/20 flex items-center justify-center relative text-center">
+                <div class="flex items-center justify-center space-x-2 text-center">
+                    <i class="fas fa-shield-halved text-luxuryGold text-xl"></i>
+                    <h4 class="font-serif text-lg font-bold tracking-wide text-center">Verify Your Inquiry</h4>
+                </div>
+                <button onclick="closeModal()" class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors" aria-label="Close Modal">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 space-y-4 max-h-[60vh] overflow-y-auto">
+                <div class="text-xs text-gray-300 leading-relaxed text-center" id="modal-intro-text">
+                    Please review the customized details of your stay at Alam Bali Villa.
+                </div>
+                
+                <div id="modal-summary-container" class="bg-luxuryGrey-dark p-4 rounded border border-luxuryGold/20 space-y-2.5 text-xs">
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">First Name:</span>
+                        <span id="summary-first-name" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Last Name:</span>
+                        <span id="summary-last-name" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Selected Quarter:</span>
+                        <span id="summary-room" class="font-bold text-luxuryGold uppercase">Deluxe 1</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Check-in Date:</span>
+                        <span id="summary-checkin" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Check-out Date:</span>
+                        <span id="summary-checkout" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Total Nights Duration:</span>
+                        <span id="summary-nights" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Adults:</span>
+                        <span id="summary-adults" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Children:</span>
+                        <span id="summary-children" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Pets:</span>
+                        <span id="summary-pets" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Contact Details:</span>
+                        <span id="summary-contact" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-luxuryGold/15 pb-2">
+                        <span class="text-gray-400">Submitted:</span>
+                        <span id="summary-submitted-time" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between pb-1">
+                        <span class="text-gray-400">Sent:</span>
+                        <span id="summary-sent-time" class="font-bold text-luxuryGold">NULL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-luxuryGrey-dark p-4 border-t border-luxuryGold/20 flex items-center justify-end space-x-3">
+                <button type="button" onclick="closeModal()" class="px-5 py-2.5 rounded border border-luxuryGold/30 text-xs font-semibold uppercase text-gray-400 hover:text-white hover:bg-white/5 transition-all tracking-wider focus:outline-none">
+                    Cancel Request
+                </button>
+                <button type="button" id="modal-confirm-btn" onclick="confirmBooking()" class="px-5 py-2.5 rounded bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark text-xs font-bold uppercase tracking-wider transition-all gold-glow focus:outline-none">
+                    Confirm & Send
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-toast" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-luxuryGrey-light w-full max-w-md rounded-lg border border-luxuryGold/30 p-6 shadow-2xl gold-glow text-center space-y-4">
+            <div class="w-12 h-12 bg-luxuryGold/10 border border-luxuryGold/30 rounded-full flex items-center justify-center mx-auto text-luxuryGold text-xl">
+                <i class="fas fa-check"></i>
+            </div>
+            <div>
+                <h4 class="font-serif text-lg font-bold text-white mb-1">Sanctuary Request Updated!</h4>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                    Your reservation hold has been logged into our Calendar system. Also, the booking information has been sent to your email.
+                </p>
+            </div>
+            <div class="bg-luxuryGrey-dark p-3.5 rounded border border-luxuryGold/20">
+                <span class="text-[10px] uppercase tracking-widest text-luxuryGold font-bold block mb-1">Booking Request Pending</span>
+                <p class="text-xs font-medium text-gray-200">Your booking is Pending & we will confirm in 24 hours.</p>
+                <div class="mt-2.5 pt-2 border-t border-luxuryGold/15 text-[11px] text-gray-400 space-y-1 text-left">
+                    <div class="flex justify-between">
+                        <span>Submitted:</span>
+                        <span id="toast-submitted-time" class="text-white font-semibold">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Sent:</span>
+                        <span id="toast-sent-time" class="text-luxuryGold font-semibold">-</span>
+                    </div>
+                </div>
+            </div>
+            <button type="button" onclick="document.getElementById('success-toast').classList.add('hidden')" class="w-full bg-luxuryGold hover:bg-luxuryGold-dark text-luxuryGrey-dark font-bold text-xs uppercase tracking-widest py-3.5 rounded transition-all gold-glow">
+                Close Window
+            </button>
+        </div>
+    </div>
+
     <script>
-        // Base64 Calendar IDs corresponding to the 3 shared Google Calendars (Read-Only Public Embeds)
-        const CALENDAR_SOURCES = {
-            1: 'ZjE2ZmNhNTIzMDM5ZTBiMmJkY2Y0M2FlM2VlMDQ5M2ViMDBiZWE3Zjk5MTkyNzNjZTNjMjc2ODIxYTRjZDMyZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t',
-            2: 'ZGNlZGY0ODhhZjJmZDkxZjZhNWJhNWRiNTk5YTBlM2M3NzRiNjg1MjlkNzcxNjU0MGIyNjczZjlhMzM5YWNiNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t',
-            3: 'NGE2NTBiNjc0NGFlMWExNTEyYTgwYmIxNWNiM2Y5OTQ5NDcwNGMwOTc4ZWMxOTgxODI3MmE2ZjI5ZTBjNWZmYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t'
-        };
+        let selectedRoom = 1;
+        let currentDate = new Date();
+        let displayMonth = currentDate.getMonth();
+        let displayYear = currentDate.getFullYear();
+        let checkInDate = null;
+        let checkOutDate = null;
+        let visibleMonthsCount = 2;
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const guests = { adults: 1, children: 0, pets: 0 };
 
-        let currentViewMode = 'MONTH'; // 'MONTH', 'AGENDA', or 'WEEK'
-        let autoRefreshEnabled = true;
-        let countdownValue = 60;
-        let countdownInterval = null;
-        let previousSnapshot = null;
+        let track;
+        let trackIndex = 1;
+        const totalSlides = 5;
+        let totalAll = 7;
+        let slideTimer;
+        let isDragging = false;
+        let startX = 0;
+        let dragMoved = false;
 
-        function formatTimeNow() {
-            const now = new Date();
-            return now.toTimeString().split(' ')[0];
+        function initCarouselClones() {
+            track = document.getElementById('carousel-track');
+            const viewport = document.getElementById('carousel-viewport');
+            if (!track || track.children.length === 0) return;
+            if (document.getElementById('slide-clone-first')) return;
+            
+            const originalSlides = Array.from(track.children);
+            totalAll = originalSlides.length + 2;
+            
+            const firstClone = originalSlides[0].cloneNode(true);
+            firstClone.id = 'slide-clone-first';
+            
+            const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
+            lastClone.id = 'slide-clone-last';
+            
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, originalSlides[0]);
+            
+            track.style.width = `${totalAll * 100}%`;
+            const slideWidthPercent = 100 / totalAll;
+            
+            Array.from(track.children).forEach(slide => {
+                slide.style.width = `${slideWidthPercent}%`;
+            });
+            
+            track.style.transition = 'none';
+            trackIndex = 1;
+            const initialShift = -(trackIndex * slideWidthPercent);
+            track.style.transform = `translateX(${initialShift}%)`;
+            
+            updateSlideGlows(1);
+            updateDots(0);
+
+            track.addEventListener('transitionend', handleTrackTransitionEnd);
+
+            if (viewport) {
+                viewport.addEventListener('touchstart', touchStart, { passive: true });
+                viewport.addEventListener('touchmove', touchMove, { passive: true });
+                viewport.addEventListener('touchend', touchEnd);
+                viewport.addEventListener('mousedown', dragStart);
+                viewport.addEventListener('mousemove', dragMove);
+                viewport.addEventListener('mouseup', dragEnd);
+                viewport.addEventListener('mouseleave', dragEnd);
+            }
         }
 
-        function buildEmbedUrl(roomNum, mode, cacheBust) {
-            const srcId = CALENDAR_SOURCES[roomNum];
-            const cb = cacheBust || Date.now();
-            return `https://calendar.google.com/calendar/embed?height=540&wkst=1&ctz=Asia%2FMakassar&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=${encodeURIComponent(mode)}&src=${srcId}&color=%23D4AF37&_cb=${cb}`;
+        function touchStart(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            dragMoved = false;
+            clearInterval(slideTimer);
         }
 
-        function setCalendarViewMode(mode) {
-            currentViewMode = mode;
-            document.querySelectorAll('.view-mode-btn').forEach(btn => {
-                if (btn.id === `mode-btn-${mode}`) {
+        function touchMove(e) {
+            if (!isDragging) return;
+            const diffX = e.touches[0].clientX - startX;
+            if (Math.abs(diffX) > 10) dragMoved = true;
+        }
+
+        function touchEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            if (dragMoved) {
+                const endX = e.changedTouches ? e.changedTouches[0].clientX : startX;
+                const diffX = endX - startX;
+                if (diffX < -35) nextSlide();
+                else if (diffX > 35) prevSlide();
+            }
+            resetSlideTimer();
+        }
+
+        function dragStart(e) {
+            e.preventDefault();
+            startX = e.clientX;
+            isDragging = true;
+            dragMoved = false;
+            clearInterval(slideTimer);
+            if (track) track.style.cursor = 'grabbing';
+        }
+
+        function dragMove(e) {
+            if (!isDragging) return;
+            const diffX = e.clientX - startX;
+            if (Math.abs(diffX) > 10) dragMoved = true;
+        }
+
+        function dragEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            if (track) track.style.cursor = 'grab';
+            if (dragMoved) {
+                const endX = e.clientX;
+                const diffX = endX - startX;
+                if (diffX < -35) nextSlide();
+                else if (diffX > 35) prevSlide();
+            }
+            resetSlideTimer();
+        }
+
+        function handleTrackTransitionEnd(e) {
+            if (e && e.target && e.target !== track) return;
+            const slideWidthPercent = 100 / totalAll;
+
+            if (trackIndex === 0) {
+                track.style.transition = 'none';
+                trackIndex = totalSlides;
+                track.style.transform = `translateX(${-trackIndex * slideWidthPercent}%)`;
+                void track.offsetWidth;
+                updateSlideGlows(trackIndex);
+                updateDots(totalSlides - 1);
+            } else if (trackIndex === totalAll - 1) {
+                track.style.transition = 'none';
+                trackIndex = 1;
+                track.style.transform = `translateX(${-1 * slideWidthPercent}%)`;
+                void track.offsetWidth;
+                updateSlideGlows(1);
+                updateDots(0);
+            }
+        }
+
+        function updateDots(realIdx) {
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    if (i === realIdx) {
+                        dot.className = "carousel-dot w-6 h-2 rounded-full bg-luxuryGold transition-all duration-300";
+                    } else {
+                        dot.className = "carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300";
+                    }
+                }
+            }
+        }
+
+        function updateSlideGlows(targetIdx) {
+            if (!track) return;
+            const slides = Array.from(track.children);
+            slides.forEach((slide, idx) => {
+                const card = slide.querySelector('.gold-glow-card');
+                if (card) {
+                    if (idx === targetIdx) {
+                        card.classList.add('gold-glow', 'border-luxuryGold/30');
+                        card.classList.remove('border-transparent');
+                    } else {
+                        card.classList.remove('gold-glow', 'border-luxuryGold/30');
+                        card.classList.add('border-transparent');
+                    }
+                }
+            });
+        }
+
+        function moveToTrackIndex(targetIdx) {
+            if (!track) return;
+            const slideWidthPercent = 100 / totalAll;
+            
+            track.style.transition = 'transform 500ms cubic-bezier(0.25, 1, 0.5, 1)';
+            track.style.transform = `translateX(${-targetIdx * slideWidthPercent}%)`;
+            trackIndex = targetIdx;
+
+            let realIdx = (targetIdx - 1 + totalSlides) % totalSlides;
+            if (realIdx < 0) realIdx += totalSlides;
+            
+            updateDots(realIdx);
+            updateSlideGlows(targetIdx);
+        }
+
+        function nextSlide() {
+            if (trackIndex >= totalAll - 1) {
+                const slideWidthPercent = 100 / totalAll;
+                track.style.transition = 'none';
+                trackIndex = 1;
+                track.style.transform = `translateX(${-1 * slideWidthPercent}%)`;
+                void track.offsetWidth;
+                updateSlideGlows(1);
+            }
+            moveToTrackIndex(trackIndex + 1);
+            resetSlideTimer();
+        }
+
+        function prevSlide() {
+            if (trackIndex <= 0) {
+                const slideWidthPercent = 100 / totalAll;
+                track.style.transition = 'none';
+                trackIndex = totalSlides;
+                track.style.transform = `translateX(${-totalSlides * slideWidthPercent}%)`;
+                void track.offsetWidth;
+                updateSlideGlows(totalSlides);
+            }
+            moveToTrackIndex(trackIndex - 1);
+            resetSlideTimer();
+        }
+
+        function goToSlide(idx) {
+            moveToTrackIndex(idx + 1);
+            resetSlideTimer();
+        }
+
+        function resetSlideTimer() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(nextSlide, 7000);
+        }
+
+        function changeVisibleMonths(count) {
+            visibleMonthsCount = parseInt(count, 10) || 2;
+            renderCalendar();
+        }
+
+        function selectRoom(roomNum) {
+            selectedRoom = roomNum;
+            document.querySelectorAll('.room-selector-btn').forEach((btn, idx) => {
+                if (idx + 1 === roomNum) {
+                    btn.classList.remove('text-gray-300', 'hover:bg-white/5');
                     btn.classList.add('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
-                    btn.classList.remove('text-gray-300', 'hover:text-white', 'font-semibold');
                 } else {
                     btn.classList.remove('bg-luxuryGold', 'text-luxuryGrey-dark', 'font-bold');
-                    btn.classList.add('text-gray-300', 'hover:text-white', 'font-semibold');
+                    btn.classList.add('text-gray-300', 'hover:bg-white/5');
                 }
             });
-            reloadAllIframes();
+
+            const formSelect = document.getElementById('form-room-select');
+            if (formSelect) formSelect.value = roomNum.toString();
+
+            checkInDate = null;
+            checkOutDate = null;
+            updateFormFields();
+            renderCalendar();
         }
 
-        function reloadAllIframes() {
-            const ts = Date.now();
-            [1, 2, 3].forEach(roomNum => {
-                const oldIframe = document.getElementById(`gcal-iframe-${roomNum}`);
-                if (oldIframe && oldIframe.parentNode) {
-                    const freshIframe = document.createElement('iframe');
-                    freshIframe.id = `gcal-iframe-${roomNum}`;
-                    freshIframe.title = `Alam Bali Villa Deluxe ${roomNum} Google Calendar`;
-                    freshIframe.className = 'w-full h-full border-0 gcal-dark-frame';
-                    freshIframe.loading = 'eager';
-                    freshIframe.src = buildEmbedUrl(roomNum, currentViewMode, `${ts}_${roomNum}`);
-                    oldIframe.parentNode.replaceChild(freshIframe, oldIframe);
+        function isDayFree(year, month, day, room) {
+            const mm = String(month + 1).padStart(2, '0');
+            const dd = String(day).padStart(2, '0');
+            const dateStr = `${year}-${mm}-${dd}`;
+
+            if (window.liveBookedDates && window.liveBookedDates[room]) {
+                return !window.liveBookedDates[room].includes(dateStr);
+            }
+            return true;
+        }
+
+        function renderCalendar() {
+            const container = document.getElementById('calendar-months-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            if (visibleMonthsCount > 2) {
+                container.className = "grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 max-h-[620px] overflow-y-auto pr-2 custom-scrollbar";
+            } else {
+                container.className = "grid grid-cols-1 md:grid-cols-2 gap-6 mb-6";
+            }
+
+            for (let m = 0; m < visibleMonthsCount; m++) {
+                let mIdx = (displayMonth + m) % 12;
+                let yIdx = displayYear + Math.floor((displayMonth + m) / 12);
+
+                const monthCard = document.createElement('div');
+                monthCard.className = "bg-luxuryGrey-light/20 p-4 rounded-lg border border-luxuryGold/25";
+
+                const monthTitle = document.createElement('h4');
+                monthTitle.className = "font-serif text-sm font-bold text-center tracking-wider text-white mb-3";
+                monthTitle.innerText = `${monthNames[mIdx]} ${yIdx}`;
+                monthCard.appendChild(monthTitle);
+
+                const daysHeader = document.createElement('div');
+                daysHeader.className = "grid grid-cols-7 gap-1 text-center text-[10px] tracking-widest text-luxuryGold font-semibold uppercase mb-2 border-b border-luxuryGold/20 pb-1";
+                daysHeader.innerHTML = "<div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>";
+                monthCard.appendChild(daysHeader);
+
+                const daysGrid = document.createElement('div');
+                daysGrid.className = "grid grid-cols-7 gap-1.5";
+
+                buildSingleCalendarGrid(daysGrid, yIdx, mIdx);
+
+                monthCard.appendChild(daysGrid);
+                container.appendChild(monthCard);
+            }
+        }
+
+        function buildSingleCalendarGrid(gridElement, year, month) {
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            for (let i = 0; i < firstDayIndex; i++) {
+                gridElement.appendChild(document.createElement('div'));
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateObj = new Date(year, month, day);
+                const isFree = isDayFree(year, month, day, selectedRoom);
+                const isPast = dateObj < new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+                
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.innerText = day;
+                btn.classList.add('calendar-day-transition', 'aspect-square', 'rounded-md', 'text-xs', 'flex', 'items-center', 'justify-center', 'font-medium', 'border');
+                
+                const isSelected = (checkInDate && checkInDate.getTime() === dateObj.getTime()) || (checkOutDate && checkOutDate.getTime() === dateObj.getTime());
+                const isBetween = checkInDate && checkOutDate && dateObj > checkInDate && dateObj < checkOutDate;
+
+                if (isPast) {
+                    btn.classList.add('bg-neutral-900/40', 'border-transparent', 'text-gray-600', 'cursor-not-allowed');
+                    btn.disabled = true;
+                } else if (!isFree) {
+                    btn.classList.add('bg-red-950/40', 'border-red-500/40', 'text-red-400/80', 'line-through', 'cursor-not-allowed');
+                    btn.disabled = true;
+                } else {
+                    if (isSelected) {
+                        btn.classList.add('bg-luxuryGold', 'text-luxuryGrey-dark', 'border-luxuryGold', 'font-bold');
+                    } else if (isBetween) {
+                        btn.classList.add('bg-luxuryGold/25', 'text-luxuryGold-light', 'border-luxuryGold/40');
+                    } else {
+                        btn.classList.add('bg-neutral-800', 'border-luxuryGold/25', 'text-white', 'hover:border-luxuryGold');
+                    }
+                    btn.onclick = () => selectDate(dateObj);
                 }
-            });
+                gridElement.appendChild(btn);
+            }
         }
 
-        async function checkCalendarChangesAndSync() {
-            const icon = document.getElementById('refresh-btn-icon');
-            if (icon) icon.classList.add('fa-spin');
+        function selectDate(date) {
+            if (!checkInDate) {
+                checkInDate = date;
+            } else if (!checkOutDate) {
+                if (date <= checkInDate) {
+                    checkInDate = date;
+                } else if (validateSelectionSequence(checkInDate, date)) {
+                    checkOutDate = date;
+                } else {
+                    checkInDate = date;
+                }
+            } else {
+                checkInDate = date;
+                checkOutDate = null;
+            }
+            updateFormFields();
+            renderCalendar();
+        }
 
-            const checkedEl = document.getElementById('last-checked-time');
-            const nowStr = formatTimeNow();
-            if (checkedEl) checkedEl.innerText = nowStr;
+        function validateSelectionSequence(start, end) {
+            let temp = new Date(start.getTime());
+            while (temp < end) {
+                if (!isDayFree(temp.getFullYear(), temp.getMonth(), temp.getDate(), selectedRoom)) {
+                    return false;
+                }
+                temp.setDate(temp.getDate() + 1);
+            }
+            return true;
+        }
 
-            let detectedChanges = [];
+        function navigateMonth(dir) {
+            displayMonth += dir;
+            if (displayMonth > 11) { displayMonth = 0; displayYear++; }
+            if (displayMonth < 0) { displayMonth = 11; displayYear--; }
+            renderCalendar();
+        }
 
+        function handleDateInputChange() {
+            const inVal = document.getElementById('form-check-in').value;
+            const outVal = document.getElementById('form-check-out').value;
+
+            if (inVal) {
+                const [y, m, d] = inVal.split('-').map(Number);
+                checkInDate = new Date(y, m - 1, d);
+            } else {
+                checkInDate = null;
+            }
+
+            if (outVal) {
+                const [y, m, d] = outVal.split('-').map(Number);
+                checkOutDate = new Date(y, m - 1, d);
+            } else {
+                checkOutDate = null;
+            }
+
+            updateFormFields();
+            renderCalendar();
+        }
+
+        function updateFormFields() {
+            const checkInInput = document.getElementById('form-check-in');
+            const checkOutInput = document.getElementById('form-check-out');
+            const nightsDisplay = document.getElementById('form-nights-display');
+            
+            if (checkInInput) checkInInput.value = checkInDate ? formatDateString(checkInDate) : '';
+            if (checkOutInput) checkOutInput.value = checkOutDate ? formatDateString(checkOutDate) : '';
+
+            if (checkInDate && checkOutDate) {
+                const diffTime = Math.abs(checkOutDate - checkInDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                if (nightsDisplay) nightsDisplay.innerText = `${diffDays} Night${diffDays > 1 ? 's' : ''}`;
+            } else {
+                if (nightsDisplay) nightsDisplay.innerText = '0 Nights';
+            }
+        }
+
+        function formatDateString(date) {
+            if (!date) return '';
+            const dd = String(date.getDate()).padStart(2, '0');
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            return `${date.getFullYear()}-${mm}-${dd}`;
+        }
+
+        function formatDateTimeStamp(date) {
+            if (!date) return 'NULL';
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+            const hh = String(date.getHours()).padStart(2, '0');
+            const min = String(date.getMinutes()).padStart(2, '0');
+            const ss = String(date.getSeconds()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd} @${hh}:${min}:${ss}`;
+        }
+
+        function updateCounter(type, change) {
+            guests[type] = Math.max(0, guests[type] + change);
+            if (type === 'adults' && guests.adults === 0) guests.adults = 1;
+            document.getElementById(`count-${type}`).innerText = guests[type];
+        }
+
+        function toggleRequirementField(type) {
+            const checkbox = document.getElementById(`req-${type}`);
+            const detailsDiv = document.getElementById(`${type}-details`);
+            if (checkbox && detailsDiv) {
+                if (checkbox.checked) detailsDiv.classList.remove('hidden');
+                else detailsDiv.classList.add('hidden');
+            }
+        }
+
+        async function fetchLiveCalendarAvailability() {
             try {
                 const endpoints = [
                     '/.netlify/functions/get_availability_function',
                     '/.netlify/functions/get-availability'
                 ];
-
+                
                 for (const url of endpoints) {
                     try {
                         const response = await fetch(`${url}?t=${Date.now()}`);
                         if (!response.ok) continue;
                         const data = await response.json();
                         if (data && data.success && data.bookedDates) {
-                            const currentSnapshot = {
-                                1: [...(data.bookedDates[1] || [])].sort(),
-                                2: [...(data.bookedDates[2] || [])].sort(),
-                                3: [...(data.bookedDates[3] || [])].sort()
-                            };
-
-                            if (previousSnapshot !== null) {
-                                [1, 2, 3].forEach(roomNum => {
-                                    const prevSet = new Set(previousSnapshot[roomNum]);
-                                    const currSet = new Set(currentSnapshot[roomNum]);
-                                    const added = currentSnapshot[roomNum].filter(d => !prevSet.has(d));
-                                    const removed = previousSnapshot[roomNum].filter(d => !currSet.has(d));
-
-                                    if (added.length > 0 || removed.length > 0) {
-                                        let summary = `Deluxe ${roomNum}: `;
-                                        const parts = [];
-                                        if (added.length > 0) parts.push(`+${added.length} date(s) added (${added.slice(0, 3).join(', ')}${added.length > 3 ? '...' : ''})`);
-                                        if (removed.length > 0) parts.push(`-${removed.length} date(s) cleared`);
-                                        summary += parts.join(', ');
-                                        detectedChanges.push({ roomNum, summary });
-                                    }
-                                });
-                            }
-
-                            previousSnapshot = currentSnapshot;
-                            break;
+                            window.liveBookedDates = data.bookedDates;
+                            renderCalendar();
+                            return;
                         }
                     } catch (e) {
-                        // Continue to fallback endpoint or direct iframe reload
+                        console.warn('Single endpoint fetch error:', e);
                     }
                 }
             } catch (err) {
-                console.warn('Availability poll warning:', err);
+                console.warn('Live availability error:', err);
             }
-
-            // Reload all 3 Google Calendar iframes on manual refresh, on detected change, or on every 60-second cycle
-            reloadAllIframes();
-
-            if (detectedChanges.length > 0) {
-                showChangeNotification(detectedChanges, nowStr);
-            }
-
-            setTimeout(() => {
-                if (icon) icon.classList.remove('fa-spin');
-            }, 600);
         }
 
-        function showChangeNotification(changes, timeStr) {
-            const banner = document.getElementById('change-alert-banner');
-            const timeEl = document.getElementById('change-alert-time');
-            const detailsEl = document.getElementById('change-alert-details');
-            const dock = document.getElementById('floating-refresh-dock');
+        function openModal() {
+            const modal = document.getElementById('booking-modal');
+            const modalBox = document.getElementById('modal-box');
+            if (modal && modalBox) {
+                modal.classList.remove('hidden');
+                setTimeout(() => modalBox.classList.replace('scale-95', 'scale-100'), 50);
+            }
+        }
 
-            if (timeEl) timeEl.innerText = timeStr;
-            if (detailsEl) {
-                detailsEl.innerText = `Calendar change detected automatically — ${changes.map(c => c.summary).join(' • ')}`;
+        function closeModal() {
+            const modal = document.getElementById('booking-modal');
+            const modalBox = document.getElementById('modal-box');
+            if (modal && modalBox) {
+                modalBox.classList.replace('scale-100', 'scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 150);
             }
-            if (banner) {
-                banner.classList.remove('hidden');
-            }
-            if (dock) {
-                dock.classList.add('border-luxuryGold', 'change-alert-glow');
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            if (!checkInDate || !checkOutDate) {
+                alert('Please select Check-In and Check-Out dates on the availability calendar.');
+                return;
             }
 
-            // Highlight updated suite badges & cards
-            [1, 2, 3].forEach(r => {
-                const badge = document.getElementById(`badge-room-${r}`);
-                const card = document.getElementById(`cal-card-${r}`);
-                const changed = changes.some(c => c.roomNum === r);
-                if (badge) badge.classList.toggle('hidden', !changed);
-                if (card) {
-                    if (changed) {
-                        card.classList.add('border-luxuryGold', 'change-alert-glow');
-                    } else {
-                        card.classList.remove('change-alert-glow');
+            const firstName = document.getElementById('guest-firstname').value.trim();
+            const lastName = document.getElementById('guest-lastname').value.trim();
+            if (!firstName || !lastName) {
+                alert('Please enter your First and Last Name.');
+                return;
+            }
+
+            document.getElementById('summary-first-name').innerText = firstName;
+            document.getElementById('summary-last-name').innerText = lastName;
+            document.getElementById('summary-room').innerText = `Deluxe Suite ${selectedRoom}`;
+            document.getElementById('summary-checkin').innerText = formatDateString(checkInDate);
+            document.getElementById('summary-checkout').innerText = formatDateString(checkOutDate);
+            
+            const diffDays = Math.ceil(Math.abs(checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+            document.getElementById('summary-nights').innerText = `${diffDays} Night${diffDays > 1 ? 's' : ''}`;
+            document.getElementById('summary-adults').innerText = `${guests.adults}`;
+            document.getElementById('summary-children').innerText = `${guests.children}`;
+            document.getElementById('summary-pets').innerText = `${guests.pets}`;
+
+            const emailVal = document.getElementById('guest-email').value.trim();
+            const waVal = document.getElementById('guest-whatsapp').value.trim();
+            document.getElementById('summary-contact').innerText = `Email: ${emailVal || 'None'} | WhatsApp: ${waVal || 'None'}`;
+
+            const submittedStamp = formatDateTimeStamp(new Date());
+            window.lastSubmittedTimestamp = submittedStamp;
+            const subEl = document.getElementById('summary-submitted-time');
+            const sentEl = document.getElementById('summary-sent-time');
+            if (subEl) subEl.innerText = submittedStamp;
+            if (sentEl) sentEl.innerText = 'NULL';
+
+            openModal();
+        }
+
+        async function confirmBooking() {
+            const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+            if (modalConfirmBtn) {
+                modalConfirmBtn.disabled = true;
+                modalConfirmBtn.innerText = 'SENDING...';
+            }
+            const confirmBtn = document.getElementById('submit-btn');
+            if (confirmBtn) {
+                confirmBtn.disabled = true;
+                confirmBtn.innerText = 'PROCESSING...';
+            }
+
+            const firstName = document.getElementById('guest-firstname').value.trim();
+            const lastName = document.getElementById('guest-lastname').value.trim();
+            const emailVal = document.getElementById('guest-email').value.trim();
+            const waVal = document.getElementById('guest-whatsapp').value.trim();
+            
+            const checkin = formatDateString(checkInDate);
+            const checkout = formatDateString(checkOutDate);
+            const diffDays = Math.ceil(Math.abs(checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+            const nights = `${diffDays} Night${diffDays > 1 ? 's' : ''}`;
+
+            const butlerChecked = document.getElementById('req-butler').checked;
+            const pickupChecked = document.getElementById('req-pickup').checked;
+            const dropoffChecked = document.getElementById('req-dropoff').checked;
+            const doublebedChecked = document.getElementById('req-doublebed').checked;
+            const babycotChecked = document.getElementById('req-babycot').checked;
+
+            const pickupLoc = document.getElementById('pickup-location').value.trim();
+            const pickupTime = document.getElementById('pickup-time').value.trim();
+            const pickupAnswer = pickupChecked
+                ? `${pickupLoc || 'DPS Airport'}${pickupTime ? ' @' + pickupTime : ''}`
+                : 'NA';
+
+            const dropoffLoc = document.getElementById('dropoff-location').value.trim();
+            const dropoffTime = document.getElementById('dropoff-arrival').value.trim();
+            const dropoffAnswer = dropoffChecked
+                ? `${dropoffLoc || 'Unspecified'}${dropoffTime ? ' @' + dropoffTime : ''}`
+                : 'NA';
+
+            const addOns = [
+                `In-Villa Butler Service: ${butlerChecked ? 'Yes' : 'NA'}`,
+                `VIP Pickup: ${pickupAnswer}`,
+                `Departure Drop-off: ${dropoffAnswer}`,
+                `Extra Luxury Double Bed: ${doublebedChecked ? 'Yes' : 'NA'}`,
+                `Private Premium Baby Cot: ${babycotChecked ? 'Yes' : 'NA'}`
+            ];
+
+            const sentStamp = formatDateTimeStamp(new Date());
+            const submittedStamp = window.lastSubmittedTimestamp || sentStamp;
+            const sentEl = document.getElementById('summary-sent-time');
+            if (sentEl) sentEl.innerText = sentStamp;
+
+            const calendarWhatsappFormatter = `${waVal || 'Not provided'}\n• First Name: ${firstName}\n• Last Name: ${lastName}\n• Adults: ${guests.adults}\n• Children: ${guests.children}\n• Pets: ${guests.pets}\n• Check-in Date: ${checkin}\n• Check-out Date: ${checkout}\n• Total Nights Duration: ${nights}<!--`;
+            const calendarNightsFormatter = `-->\n`;
+
+            const baseAddOns = [...addOns];
+            baseAddOns[0] = `-->• ${baseAddOns[0]}`;
+            baseAddOns[baseAddOns.length - 1] = `${baseAddOns[baseAddOns.length - 1]}\n\n• Submitted: ${submittedStamp}\n• Sent: ${sentStamp}\n`;
+
+            const payload = {
+                firstName,
+                lastName,
+                email: emailVal,
+                whatsapp: calendarWhatsappFormatter,
+                roomNumber: selectedRoom,
+                checkIn: checkin,
+                checkOut: checkout,
+                nights: calendarNightsFormatter,
+                stayNights: nights,
+                submitted: submittedStamp,
+                sent: sentStamp,
+                submittedAt: submittedStamp,
+                sentAt: sentStamp,
+                guests,
+                addOns: baseAddOns
+            };
+
+            const endpoints = [
+                '/.netlify/functions/process_booking_function',
+                '/.netlify/functions/process-booking'
+            ];
+
+            let submitted = false;
+            let errorMessage = '';
+
+            for (const url of endpoints) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    if (result && result.success) {
+                        submitted = true;
+                        break;
+                    } else if (result && result.error) {
+                        errorMessage = result.error;
                     }
+                } catch (e) {
+                    console.warn('Booking endpoint attempt error:', e);
                 }
-            });
-        }
+            }
 
-        function dismissChangeBanner() {
-            const banner = document.getElementById('change-alert-banner');
-            const dock = document.getElementById('floating-refresh-dock');
-            if (banner) banner.classList.add('hidden');
-            if (dock) dock.classList.remove('change-alert-glow');
-            [1, 2, 3].forEach(r => {
-                const badge = document.getElementById(`badge-room-${r}`);
-                const card = document.getElementById(`cal-card-${r}`);
-                if (badge) badge.classList.add('hidden');
-                if (card) card.classList.remove('change-alert-glow');
-            });
-        }
+            const toastSubEl = document.getElementById('toast-submitted-time');
+            const toastSentEl = document.getElementById('toast-sent-time');
+            if (toastSubEl) toastSubEl.innerText = submittedStamp;
+            if (toastSentEl) toastSentEl.innerText = sentStamp;
 
-        function triggerManualRefresh() {
-            countdownValue = 60;
-            const countEl = document.getElementById('countdown-seconds');
-            if (countEl) countEl.innerText = countdownValue;
-            checkCalendarChangesAndSync();
-        }
+            if (modalConfirmBtn) {
+                modalConfirmBtn.disabled = false;
+                modalConfirmBtn.innerText = 'Confirm & Send';
+            }
+            if (confirmBtn) {
+                confirmBtn.disabled = false;
+                confirmBtn.innerText = 'REQUEST SANCTUARY BOOKING';
+            }
 
-        function toggleAutoRefresh() {
-            autoRefreshEnabled = !autoRefreshEnabled;
-            const icon = document.getElementById('auto-toggle-icon');
-            const text = document.getElementById('auto-toggle-text');
-            const ping = document.getElementById('sync-ping');
-            const dot = document.getElementById('sync-dot');
-
-            if (autoRefreshEnabled) {
-                countdownValue = 60;
-                const countEl = document.getElementById('countdown-seconds');
-                if (countEl) countEl.innerText = countdownValue;
-                if (icon) icon.className = 'fas fa-pause mr-1';
-                if (text) text.innerText = 'Auto: ON';
-                if (ping) ping.classList.remove('hidden');
-                if (dot) {
-                    dot.classList.remove('bg-yellow-500');
-                    dot.classList.add('bg-green-500');
-                }
+            if (submitted) {
+                setTimeout(() => {
+                    closeModal();
+                    showSuccessToast();
+                }, 600);
+                setTimeout(fetchLiveCalendarAvailability, 1500);
             } else {
-                if (icon) icon.className = 'fas fa-play mr-1';
-                if (text) text.innerText = 'Auto: PAUSED';
-                if (ping) ping.classList.add('hidden');
-                if (dot) {
-                    dot.classList.remove('bg-green-500');
-                    dot.classList.add('bg-yellow-500');
-                }
+                closeModal();
+                alert('Submission Error: ' + (errorMessage || 'Could not reach booking service. Please try again.'));
             }
         }
 
-        function startAutoRefreshLoop() {
-            if (countdownInterval) clearInterval(countdownInterval);
-            countdownInterval = setInterval(() => {
-                if (!autoRefreshEnabled) return;
-                countdownValue--;
-                if (countdownValue <= 0) {
-                    countdownValue = 60;
-                    checkCalendarChangesAndSync();
-                }
-                const countEl = document.getElementById('countdown-seconds');
-                if (countEl) countEl.innerText = countdownValue;
-            }, 1000);
+        function showSuccessToast() {
+            const toast = document.getElementById('success-toast');
+            if (toast) {
+                toast.classList.remove('hidden');
+            }
         }
 
         function toggleMobileMenu() {
@@ -586,9 +1717,130 @@
             if (menu) menu.classList.add('hidden');
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            checkCalendarChangesAndSync();
-            startAutoRefreshLoop();
+        let lastClickedFaqId = null;
+
+        function setFaqOpenState(id, isOpen) {
+            const answer = document.getElementById(`faq-answer-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            if (!answer) return;
+
+            if (isOpen) {
+                answer.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-180');
+            }
+        }
+
+        function filterFaqs(category) {
+            const items = document.querySelectorAll('.faq-item');
+            const buttons = document.querySelectorAll('.faq-tab-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('border-luxuryGold', 'bg-luxuryGold/10', 'text-luxuryGold');
+                    btn.classList.remove('border-luxuryGold/30', 'text-gray-400');
+                } else {
+                    btn.classList.remove('border-luxuryGold', 'bg-luxuryGold/10', 'text-luxuryGold');
+                    btn.classList.add('border-luxuryGold/30', 'text-gray-400');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            for (let i = 1; i <= 19; i++) {
+                setFaqOpenState(i, false);
+            }
+            lastClickedFaqId = null;
+        }
+
+        function toggleFaq(event, id) {
+            const answer = document.getElementById(`faq-answer-${id}`);
+            if (!answer) return;
+
+            const isCtrl = event && (event.ctrlKey || event.metaKey);
+            const isShift = event && event.shiftKey;
+
+            if (isShift) {
+                if (window.getSelection) {
+                    window.getSelection().removeAllRanges();
+                }
+
+                const visibleFaqItems = Array.from(document.querySelectorAll('#faq-list-container .faq-item:not(.hidden)'));
+                const visibleIds = visibleFaqItems.map(item => {
+                    const btn = item.querySelector('button[id^="faq-btn-"]');
+                    return btn ? parseInt(btn.id.replace('faq-btn-', ''), 10) : null;
+                }).filter(Boolean);
+
+                let anchorId = (lastClickedFaqId !== null && visibleIds.includes(lastClickedFaqId))
+                    ? lastClickedFaqId
+                    : visibleIds.find(vId => {
+                        const ans = document.getElementById(`faq-answer-${vId}`);
+                        return ans && !ans.classList.contains('hidden');
+                    });
+
+                if (anchorId !== undefined && anchorId !== null && visibleIds.includes(id)) {
+                    const startIdx = Math.min(visibleIds.indexOf(anchorId), visibleIds.indexOf(id));
+                    const endIdx = Math.max(visibleIds.indexOf(anchorId), visibleIds.indexOf(id));
+                    for (let idx = startIdx; idx <= endIdx; idx++) {
+                        setFaqOpenState(visibleIds[idx], true);
+                    }
+                } else {
+                    setFaqOpenState(id, true);
+                }
+                lastClickedFaqId = id;
+            } else if (isCtrl) {
+                const isHidden = answer.classList.contains('hidden');
+                setFaqOpenState(id, isHidden);
+                if (isHidden) {
+                    lastClickedFaqId = id;
+                }
+            } else {
+                const isHidden = answer.classList.contains('hidden');
+                for (let i = 1; i <= 19; i++) {
+                    if (i !== id) {
+                        setFaqOpenState(i, false);
+                    }
+                }
+                setFaqOpenState(id, isHidden);
+                lastClickedFaqId = isHidden ? id : null;
+            }
+        }
+
+        function toggleAllVisibleFaqs() {
+            const visibleFaqItems = Array.from(document.querySelectorAll('#faq-list-container .faq-item:not(.hidden)'));
+            const visibleIds = visibleFaqItems.map(item => {
+                const btn = item.querySelector('button[id^="faq-btn-"]');
+                return btn ? parseInt(btn.id.replace('faq-btn-', ''), 10) : null;
+            }).filter(Boolean);
+
+            const anyOpen = visibleIds.some(id => {
+                const answer = document.getElementById(`faq-answer-${id}`);
+                return answer && !answer.classList.contains('hidden');
+            });
+
+            visibleIds.forEach(id => {
+                setFaqOpenState(id, !anyOpen);
+            });
+
+            if (anyOpen) {
+                lastClickedFaqId = null;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initCarouselClones();
+            renderCalendar();
+            fetchLiveCalendarAvailability();
+            resetSlideTimer();
+            filterFaqs('amenities');
         });
     </script>
 </body>
